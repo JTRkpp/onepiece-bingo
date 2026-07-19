@@ -6,37 +6,25 @@ const board = document.getElementById("bingo-board");
 const message = document.getElementById("bingo-message");
 const callerResult = document.getElementById("caller-result");
 
+const customPanel = document.getElementById("custom-panel");
+const customInputs = document.getElementById("custom-inputs");
 
-// โหลดตัวละคร
+
+// โหลดข้อมูลตัวละคร
 fetch("data/characters.json")
-    .then(response => {
+.then(response => response.json())
+.then(data => {
 
-        if (!response.ok) {
-            throw new Error("Cannot load characters.json");
-        }
+    characters = data;
 
-        return response.json();
+    createBoard();
 
-    })
-    .then(data => {
-
-        characters = data;
-
-        createBoard();
-
-    })
-    .catch(error => {
-
-        console.error(error);
-
-        message.innerHTML = "❌ Cannot load character data";
-
-    });
+});
 
 
 
 // สุ่ม
-function shuffle(array) {
+function shuffle(array){
 
     return array.sort(() => Math.random() - 0.5);
 
@@ -44,27 +32,33 @@ function shuffle(array) {
 
 
 
-// สร้างบอร์ด
-function createBoard() {
-
+// สร้างบอร์ดสุ่ม
+function createBoard(){
 
     board.innerHTML = "";
-
     message.innerHTML = "";
-
 
     boardCharacters = shuffle([...characters]).slice(0,25);
 
-
     marked = Array(25).fill(false);
 
+
+    drawBoard();
+
+}
+
+
+
+// แสดงบอร์ด
+function drawBoard(){
+
+    board.innerHTML = "";
 
 
     boardCharacters.forEach((character,index)=>{
 
 
-        const cell = document.createElement("div");
-
+        let cell = document.createElement("div");
 
         cell.className = "bingo-cell";
 
@@ -72,8 +66,7 @@ function createBoard() {
         cell.innerHTML = character.name;
 
 
-
-        cell.onclick = function(){
+        cell.onclick = ()=>{
 
 
             marked[index] = !marked[index];
@@ -87,16 +80,13 @@ function createBoard() {
 
             checkBingo();
 
-
         };
-
 
 
         board.appendChild(cell);
 
 
     });
-
 
 }
 
@@ -106,7 +96,7 @@ function createBoard() {
 function checkBingo(){
 
 
-    const lines = [
+    let lines = [
 
         [0,1,2,3,4],
         [5,6,7,8,9],
@@ -126,35 +116,118 @@ function checkBingo(){
     ];
 
 
+    for(let line of lines){
 
-    for (let line of lines){
-
-
-        if(line.every(index => marked[index])){
-
+        if(line.every(i => marked[i])){
 
             message.innerHTML = "🎉 BINGO!";
 
             return;
-
 
         }
 
     }
 
 
-
     message.innerHTML = "";
-
 
 }
 
 
 
-// ปุ่มสุ่มบอร์ดใหม่
+// ปุ่ม Random Board
+
 document
-    .getElementById("new-board")
-    .onclick = createBoard;
+.getElementById("new-board")
+.onclick = createBoard;
+
+
+
+
+
+// ==========================
+// Custom Board Mode
+// ==========================
+
+
+document
+.getElementById("custom-mode")
+.onclick = function(){
+
+
+    customPanel.style.display = "block";
+
+
+    customInputs.innerHTML = "";
+
+
+    for(let i=0;i<25;i++){
+
+
+        let input = document.createElement("input");
+
+
+        input.placeholder = 
+        "Character " + (i+1);
+
+
+        input.className = "custom-input";
+
+
+        customInputs.appendChild(input);
+
+
+    }
+
+
+};
+
+
+
+
+
+document
+.getElementById("create-custom")
+.onclick = function(){
+
+
+    let inputs =
+    document.querySelectorAll(".custom-input");
+
+
+    let names = [];
+
+
+    inputs.forEach(input=>{
+
+        names.push(
+            input.value.trim() || "Empty"
+        );
+
+    });
+
+
+
+    boardCharacters =
+    names.map(name=>({
+
+        name:name
+
+    }));
+
+
+    marked = Array(25).fill(false);
+
+
+    drawBoard();
+
+
+    customPanel.style.display="none";
+
+
+};
+
+
 
 
 
@@ -163,26 +236,25 @@ document
 let callerPool = [];
 
 
-
 document
-    .getElementById("caller")
-    .onclick = function(){
+.getElementById("caller")
+.onclick = function(){
 
 
+    if(callerPool.length===0){
 
-        if(callerPool.length === 0){
+        callerPool =
+        shuffle([...characters]);
 
-            callerPool = shuffle([...characters]);
-
-        }
-
-
-
-        const picked = callerPool.pop();
+    }
 
 
+    let picked =
+    callerPool.pop();
 
-        callerResult.innerHTML = picked.name;
+
+    callerResult.innerHTML =
+    picked.name;
 
 
-    };
+};
