@@ -1,102 +1,77 @@
 [
   {
-    "name": "Monkey D. Luffy",
-    "image": "assets/images/luffy.png"
+    "name": "Monkey D. Luffy"
   },
   {
-    "name": "Roronoa Zoro",
-    "image": "assets/images/zoro.png"
+    "name": "Roronoa Zoro"
   },
   {
-    "name": "Nami",
-    "image": "assets/images/nami.png"
+    "name": "Nami"
   },
   {
-    "name": "Usopp",
-    "image": "assets/images/usopp.png"
+    "name": "Usopp"
   },
   {
-    "name": "Sanji",
-    "image": "assets/images/sanji.png"
+    "name": "Sanji"
   },
   {
-    "name": "Tony Tony Chopper",
-    "image": "assets/images/chopper.png"
+    "name": "Tony Tony Chopper"
   },
   {
-    "name": "Nico Robin",
-    "image": "assets/images/robin.png"
+    "name": "Nico Robin"
   },
   {
-    "name": "Franky",
-    "image": "assets/images/franky.png"
+    "name": "Franky"
   },
   {
-    "name": "Brook",
-    "image": "assets/images/brook.png"
+    "name": "Brook"
   },
   {
-    "name": "Jinbe",
-    "image": "assets/images/jinbe.png"
+    "name": "Jinbe"
   },
   {
-    "name": "Shanks",
-    "image": "assets/images/shanks.png"
+    "name": "Shanks"
   },
   {
-    "name": "Portgas D. Ace",
-    "image": "assets/images/ace.png"
+    "name": "Portgas D. Ace"
   },
   {
-    "name": "Trafalgar Law",
-    "image": "assets/images/law.png"
+    "name": "Trafalgar Law"
   },
   {
-    "name": "Eustass Kid",
-    "image": "assets/images/kid.png"
+    "name": "Eustass Kid"
   },
   {
-    "name": "Boa Hancock",
-    "image": "assets/images/hancock.png"
+    "name": "Boa Hancock"
   },
   {
-    "name": "Dracule Mihawk",
-    "image": "assets/images/mihawk.png"
+    "name": "Dracule Mihawk"
   },
   {
-    "name": "Buggy",
-    "image": "assets/images/buggy.png"
+    "name": "Buggy"
   },
   {
-    "name": "Crocodile",
-    "image": "assets/images/crocodile.png"
+    "name": "Crocodile"
   },
   {
-    "name": "Donquixote Doflamingo",
-    "image": "assets/images/doflamingo.png"
+    "name": "Donquixote Doflamingo"
   },
   {
-    "name": "Kaido",
-    "image": "assets/images/kaido.png"
+    "name": "Kaido"
   },
   {
-    "name": "Big Mom",
-    "image": "assets/images/bigmom.png"
+    "name": "Big Mom"
   },
   {
-    "name": "Blackbeard",
-    "image": "assets/images/blackbeard.png"
+    "name": "Blackbeard"
   },
   {
-    "name": "Koby",
-    "image": "assets/images/koby.png"
+    "name": "Koby"
   },
   {
-    "name": "Smoker",
-    "image": "assets/images/smoker.png"
+    "name": "Smoker"
   },
   {
-    "name": "Monkey D. Dragon",
-    "image": "assets/images/dragon.png"
+    "name": "Monkey D. Dragon"
   }
 ]
