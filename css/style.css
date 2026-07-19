@@ -122,32 +122,135 @@ button:active {
 
 #drawResult {
 
-
     width:90%;
 
-
-    max-width:350px;
+    max-width:360px;
 
 
     margin:25px auto;
 
 
-    padding:20px;
+    padding:25px 15px;
 
 
 
     background:
 
-
     linear-gradient(
 
         135deg,
 
-        #fff1c4,
+        #f8e7b0,
 
-        #d8b56a
+        #d3ad62
 
     );
+
+
+
+    border:
+
+    6px solid #3b2108;
+
+
+
+    border-radius:4px;
+
+
+
+    text-align:center;
+
+
+
+    box-shadow:
+
+    0 12px 25px rgba(0,0,0,0.45);
+
+
+
+    position:relative;
+
+
+}
+
+
+
+#drawResult::before {
+
+
+    content:"WANTED";
+
+
+    display:block;
+
+
+    font-family:Georgia, serif;
+
+
+    font-size:42px;
+
+
+    font-weight:bold;
+
+
+
+    letter-spacing:4px;
+
+
+
+    color:#5a0000;
+
+
+
+    margin-bottom:15px;
+
+
+
+}
+
+
+
+#drawResult h2 {
+
+
+    display:none;
+
+
+}
+
+
+
+#drawName {
+
+
+    font-size:20px;
+
+
+    font-weight:bold;
+
+
+
+    color:#3b2108;
+
+
+
+    padding:15px;
+
+
+
+    border-top:
+
+    2px solid #7a4518;
+
+
+
+    border-bottom:
+
+    2px solid #7a4518;
+
+
+
+}
 
 
     border:
