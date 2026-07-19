@@ -111,24 +111,72 @@ function drawBoard(){
 
 
 
-        cell.onclick = function(){
+let pressTimer;
 
 
-            marked[index] =
-            !marked[index];
+cell.onclick = function(){
+
+    marked[index] =
+    !marked[index];
 
 
-            cell.classList.toggle(
-                "marked",
-                marked[index]
+    cell.classList.toggle(
+        "marked",
+        marked[index]
+    );
+
+
+    checkBingo();
+
+};
+
+
+
+// แตะค้างเพื่อแก้ชื่อ
+
+cell.addEventListener(
+    "touchstart",
+    function(){
+
+        pressTimer = setTimeout(function(){
+
+
+            let newName = prompt(
+                "แก้ชื่อตัวละคร",
+                character.name
             );
 
 
-            checkBingo();
+            if(newName && newName.trim() !== ""){
 
 
-        };
+                character.name =
+                newName.trim();
 
+
+                cell.innerHTML =
+                character.name;
+
+
+            }
+
+
+        },800);
+
+
+    }
+);
+
+
+
+cell.addEventListener(
+    "touchend",
+    function(){
+
+        clearTimeout(pressTimer);
+
+    }
+);
 
 
         board.appendChild(cell);
