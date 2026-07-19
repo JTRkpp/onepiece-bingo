@@ -73,7 +73,7 @@
   },
   {
     "name": "มังกี้ ดี. ดราก้อน (Monkey D. Dragon)"
-  }
+  },
   {
     "name": "เนเฟลตารี วีวี่ (Nefertari Vivi)"
   },
@@ -157,7 +157,7 @@
   },
   {
     "name": "เอ็กซ์ เดรก (X Drake)"
-  }
+  },
   {
     "name": "อาคาอินุ (Sakazuki Akainu)"
   },
@@ -183,13 +183,7 @@
     "name": "สึรุ (Tsuru)"
   },
   {
-    "name": "โคบี้ (Koby)"
-  },
-  {
     "name": "เฮลเม็ปโป (Helmeppo)"
-  },
-  {
-    "name": "สโมคเกอร์ (Smoker)"
   },
   {
     "name": "ทาชิงิ (Tashigi)"
@@ -244,7 +238,7 @@
   },
   {
     "name": "เซนต์ เชพเพิร์ด จู ปีเตอร์ (Saint Shepherd Ju Peter)"
-  }
+  },
   {
     "name": "เอ็ดเวิร์ด นิวเกต หนวดขาว (Edward Newgate Whitebeard)"
   },
@@ -270,12 +264,6 @@
     "name": "ร็อคส์ ดี. ซีเบค (Rocks D. Xebec)"
   },
   {
-    "name": "ชาร์ล็อตต์(Charlotte Linlin)"
-  },
-  {
-    "name": "ไคโด (Kaido)"
-  },
-  {
     "name": "จีซัส เบอร์เจส (Jesus Burgess)"
   },
   {
@@ -297,14 +285,8 @@
     "name": "ซานฮวน วูล์ฟ (Sanjuan Wolf)"
   },
   {
-    "name": "อาโอคิยิ (Aokiji kuzan)"
-  },
-  {
     "name": "วาสโก ช็อต (Vasco Shot)"
   },
-  {
-    "name": "มาร์แชล ดี. ทีช หนวดดำ (Marshall D. Teach Blackbeard)"
-  }
   {
     "name": "คิง ราชาแห่งไฟ (King the Wildfire)"
   },
@@ -321,15 +303,6 @@
     "name": "แบล็คมาเรีย (Black Maria)"
   },
   {
-    "name": "เอ็กซ์ เดรก (X Drake)"
-  },
-  {
-    "name": "สแครชแมน อาพู (Scratchmen Apoo)"
-  },
-  {
-    "name": "บาซิล ฮอว์กินส์ (Basil Hawkins)"
-  },
-  {
     "name": "โฮลเด็ม (Holdem)"
   },
   {
@@ -340,15 +313,6 @@
   },
   {
     "name": "บาบานุกิ (Babanuki)"
-  },
-  {
-    "name": "โมโมโนะสุเกะ (Momonosuke)"
-  },
-  {
-    "name": "ยามาโตะ (Yamato)"
-  },
-  {
-    "name": "จินเบ (Jinbe)"
   },
   {
     "name": "ฟิชเชอร์ ไทเกอร์ (Fisher Tiger)"
@@ -364,9 +328,6 @@
   },
   {
     "name": "ฮิโยโซ (Hyouzou)"
-  },
-  {
-    "name": "อารอง (Arlong)"
   },
   {
     "name": "คุรุบิ (Kuroobi)"
@@ -390,19 +351,7 @@
     "name": "ดองกี้โฮเต้ โรซินันเต้ (Donquixote Rosinante)"
   },
   {
-    "name": "คร็อกโคไดล์ (Crocodile)"
-  },
-  {
-    "name": "โมเรีย (Gecko Moria)"
-  },
-  {
-    "name": "เซนต์ โดฟลามิงโก้ (Doflamingo Celestial Dragon)"
-  },
-  {
     "name": "เอ็ดเวิร์ด วีวิล (Edward Weevil)"
-  },
-  {
-    "name": "มิสเตอร์ 2 บอน เคลย์ (Mr. 2 Bon Clay)"
   },
   {
     "name": "มิสเตอร์ 3 กัลดิโน (Mr. 3 Galdino)"
@@ -434,3 +383,199 @@
   {
     "name": "เพิร์ล (Pearl)"
   }
+  {
+    "name": "คุณเบลเมล (Bellemere)"
+  },
+  {
+    "name": "โนจิโกะ (Nojiko)"
+  },
+  {
+    "name": "ลุงเก็นโซ (Genzo)"
+  },
+  {
+    "name": "ด็อกเตอร์ฮิลลูลุค (Dr. Hiriluk)"
+  },
+  {
+    "name": "ด็อกเตอร์คุเรฮะ (Kureha)"
+  },
+  {
+    "name": "วาโปล (Wapol)"
+  },
+  {
+    "name": "ดัลตัน (Dalton)"
+  },
+  {
+    "name": "ไวเปอร์ (Wyper)"
+  },
+  {
+    "name": "เอเนล (Enel)"
+  },
+  {
+    "name": "ฟ็อกซี่ (Foxy)"
+  },
+  {
+    "name": "ชาร์ล็อตต์เพโรสเพโร (Charlotte Perospero)"
+  },
+  {
+    "name": "ชาร์ล็อตต์คาตาคุริ (Charlotte Katakuri)"
+  },
+  {
+    "name": "ชาร์ล็อตต์สมูทตี้ (Charlotte Smoothie)"
+  },
+  {
+    "name": "ชาร์ล็อตต์คราเกอร์ (Charlotte Cracker)"
+  },
+  {
+    "name": "ชาร์ล็อตต์โอเว่น (Charlotte Oven)"
+  },
+  {
+    "name": "ชาร์ล็อตต์ไดฟุกุ (Charlotte Daifuku)"
+  },
+  {
+    "name": "ปอนด์ (Pound)"
+  },
+  {
+    "name": "เพคอมส์ (Pekoms)"
+  },
+  {
+    "name": "ทามาโกะ (Tamago)"
+  },
+  {
+    "name": "เปโดร (Pedro)"
+  },
+  {
+    "name": "แคร็อท (Carrot)"
+  },
+  {
+    "name": "ซีซาร์ คลาวน์ (Caesar Clown)"
+  },
+  {
+    "name": "โมเนต์ (Monet)"
+  },
+  {
+    "name": "หนวดน้ำตาล (Brownbeard)"
+  },
+  {
+    "name": "เบบี้ 5 (Baby 5)"
+  },
+  {
+    "name": "ซินญอร์ พิงค์ (Senor Pink)"
+  },
+  {
+    "name": "พิก้า (Pica)"
+  },
+  {
+    "name": "เทรโบล (Trebol)"
+  },
+  {
+    "name": "มัคไวส์ (Machvise)"
+  },
+  {
+    "name": "กลาดิอุส (Gladius)"
+  },
+  {
+    "name": "โจล่า (Jola)"
+  },
+  {
+    "name": "ไวโอเล็ต (Violet)"
+  },
+  {
+    "name": "รีเบคก้า (Rebecca)"
+  },
+  {
+    "name": "ไครอส (Kyros)"
+  },
+  {
+    "name": "ราชาริคุ (King Riku)"
+  },
+  {
+    "name": "ไอซ์เบิร์ก (Iceburg)"
+  },
+  {
+    "name": "พาลลี่ (Paulie)"
+  },
+  {
+    "name": "คุณทอม (Tom)"
+  },
+  {
+    "name": "ป้าโคโคโระ (Kokoro)"
+  },
+  {
+    "name": "สแปนดัม (Spandam)"
+  },
+  {
+    "name": "กาลู (Karoo)"
+  },
+  {
+    "name": "ด็อกเตอร์เวกาพังค์ (Dr. Vegapunk)"
+  },
+  {
+    "name": "เซนโตมารุ (Sentomaru)"
+  },
+  {
+    "name": "แปซิฟิสต้า (Pacifista)"
+  },
+  {
+    "name": "เบน เบ็คแมน (Benn Beckman)"
+  },
+  {
+    "name": "ยาซปป์ (Yasopp)"
+  },
+  {
+    "name": "ลัคกี้ รู (Lucky Roux)"
+  },
+  {
+    "name": "ด็อกเตอร์ ฮอกแบ็ค (Dr. Hogback)"
+  },
+  {
+    "name": "อับซาลอม (Absalom)"
+  },
+  {
+    "name": "ริวมะ (Ryuma)"
+  },
+  {
+    "name": "คุจา มากาเร็ต (Marguerite)"
+  },
+  {
+    "name": "กลอริโอซ่า (Gloriosa)"
+  },
+  {
+    "name": "เรย์จู วินสโมค (Vinsmoke Reiju)"
+  },
+  {
+    "name": "วินสโมค จัดจ์ (Vinsmoke Judge)"
+  },
+  {
+    "name": "วินสโมค อิจิจิ (Vinsmoke Ichiji)"
+  },
+  {
+    "name": "วินสโมค นิจิ (Vinsmoke Niji)"
+  },
+  {
+    "name": "วินสโมค ยงจิ (Vinsmoke Yonji)"
+  },
+  {
+    "name": "ชาร์ล็อตต์ พุดดิ้ง (Charlotte Pudding)"
+  },
+  {
+    "name": "วิโตะ (Vito)"
+  },
+  {
+    "name": "อัลบีด้า (Alvida)"
+  },
+  {
+    "name": "มอร์แกนมือขวาน (Axe-Hand Morgan)"
+  },
+  {
+    "name": "ฮันเนียบัล (Hannyabal)"
+  },
+  {
+    "name": "แม็กเจลแลน (Magellan)"
+  },
+  {
+    "name": "โบอา โซเนีย (Boa Sandersonia)"
+  },
+  {
+    "name": "โบอา มารีโกลด์ (Boa Marigold)"
+  }
+]
