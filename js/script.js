@@ -1,17 +1,22 @@
 let characters = [];
+
 let boardCharacters = [];
+
 let marked = [];
 
-const board = document.getElementById("bingo-board");
-const message = document.getElementById("bingo-message");
-const callerResult = document.getElementById("caller-result");
-
-const customPanel = document.getElementById("custom-panel");
-const customInputs = document.getElementById("custom-inputs");
 
 
+// Elements
 
-// โหลดข้อมูลตัวละคร
+const board = document.getElementById("bingoBoard");
+
+const message = document.getElementById("bingoMessage");
+
+const customArea = document.getElementById("customArea");
+
+
+
+// โหลดตัวละคร
 
 fetch("data/characters.json")
 
@@ -47,7 +52,6 @@ fetch("data/characters.json")
 
 
 
-
 // สุ่ม
 
 function shuffle(array){
@@ -66,11 +70,6 @@ function shuffle(array){
 
 function createBoard(){
 
-    board.innerHTML = "";
-
-    message.innerHTML = "";
-
-
     boardCharacters =
     shuffle([...characters])
     .slice(0,25);
@@ -88,8 +87,7 @@ function createBoard(){
 
 
 
-
-// แสดงบอร์ด
+// แสดงตาราง
 
 function drawBoard(){
 
@@ -200,12 +198,10 @@ function checkBingo(){
 
 
 
-
-
-// Random Board
+// ปุ่มสุ่มบอร์ด
 
 document
-.getElementById("new-board")
+.getElementById("randomBoard")
 .onclick = createBoard;
 
 
@@ -214,23 +210,15 @@ document
 
 
 
-// =======================
-// Custom Board
-// =======================
 
-
+// สร้างบอร์ดเอง
 
 document
-.getElementById("custom-mode")
+.getElementById("createBoard")
 .onclick = function(){
 
 
-    customPanel.style.display =
-    "block";
-
-
-    customInputs.innerHTML =
-    "";
+    customArea.innerHTML = "";
 
 
 
@@ -241,8 +229,7 @@ document
         document.createElement("input");
 
 
-        input.type =
-        "text";
+        input.type = "text";
 
 
         input.placeholder =
@@ -253,10 +240,27 @@ document
         "custom-input";
 
 
-        customInputs.appendChild(input);
+        customArea.appendChild(input);
 
 
     }
+
+
+
+    const button =
+    document.createElement("button");
+
+
+    button.innerHTML =
+    "✅ Create Bingo";
+
+
+    button.onclick =
+    createCustomBoard;
+
+
+    customArea.appendChild(button);
+
 
 
 };
@@ -267,11 +271,7 @@ document
 
 
 
-
-document
-.getElementById("create-custom")
-.onclick = function(){
-
+function createCustomBoard(){
 
 
     const inputs =
@@ -280,36 +280,23 @@ document
     );
 
 
-
-    let names = [];
-
+    boardCharacters = [];
 
 
-    inputs.forEach(input => {
+    inputs.forEach(input=>{
 
 
-        names.push(
+        boardCharacters.push({
 
+            name:
             input.value.trim()
             ||
             "Empty"
 
-        );
+        });
 
 
     });
-
-
-
-
-
-    boardCharacters =
-    names.map(name => ({
-
-        name:name
-
-    }));
-
 
 
 
@@ -317,21 +304,12 @@ document
     Array(25).fill(false);
 
 
-
     drawBoard();
 
 
+    customArea.innerHTML = "";
 
-    customPanel.style.display =
-    "none";
-
-
-
-};
-
-
-
-
+}
 
 
 
@@ -339,14 +317,14 @@ document
 
 // Caller Mode
 
-
 let callerPool = [];
 
 
 
 document
-.getElementById("caller")
+.getElementById("drawCharacter")
 .onclick = function(){
+
 
 
     if(callerPool.length === 0){
@@ -360,13 +338,16 @@ document
 
 
 
-    const picked =
+    const result =
     callerPool.pop();
 
 
 
-    callerResult.innerHTML =
-    picked.name;
+    document
+    .getElementById("drawName")
+    .innerHTML =
+    result.name;
+
 
 
 };
