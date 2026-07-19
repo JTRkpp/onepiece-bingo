@@ -99,7 +99,7 @@
     "name": "คันจูโร่ (Kanjuro)"
   },
   {
-    "name": "ชินโบ (Shinobu)"
+    "name": "ชิโนบุ (Shinobu)"
   },
   {
     "name": "เนโกะมามูชิ (Nekomamushi)"
@@ -141,16 +141,10 @@
     "name": "โมเรีย (Gecko Moria)"
   },
   {
-    "name": "จูลี แอนน์ (Jewelry Bonney)"
+    "name": "จิวเวอรี่ บอนนี่ (Jewelry Bonney)"
   },
   {
     "name": "เบโปะ (Bepo)"
-  },
-  {
-    "name": "เพนกวิน (Penguin)"
-  },
-  {
-    "name": "ชาจิ (Shachi)"
   },
   {
     "name": "คิลเลอร์ (Killer)"
@@ -164,4 +158,279 @@
   {
     "name": "เอ็กซ์ เดรก (X Drake)"
   }
-]
+  {
+    "name": "อาคาอินุ (Sakazuki Akainu)"
+  },
+  {
+    "name": "อาโอคิยิ (Kuzan Aokiji)"
+  },
+  {
+    "name": "คิซารุ (Borsalino Kizaru)"
+  },
+  {
+    "name": "ฟูจิโทระ (Issho Fujitora)"
+  },
+  {
+    "name": "เรียวคุกิว (Aramaki Ryokugyu)"
+  },
+  {
+    "name": "การ์ป (Monkey D. Garp)"
+  },
+  {
+    "name": "เซ็นโงคุ (Sengoku)"
+  },
+  {
+    "name": "สึรุ (Tsuru)"
+  },
+  {
+    "name": "โคบี้ (Koby)"
+  },
+  {
+    "name": "เฮลเม็ปโป (Helmeppo)"
+  },
+  {
+    "name": "สโมคเกอร์ (Smoker)"
+  },
+  {
+    "name": "ทาชิงิ (Tashigi)"
+  },
+  {
+    "name": "เวอร์โก้ (Vergo)"
+  },
+  {
+    "name": "โมมอนก้า (Momonga)"
+  },
+  {
+    "name": "ฮินะ (Hina)"
+  },
+  {
+    "name": "ฟูลบอดี้ (Fullbody)"
+  },
+  {
+    "name": "ร็อบ ลุจจิ (Rob Lucci)"
+  },
+  {
+    "name": "คาคุ (Kaku)"
+  },
+  {
+    "name": "คาลิฟา (Kalifa)"
+  },
+  {
+    "name": "บลูโน่ (Blueno)"
+  },
+  {
+    "name": "ฟุคุโร่ (Fukuro)"
+  },
+  {
+    "name": "คุมะ (Bartholomew Kuma)"
+  },
+  {
+    "name": "เซนต์ ชาร์ลอส (Saint Charlos)"
+  },
+  {
+    "name": "ท่านอิม (Imu)"
+  },
+  {
+    "name": "เซนต์ เจย์การ์เซีย แซทเทิร์น (Saint Jaygarcia Saturn)"
+  },
+  {
+    "name": "เซนต์ มาร์คัส มาร์ส (Saint Marcus Mars)"
+  },
+  {
+    "name": "เซนต์ ท็อปแมน วอร์คิวรี่ (Saint Topman Warcury)"
+  },
+  {
+    "name": "เซนต์ เอทานบารอน วี นัสจูโร (Saint Ethanbaron V. Nusjuro)"
+  },
+  {
+    "name": "เซนต์ เชพเพิร์ด จู ปีเตอร์ (Saint Shepherd Ju Peter)"
+  }
+  {
+    "name": "เอ็ดเวิร์ด นิวเกต หนวดขาว (Edward Newgate Whitebeard)"
+  },
+  {
+    "name": "มาร์โค ฟีนิกซ์ (Marco the Phoenix)"
+  },
+  {
+    "name": "โจส (Jozu)"
+  },
+  {
+    "name": "โกล ดี. โรเจอร์ (Gol D. Roger)"
+  },
+  {
+    "name": "ซิลเวอร์ เรย์ลี่ (Silvers Rayleigh)"
+  },
+  {
+    "name": "คร็อกคัส (Crocus)"
+  },
+  {
+    "name": "ชิคิ สิงโตทองคำ (Shiki the Golden Lion)"
+  },
+  {
+    "name": "ร็อคส์ ดี. ซีเบค (Rocks D. Xebec)"
+  },
+  {
+    "name": "ชาร์ล็อตต์(Charlotte Linlin)"
+  },
+  {
+    "name": "ไคโด (Kaido)"
+  },
+  {
+    "name": "จีซัส เบอร์เจส (Jesus Burgess)"
+  },
+  {
+    "name": "แวน ออก้า (Van Augur)"
+  },
+  {
+    "name": "นายอำเภอปีศาจลาฟิตต์ (Lafitte)"
+  },
+  {
+    "name": "ด็อก คิว (Doc Q)"
+  },
+  {
+    "name": "ชิริวแห่งสายฝน (Shiryu)"
+  },
+  {
+    "name": "คาทาริน่า เดวอน (Catarina Devon)"
+  },
+  {
+    "name": "ซานฮวน วูล์ฟ (Sanjuan Wolf)"
+  },
+  {
+    "name": "อาโอคิยิ (Aokiji kuzan)"
+  },
+  {
+    "name": "วาสโก ช็อต (Vasco Shot)"
+  },
+  {
+    "name": "มาร์แชล ดี. ทีช หนวดดำ (Marshall D. Teach Blackbeard)"
+  }
+  {
+    "name": "คิง ราชาแห่งไฟ (King the Wildfire)"
+  },
+  {
+    "name": "ควีน ภัยพิบัติ (Queen the Plague)"
+  },
+  {
+    "name": "แจ็ค ภัยแล้ง (Jack the Drought)"
+  },
+  {
+    "name": "ฮูส์ฮู (Who's Who)"
+  },
+  {
+    "name": "แบล็คมาเรีย (Black Maria)"
+  },
+  {
+    "name": "เอ็กซ์ เดรก (X Drake)"
+  },
+  {
+    "name": "สแครชแมน อาพู (Scratchmen Apoo)"
+  },
+  {
+    "name": "บาซิล ฮอว์กินส์ (Basil Hawkins)"
+  },
+  {
+    "name": "โฮลเด็ม (Holdem)"
+  },
+  {
+    "name": "สปีด (Speed)"
+  },
+  {
+    "name": "โดบิน (Dobon)"
+  },
+  {
+    "name": "บาบานุกิ (Babanuki)"
+  },
+  {
+    "name": "โมโมโนะสุเกะ (Momonosuke)"
+  },
+  {
+    "name": "ยามาโตะ (Yamato)"
+  },
+  {
+    "name": "จินเบ (Jinbe)"
+  },
+  {
+    "name": "ฟิชเชอร์ ไทเกอร์ (Fisher Tiger)"
+  },
+  {
+    "name": "โอโตฮิเมะ (Otohime)"
+  },
+  {
+    "name": "โฮดี้ โจนส์ (Hody Jones)"
+  },
+  {
+    "name": "วาดาสึมิ (Vander Decken IX)"
+  },
+  {
+    "name": "ฮิโยโซ (Hyouzou)"
+  },
+  {
+    "name": "อารอง (Arlong)"
+  },
+  {
+    "name": "คุรุบิ (Kuroobi)"
+  },
+  {
+    "name": "ชิราโฮชิ (Shirahoshi)"
+  },
+  {
+    "name": "เนปจูน (Neptune)"
+  },
+  {
+    "name": "ฟุคาโบชิ (Fukaboshi)"
+  },
+  {
+    "name": "ริวโบชิ (Ryuboshi)"
+  },
+  {
+    "name": "มันโบชิ (Manboshi)"
+  },
+  {
+    "name": "ดองกี้โฮเต้ โรซินันเต้ (Donquixote Rosinante)"
+  },
+  {
+    "name": "คร็อกโคไดล์ (Crocodile)"
+  },
+  {
+    "name": "โมเรีย (Gecko Moria)"
+  },
+  {
+    "name": "เซนต์ โดฟลามิงโก้ (Doflamingo Celestial Dragon)"
+  },
+  {
+    "name": "เอ็ดเวิร์ด วีวิล (Edward Weevil)"
+  },
+  {
+    "name": "มิสเตอร์ 2 บอน เคลย์ (Mr. 2 Bon Clay)"
+  },
+  {
+    "name": "มิสเตอร์ 3 กัลดิโน (Mr. 3 Galdino)"
+  },
+  {
+    "name": "มิสเตอร์ 4 (Mr. 4)"
+  },
+  {
+    "name": "มิสโกลเด้นวีค (Miss Goldenweek)"
+  },
+  {
+    "name": "มิสวาเลนไทน์ (Miss Valentine)"
+  },
+  {
+    "name": "มิสเตอร์ 5 (Mr. 5)"
+  },
+  {
+    "name": "คุโระ (Kuro)"
+  },
+  {
+    "name": "จังโก้ (Jango)"
+  },
+  {
+    "name": "ดอน ครีก (Don Krieg)"
+  },
+  {
+    "name": "จิน (Gin)"
+  },
+  {
+    "name": "เพิร์ล (Pearl)"
+  }
