@@ -1,5 +1,5 @@
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 
@@ -14,19 +14,33 @@ body {
     color:#3b2108;
 
 
-    background:
+    background-color:#c8a15a;
+
+
+    background-image:
 
     radial-gradient(
+        rgba(70,35,10,.25) 1px,
+        transparent 1px
+    ),
 
-        ellipse at center,
+    radial-gradient(
+        rgba(255,240,170,.35) 1px,
+        transparent 1px
+    ),
 
-        #f7e5aa 0%,
-
-        #d3a85c 55%,
-
-        #8b572a 100%
-
+    linear-gradient(
+        45deg,
+        rgba(120,70,20,.12),
+        transparent
     );
+
+
+    background-size:
+
+    20px 20px,
+    35px 35px,
+    100% 100%;
 
 
 }
@@ -35,6 +49,7 @@ body {
 
 /* Header */
 
+
 header {
 
     text-align:center;
@@ -42,19 +57,28 @@ header {
 }
 
 
+
 h1 {
 
-    color:#7b0000;
+
+    color:#790000;
+
 
     font-size:32px;
 
+
+    letter-spacing:1px;
+
+
     text-shadow:
 
-    2px 2px #f5d78a,
+    2px 2px #f2d18b,
 
-    4px 4px rgba(0,0,0,0.25);
+    4px 4px rgba(0,0,0,.25);
+
 
 }
+
 
 
 
@@ -65,13 +89,18 @@ h1 {
 
 .buttons {
 
+
     display:flex;
+
 
     justify-content:center;
 
+
     flex-wrap:wrap;
 
+
     gap:10px;
+
 
 }
 
@@ -80,18 +109,10 @@ h1 {
 button {
 
 
-    background:
-
-    linear-gradient(
-
-        #c8873b,
-
-        #6d360f
-
-    );
+    padding:12px 16px;
 
 
-    color:white;
+    border-radius:12px;
 
 
     border:
@@ -99,16 +120,26 @@ button {
     3px solid #3b2108;
 
 
-    border-radius:12px;
+    background:
 
 
-    padding:12px 16px;
+    linear-gradient(
+
+        #b86b28,
+
+        #63300e
+
+    );
+
+
+    color:white;
 
 
     font-weight:bold;
 
 
     box-shadow:
+
 
     0 5px 0 #3b2108;
 
@@ -119,11 +150,15 @@ button {
 
 button:active {
 
+
     transform:translateY(4px);
+
 
     box-shadow:none;
 
+
 }
+
 
 
 
@@ -135,9 +170,10 @@ button:active {
 #drawResult {
 
 
-    width:90%;
-
     max-width:380px;
+
+
+    width:90%;
 
 
     margin:25px auto;
@@ -146,38 +182,44 @@ button:active {
     padding:20px;
 
 
-    background:
+
+    background-color:#e8cf91;
 
 
-    linear-gradient(
+    background-image:
 
-        135deg,
 
-        #fff0bf,
+    radial-gradient(
 
-        #d6b36a
+        rgba(100,50,10,.18) 1px,
+
+        transparent 1px
 
     );
+
+
+    background-size:18px 18px;
 
 
 
     border:
 
-    7px double #3b2108;
+    8px double #3b2108;
+
+
+
+    box-shadow:
+
+
+    0 12px 25px rgba(0,0,0,.45);
 
 
 
     text-align:center;
 
 
-
-    box-shadow:
-
-    0 12px 25px rgba(0,0,0,.45);
-
-
-
 }
+
 
 
 
@@ -186,6 +228,7 @@ button:active {
     display:none;
 
 }
+
 
 
 
@@ -201,10 +244,10 @@ button:active {
     font-size:45px;
 
 
-    letter-spacing:5px;
-
-
     font-weight:bold;
+
+
+    letter-spacing:5px;
 
 
     color:#650000;
@@ -226,17 +269,17 @@ button:active {
     font-weight:bold;
 
 
+    padding:15px;
+
+
     border-top:
 
-    2px solid #7a4518;
+    2px solid #70400f;
 
 
     border-bottom:
 
-    2px solid #7a4518;
-
-
-    padding:15px;
+    2px solid #70400f;
 
 
 }
@@ -261,7 +304,7 @@ button:active {
     repeat(5,1fr);
 
 
-    gap:9px;
+    gap:10px;
 
 
     width:95%;
@@ -270,7 +313,7 @@ button:active {
     max-width:600px;
 
 
-    margin:25px auto;
+    margin:30px auto;
 
 
 }
@@ -280,7 +323,8 @@ button:active {
 
 
 
-/* Bingo Cell */
+
+/* Old Paper Cell */
 
 
 .bingo-cell {
@@ -302,22 +346,30 @@ button:active {
     text-align:center;
 
 
-    padding:6px;
+    padding:8px;
 
 
 
-    background:
+    color:#3b2108;
 
 
-    linear-gradient(
 
-        135deg,
+    background-color:#ead49b;
 
-        #fff3c8,
 
-        #dfbd75
+    background-image:
+
+
+    radial-gradient(
+
+        rgba(80,40,10,.18) 1px,
+
+        transparent 1px
 
     );
+
+
+    background-size:15px 15px;
 
 
 
@@ -327,7 +379,7 @@ button:active {
 
 
 
-    border-radius:10px;
+    border-radius:5px;
 
 
 
@@ -341,10 +393,10 @@ button:active {
     box-shadow:
 
 
-    inset 0 0 12px rgba(100,60,20,.3),
+    inset 0 0 18px rgba(80,40,10,.3),
 
 
-    0 5px 10px rgba(0,0,0,.25);
+    0 5px 10px rgba(0,0,0,.3);
 
 
 
@@ -354,9 +406,12 @@ button:active {
 
     user-select:none;
 
+
     -webkit-user-select:none;
 
+
     -webkit-touch-callout:none;
+
 
     touch-action:none;
 
@@ -367,7 +422,10 @@ button:active {
 
 
 
-/* Selected */
+
+
+
+/* Pirate Stamp */
 
 
 .bingo-cell.marked {
@@ -376,22 +434,47 @@ button:active {
     background:
 
 
-    linear-gradient(
+    radial-gradient(
 
-        135deg,
+        circle,
 
-        #a90000,
+        #b00000,
 
-        #4b0000
+        #5b0000
 
     );
+
 
 
     color:white;
 
 
 
-    transform:scale(.94);
+    border-radius:50%;
+
+
+
+    border:
+
+    5px solid rgba(255,220,150,.5);
+
+
+
+    transform:
+
+    rotate(-8deg)
+
+    scale(.92);
+
+
+
+    box-shadow:
+
+
+    inset 0 0 20px rgba(0,0,0,.5),
+
+
+    0 5px 12px rgba(0,0,0,.45);
 
 
 }
@@ -402,7 +485,7 @@ button:active {
 
 
 
-/* Bingo Text */
+/* Bingo Result */
 
 
 #bingoMessage {
@@ -411,7 +494,7 @@ button:active {
     text-align:center;
 
 
-    margin:20px;
+    margin-top:20px;
 
 
     font-size:45px;
@@ -420,13 +503,13 @@ button:active {
     font-weight:bold;
 
 
-    color:#970000;
+    color:#8b0000;
 
 
 
     text-shadow:
 
-    2px 2px #ffd66b;
+    2px 2px #f4d37d;
 
 
 }
@@ -434,9 +517,6 @@ button:active {
 
 
 
-
-
-/* Mobile */
 
 
 @media(max-width:500px){
@@ -451,7 +531,9 @@ button:active {
 
     .bingo-cell {
 
+
         font-size:11px;
+
 
     }
 
