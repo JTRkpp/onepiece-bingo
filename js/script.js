@@ -1,4 +1,4 @@
-alert("JS WORKING");
+
 
 let characters = [];
 let boardCharacters = [];
