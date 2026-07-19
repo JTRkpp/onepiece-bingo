@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Monkey D. Luffy",
+    "image": "assets/images/luffy.png"
+  },
+  {
+    "name": "Roronoa Zoro",
+    "image": "assets/images/zoro.png"
+  },
+  {
+    "name": "Nami",
+    "image": "assets/images/nami.png"
+  },
+  {
+    "name": "Usopp",
+    "image": "assets/images/usopp.png"
+  },
+  {
+    "name": "Sanji",
+    "image": "assets/images/sanji.png"
+  },
+  {
+    "name": "Tony Tony Chopper",
+    "image": "assets/images/chopper.png"
+  },
+  {
+    "name": "Nico Robin",
+    "image": "assets/images/robin.png"
+  },
+  {
+    "name": "Franky",
+    "image": "assets/images/franky.png"
+  },
+  {
+    "name": "Brook",
+    "image": "assets/images/brook.png"
+  },
+  {
+    "name": "Jinbe",
+    "image": "assets/images/jinbe.png"
+  },
+  {
+    "name": "Shanks",
+    "image": "assets/images/shanks.png"
+  },
+  {
+    "name": "Portgas D. Ace",
+    "image": "assets/images/ace.png"
+  },
+  {
+    "name": "Trafalgar Law",
+    "image": "assets/images/law.png"
+  },
+  {
+    "name": "Eustass Kid",
+    "image": "assets/images/kid.png"
+  },
+  {
+    "name": "Boa Hancock",
+    "image": "assets/images/hancock.png"
+  },
+  {
+    "name": "Dracule Mihawk",
+    "image": "assets/images/mihawk.png"
+  },
+  {
+    "name": "Buggy",
+    "image": "assets/images/buggy.png"
+  },
+  {
+    "name": "Crocodile",
+    "image": "assets/images/crocodile.png"
+  },
+  {
+    "name": "Donquixote Doflamingo",
+    "image": "assets/images/doflamingo.png"
+  },
+  {
+    "name": "Kaido",
+    "image": "assets/images/kaido.png"
+  },
+  {
+    "name": "Big Mom",
+    "image": "assets/images/bigmom.png"
+  },
+  {
+    "name": "Blackbeard",
+    "image": "assets/images/blackbeard.png"
+  },
+  {
+    "name": "Koby",
+    "image": "assets/images/koby.png"
+  },
+  {
+    "name": "Smoker",
+    "image": "assets/images/smoker.png"
+  },
+  {
+    "name": "Monkey D. Dragon",
+    "image": "assets/images/dragon.png"
+  }
+]
