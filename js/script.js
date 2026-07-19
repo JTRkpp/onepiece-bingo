@@ -132,6 +132,66 @@ cell.onclick = function(){
 
 
 
+// กดค้างเพื่อแก้ชื่อ
+
+cell.addEventListener(
+    "pointerdown",
+    function(){
+
+
+        pressTimer = setTimeout(function(){
+
+
+            let newName = prompt(
+                "แก้ชื่อตัวละคร",
+                character.name
+            );
+
+
+            if(newName && newName.trim() !== ""){
+
+
+                character.name =
+                newName.trim();
+
+
+                cell.innerHTML =
+                character.name;
+
+
+            }
+
+
+        },700);
+
+
+    }
+);
+
+
+
+cell.addEventListener(
+    "pointerup",
+    function(){
+
+        clearTimeout(pressTimer);
+
+    }
+);
+
+
+
+cell.addEventListener(
+    "pointerleave",
+    function(){
+
+        clearTimeout(pressTimer);
+
+    }
+);
+
+
+
 // แตะค้างเพื่อแก้ชื่อ
 
 cell.addEventListener(
