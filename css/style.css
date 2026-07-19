@@ -1,113 +1,39 @@
 body {
+
     margin: 0;
     padding: 20px;
+
     min-height: 100vh;
+
     font-family: "Trebuchet MS", sans-serif;
+
     text-align: center;
 
     background:
         linear-gradient(
-            rgba(255,245,200,0.8),
-            rgba(255,245,200,0.8)
-        ),
-        url("../assets/paper.jpg");
+            rgba(255,245,200,0.9),
+            rgba(255,245,200,0.9)
+        );
 
-    background-size: cover;
     color: #3b2414;
+
 }
+
 
 
 h1 {
+
     font-size: 32px;
+
     margin-bottom: 20px;
-}
-
-
-#bingo-board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
-    width: min(95vw, 600px);
-    aspect-ratio: 1 / 1;
-
-    margin: auto;
-
-    gap: 5px;
-}
-
-
-.bingo-cell {
-
-    background: #fff3c4;
-
-    border: 3px solid #6b3e1e;
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.bingo-cell img {
-
-    width: 70%;
-    height: 70%;
-
-    object-fit: contain;
 
 }
 
-
-.bingo-cell span {
-
-    font-size: 12px;
-    font-weight: bold;
-
-}
-
-
-.bingo-cell.marked::after {
-
-    content: "✖";
-
-    position: absolute;
-
-    font-size: 70px;
-
-    color: red;
-
-    font-weight: bold;
-
-}
-
-
-button {
-
-    margin: 10px;
-    padding: 12px 20px;
-
-    font-size: 16px;
-
-    border-radius: 10px;
-
-    border: 2px solid #6b3e1e;
-
-    background: #d9a441;
-
-    color: white;
-
-}
 
 
 #bingo-message {
+
+    min-height: 50px;
 
     font-size: 40px;
 
@@ -118,8 +44,200 @@ button {
 }
 
 
-#caller-box {
+
+#bingo-board {
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    width: min(95vw, 600px);
+
+    aspect-ratio: 1 / 1;
+
+    margin: auto;
+
+    gap: 5px;
+
+}
+
+
+
+.bingo-cell {
+
+    background: #fff3c4;
+
+    border: 3px solid #6b3e1e;
+
+    border-radius: 10px;
+
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    padding: 5px;
+
+
+    cursor: pointer;
+
+    user-select: none;
+
+
+    position: relative;
+
+
+    transition: 0.2s;
+
+}
+
+
+
+.bingo-cell span {
+
+    font-size: clamp(11px, 2.5vw, 17px);
+
+    font-weight: bold;
+
+    line-height: 1.2;
+
+}
+
+
+
+.bingo-cell:active {
+
+    transform: scale(0.95);
+
+}
+
+
+
+.bingo-cell.marked::after {
+
+
+    content: "✖";
+
+
+    position: absolute;
+
+
+    font-size: 70px;
+
+
+    color: red;
+
+
+    font-weight: bold;
+
+
+}
+
+
+
+.controls {
 
     margin-top: 20px;
+
+}
+
+
+
+button {
+
+
+    margin: 8px;
+
+
+    padding: 12px 20px;
+
+
+    font-size: 16px;
+
+
+    border-radius: 10px;
+
+
+    border: 2px solid #6b3e1e;
+
+
+    background: #d9a441;
+
+
+    color: white;
+
+
+    cursor: pointer;
+
+
+}
+
+
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+
+#caller-box {
+
+
+    margin-top: 25px;
+
+
+    padding: 15px;
+
+
+    border: 3px solid #6b3e1e;
+
+
+    border-radius: 15px;
+
+
+    background: #fff3c4;
+
+
+}
+
+
+
+/* รองรับมือถือ */
+
+@media (max-width: 600px) {
+
+
+    body {
+
+        padding: 10px;
+
+    }
+
+
+    h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    #bingo-board {
+
+        gap: 3px;
+
+    }
+
+
+    .bingo-cell {
+
+        border-width: 2px;
+
+    }
+
 
 }
