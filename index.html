@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
 
@@ -9,6 +9,8 @@
 
     <title>One Piece Character Bingo</title>
 
+
+    <!-- เชื่อม CSS -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -19,7 +21,9 @@
 
 <header>
 
-    <h1>🏴‍☠️ ONE PIECE CHARACTER BINGO</h1>
+    <h1>
+        🏴‍☠️ ONE PIECE CHARACTER BINGO
+    </h1>
 
 </header>
 
@@ -28,49 +32,26 @@
 <main>
 
 
-    <div class="controls">
+    <div class="buttons">
 
 
-        <button id="new-board">
+        <button id="randomBoard">
             🎲 Random Board
         </button>
 
 
-        <button id="custom-mode">
-            ✏️ Create My Board
-        </button>
-
-
-        <button id="caller">
+        <button id="drawCharacter">
             🎰 Draw Character
         </button>
 
 
-        <button id="download">
+        <button id="downloadBoard">
             📷 Download PNG
         </button>
 
 
-    </div>
-
-
-
-
-
-    <div id="custom-panel" style="display:none;">
-
-
-        <h2>Create Your Bingo</h2>
-
-
-        <div id="custom-inputs"></div>
-
-
-
-        <button id="create-custom">
-
-            ✅ Create Bingo
-
+        <button id="createBoard">
+            ✏️ Create My Board
         </button>
 
 
@@ -79,18 +60,16 @@
 
 
 
+    <div id="drawResult">
 
 
-    <div id="caller-box">
+        <h2>
+            Draw Result
+        </h2>
 
 
-        <h2>Draw Result</h2>
-
-
-        <p id="caller-result">
-
+        <p id="drawName">
             Press "Draw Character"
-
         </p>
 
 
@@ -99,13 +78,16 @@
 
 
 
-
-    <div id="bingo-message"></div>
-
+    <div id="customArea"></div>
 
 
-    <div id="bingo-board"></div>
 
+
+    <div id="bingoBoard"></div>
+
+
+
+    <div id="bingoMessage"></div>
 
 
 
@@ -114,7 +96,9 @@
 
 
 
-<script src="js/script.js?v=2"></script>
+<!-- เชื่อม JavaScript -->
+
+<script src="js/script.js"></script>
 
 
 </body>
