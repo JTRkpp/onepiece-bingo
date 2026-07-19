@@ -1,56 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>One Piece Character Bingo</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>🏴‍☠️ ONE PIECE CHARACTER BINGO</h1>
-    </header>
 
-    <main>
+<h1>🏴‍☠️ ONE PIECE CHARACTER BINGO</h1>
 
-        <div class="buttons">
 
-            <button id="randomBoard">
-                🎲 Random Board
-            </button>
+<div id="bingo-message"></div>
 
-            <button id="drawCharacter">
-                🎰 Draw Character
-            </button>
 
-            <button id="downloadBoard">
-                📷 Download PNG
-            </button>
+<div id="bingo-board"></div>
 
-        </div>
 
-        <div id="drawResult">
+<div class="controls">
 
-            <h2>Draw Result</h2>
+    <button id="new-board">
+        🎲 Random Board
+    </button>
 
-            <img id="drawImage" src="" alt="">
 
-            <p id="drawName">
-                Press "Draw Character"
-            </p>
+    <button id="caller">
+        🎰 Draw Character
+    </button>
 
-        </div>
 
-        <div id="bingoBoard"></div>
+    <button id="download">
+        📷 Download PNG
+    </button>
 
-        <div id="bingoMessage"></div>
+</div>
 
-    </main>
 
-    <script src="script.js"></script>
+
+<div id="caller-box">
+
+    <h2>Draw Result</h2>
+
+    <p id="caller-result">
+        Press "Draw Character"
+    </p>
+
+</div>
+
+
+
+<script src="js/script.js"></script>
+
 
 </body>
+
 </html>
