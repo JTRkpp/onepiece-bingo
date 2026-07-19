@@ -1,250 +1,126 @@
 body {
-
     margin: 0;
-
     padding: 15px;
-
-    font-family: "Trebuchet MS", sans-serif;
-
-    background:
-    linear-gradient(
-        rgba(255,240,190,0.9),
-        rgba(220,180,100,0.9)
-    );
-
-    color: #3b2208;
-
+    font-family: Arial, sans-serif;
+    background: #e8d3a2;
+    color: #333;
 }
 
 
-/* หัวข้อ */
-
 header {
-
     text-align: center;
-
 }
 
 
 h1 {
-
-    font-size: 28px;
-
+    font-size: 26px;
     color: #8b0000;
-
-    text-shadow: 2px 2px #f5d77a;
-
 }
 
 
-
-/* ปุ่ม */
-
 .buttons {
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 
 button {
-
-    background:#8b0000;
-
-    color:white;
-
-    border:3px solid #d4af37;
-
-    border-radius:12px;
-
-    padding:10px 15px;
-
-    font-size:15px;
-
-    font-weight:bold;
-
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #8b5a2b;
+    background: #8b0000;
+    color: white;
 }
 
 
-
-/* ผลสุ่ม */
-
-#drawResult {
-
-    margin:15px auto;
-
-    max-width:350px;
-
-    padding:12px;
-
-    text-align:center;
-
-    background:#f6df9b;
-
-    border:3px solid #8b5a2b;
-
-    border-radius:12px;
-
-}
-
-
-
-/* ตาราง Bingo */
+/* ตาราง */
 
 #bingoBoard {
 
-    display:grid;
+    display: grid;
 
     grid-template-columns: repeat(5, 1fr);
 
-    gap:5px;
+    gap: 5px;
 
-    width:95%;
+    width: 90%;
 
-    max-width:500px;
+    max-width: 500px;
 
-    margin:20px auto;
+    margin: 20px auto;
 
 }
 
 
-
-/* ช่อง Bingo */
+/* ช่อง */
 
 .bingo-cell {
 
-    aspect-ratio:1 / 1;
+    aspect-ratio: 1 / 1;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    text-align:center;
+    text-align: center;
 
+    background: #fff1c1;
 
-    padding:4px;
+    border: 2px solid #8b5a2b;
 
+    border-radius: 8px;
 
-    background:
+    font-size: 12px;
 
-    linear-gradient(
-        #fff3c4,
-        #e6c477
-    );
+    padding: 5px;
 
+    overflow: hidden;
 
-    border:2px solid #8b5a2b;
-
-    border-radius:8px;
-
-
-    font-size:12px;
-
-    font-weight:bold;
-
-
-    overflow:hidden;
-
-    word-break:break-word;
-
-
-    user-select:none;
+    word-break: break-word;
 
 }
 
-
-/* ช่องที่เลือก */
 
 .bingo-cell.marked {
 
+    background: #8b0000;
 
-    background:#8b0000;
-
-    color:white;
-
-    text-decoration:line-through;
+    color: white;
 
 }
 
-
-
-/* ข้อความ BINGO */
 
 #bingoMessage {
 
-    text-align:center;
+    text-align: center;
 
-    font-size:35px;
+    font-size: 35px;
 
-    font-weight:bold;
-
-    color:#b00000;
+    color: red;
 
 }
 
 
 
-
-/* มือถือ */
-
 @media(max-width:600px){
-
-
-    body {
-
-        padding:8px;
-
-    }
-
-
-    h1 {
-
-        font-size:22px;
-
-    }
-
 
     #bingoBoard {
 
+        width: 100%;
 
-        width:100%;
-
-        max-width:380px;
-
-        gap:4px;
-
+        max-width: 380px;
 
     }
 
 
     .bingo-cell {
 
-
-        font-size:10px;
-
-        padding:2px;
-
-        border-width:2px;
-
+        font-size: 10px;
 
     }
-
-
-    button {
-
-        font-size:13px;
-
-        padding:8px 10px;
-
-    }
-
 
 }
