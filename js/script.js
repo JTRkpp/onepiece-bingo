@@ -1,3 +1,5 @@
+alert("JS WORKING");
+
 let characters = [];
 let boardCharacters = [];
 let marked = [];
@@ -10,37 +12,74 @@ const customPanel = document.getElementById("custom-panel");
 const customInputs = document.getElementById("custom-inputs");
 
 
+
 // โหลดข้อมูลตัวละคร
+
 fetch("data/characters.json")
-.then(response => response.json())
+
+.then(response => {
+
+    if (!response.ok) {
+
+        throw new Error("Cannot load characters.json");
+
+    }
+
+    return response.json();
+
+})
+
 .then(data => {
 
     characters = data;
 
     createBoard();
 
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    message.innerHTML =
+    "❌ Cannot load characters";
+
 });
 
 
 
+
+
 // สุ่ม
+
 function shuffle(array){
 
-    return array.sort(() => Math.random() - 0.5);
+    return array.sort(
+        () => Math.random() - 0.5
+    );
 
 }
 
 
 
+
+
 // สร้างบอร์ดสุ่ม
+
 function createBoard(){
 
     board.innerHTML = "";
+
     message.innerHTML = "";
 
-    boardCharacters = shuffle([...characters]).slice(0,25);
 
-    marked = Array(25).fill(false);
+    boardCharacters =
+    shuffle([...characters])
+    .slice(0,25);
+
+
+    marked =
+    Array(25).fill(false);
 
 
     drawBoard();
@@ -49,8 +88,13 @@ function createBoard(){
 
 
 
+
+
+
 // แสดงบอร์ด
+
 function drawBoard(){
+
 
     board.innerHTML = "";
 
@@ -58,18 +102,24 @@ function drawBoard(){
     boardCharacters.forEach((character,index)=>{
 
 
-        let cell = document.createElement("div");
-
-        cell.className = "bingo-cell";
-
-
-        cell.innerHTML = character.name;
+        const cell =
+        document.createElement("div");
 
 
-        cell.onclick = ()=>{
+        cell.className =
+        "bingo-cell";
 
 
-            marked[index] = !marked[index];
+        cell.innerHTML =
+        character.name;
+
+
+
+        cell.onclick = function(){
+
+
+            marked[index] =
+            !marked[index];
 
 
             cell.classList.toggle(
@@ -80,7 +130,9 @@ function drawBoard(){
 
             checkBingo();
 
+
         };
+
 
 
         board.appendChild(cell);
@@ -88,15 +140,21 @@ function drawBoard(){
 
     });
 
+
 }
 
 
 
+
+
+
 // ตรวจ Bingo
+
 function checkBingo(){
 
 
-    let lines = [
+    const lines = [
+
 
         [0,1,2,3,4],
         [5,6,7,8,9],
@@ -104,11 +162,13 @@ function checkBingo(){
         [15,16,17,18,19],
         [20,21,22,23,24],
 
+
         [0,5,10,15,20],
         [1,6,11,16,21],
         [2,7,12,17,22],
         [3,8,13,18,23],
         [4,9,14,19,24],
+
 
         [0,6,12,18,24],
         [4,8,12,16,20]
@@ -116,11 +176,16 @@ function checkBingo(){
     ];
 
 
+
     for(let line of lines){
+
 
         if(line.every(i => marked[i])){
 
-            message.innerHTML = "🎉 BINGO!";
+
+            message.innerHTML =
+            "🎉 BINGO!";
+
 
             return;
 
@@ -135,7 +200,11 @@ function checkBingo(){
 
 
 
-// ปุ่ม Random Board
+
+
+
+
+// Random Board
 
 document
 .getElementById("new-board")
@@ -145,9 +214,12 @@ document
 
 
 
-// ==========================
-// Custom Board Mode
-// ==========================
+
+
+// =======================
+// Custom Board
+// =======================
+
 
 
 document
@@ -155,23 +227,32 @@ document
 .onclick = function(){
 
 
-    customPanel.style.display = "block";
+    customPanel.style.display =
+    "block";
 
 
-    customInputs.innerHTML = "";
+    customInputs.innerHTML =
+    "";
 
 
-    for(let i=0;i<25;i++){
+
+    for(let i = 0; i < 25; i++){
 
 
-        let input = document.createElement("input");
+        const input =
+        document.createElement("input");
 
 
-        input.placeholder = 
+        input.type =
+        "text";
+
+
+        input.placeholder =
         "Character " + (i+1);
 
 
-        input.className = "custom-input";
+        input.className =
+        "custom-input";
 
 
         customInputs.appendChild(input);
@@ -186,43 +267,66 @@ document
 
 
 
+
+
+
 document
 .getElementById("create-custom")
 .onclick = function(){
 
 
-    let inputs =
-    document.querySelectorAll(".custom-input");
+
+    const inputs =
+    document.querySelectorAll(
+        ".custom-input"
+    );
+
 
 
     let names = [];
 
 
-    inputs.forEach(input=>{
+
+    inputs.forEach(input => {
+
 
         names.push(
-            input.value.trim() || "Empty"
+
+            input.value.trim()
+            ||
+            "Empty"
+
         );
+
 
     });
 
 
 
+
+
     boardCharacters =
-    names.map(name=>({
+    names.map(name => ({
 
         name:name
 
     }));
 
 
-    marked = Array(25).fill(false);
+
+
+    marked =
+    Array(25).fill(false);
+
 
 
     drawBoard();
 
 
-    customPanel.style.display="none";
+
+    customPanel.style.display =
+    "none";
+
 
 
 };
@@ -231,9 +335,15 @@ document
 
 
 
+
+
+
+
 // Caller Mode
 
+
 let callerPool = [];
+
 
 
 document
@@ -241,16 +351,20 @@ document
 .onclick = function(){
 
 
-    if(callerPool.length===0){
+    if(callerPool.length === 0){
+
 
         callerPool =
         shuffle([...characters]);
 
+
     }
 
 
-    let picked =
+
+    const picked =
     callerPool.pop();
+
 
 
     callerResult.innerHTML =
