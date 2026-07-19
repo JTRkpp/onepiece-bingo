@@ -140,3 +140,48 @@ button {
     }
 
 }
+/* Draw Result Box */
+
+#drawResult {
+
+    margin: 15px auto;
+
+    max-width: 350px;
+
+    padding: 15px;
+
+    text-align: center;
+
+
+    background: #f6df9b;
+
+
+    border: 3px solid #8b5a2b;
+
+
+    border-radius: 12px;
+
+
+    box-shadow:
+    0 3px 8px rgba(0,0,0,0.25);
+
+
+    font-weight: bold;
+
+}
+
+
+#drawResult h2 {
+
+    margin-top: 0;
+
+    color: #8b0000;
+
+}
+
+
+#drawName {
+
+    font-size: 18px;
+
+}
