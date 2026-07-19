@@ -2,23 +2,26 @@
     box-sizing: border-box;
 }
 
+
 body {
 
-    margin: 0;
-    padding: 15px;
+    margin:0;
 
-    font-family: Georgia, serif;
+    padding:15px;
 
-    color: #3b2108;
+    font-family:Georgia, serif;
+
+    color:#3b2108;
 
 
-    background-color: #c49a52;
+    background-color:#c49a52;
+
 
     background-image:
 
     radial-gradient(
         ellipse at 20% 20%,
-        rgba(90,45,10,.35),
+        rgba(80,40,10,.35),
         transparent 35%
     ),
 
@@ -43,7 +46,6 @@ body {
 
 
     background-size:
-
     auto,
     auto,
     auto,
@@ -59,9 +61,12 @@ body::before {
 
     content:"☠";
 
+
     position:fixed;
 
+
     top:50%;
+
     left:50%;
 
 
@@ -83,11 +88,9 @@ body::before {
 }
 
 
-
 body::after {
 
     content:"";
-
 
     position:fixed;
 
@@ -102,9 +105,6 @@ body::after {
     inset 0 0 90px rgba(50,25,5,.65);
 
 }
-
-
-
 
 
 
@@ -136,9 +136,8 @@ h1 {
 
 
 
-
-
 /* Buttons */
+
 
 .buttons {
 
@@ -155,6 +154,7 @@ h1 {
 
 
 button {
+
 
     padding:12px 16px;
 
@@ -188,6 +188,7 @@ button {
 }
 
 
+
 button:active {
 
     transform:translateY(4px);
@@ -219,7 +220,7 @@ button:active {
 
 
 
-    background-color:#ead29a;
+    background:#ead29a;
 
 
 
@@ -243,6 +244,7 @@ button:active {
     box-shadow:
 
     0 12px 25px rgba(0,0,0,.45);
+
 
 
     text-align:center;
@@ -279,20 +281,15 @@ button:active {
     font-weight:bold;
 
 
-    margin-bottom:15px;
-
 }
 
 
 
 #drawName {
 
-
     font-size:20px;
 
-
     font-weight:bold;
-
 
     padding:15px;
 
@@ -313,12 +310,10 @@ button:active {
 
 
 
-
 /* Bingo Board */
 
 
 #bingoBoard {
-
 
     display:grid;
 
@@ -346,7 +341,8 @@ button:active {
 
 
 
-/* Paper Cards */
+
+/* Old Map Paper */
 
 
 .bingo-cell {
@@ -364,7 +360,6 @@ button:active {
     align-items:center;
 
 
-
     text-align:center;
 
 
@@ -372,16 +367,21 @@ button:active {
 
 
 
+    position:relative;
+
+
+    overflow:hidden;
+
+
+
     color:#3b2108;
 
 
 
-    background-color:#edd39a;
-
+    background:#ead39a;
 
 
     background-image:
-
 
     radial-gradient(
 
@@ -445,58 +445,110 @@ button:active {
 
 
 
+
 /* Pirate Stamp */
 
 
 .bingo-cell.marked {
 
 
-    background:
+    background:#ead39a;
 
-    radial-gradient(
 
-        circle,
-
-        #b00000,
-
-        #570000
-
-    );
+}
 
 
 
-    color:white;
+.bingo-cell.marked::before {
+
+
+    content:"☠";
+
+
+    position:absolute;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+
+    translate(-50%,-50%)
+
+    rotate(-12deg);
+
+
+
+    font-size:65px;
+
+
+
+    color:
+
+    rgba(150,0,0,.28);
+
+
+
+    z-index:0;
+
+
+}
+
+
+
+.bingo-cell.marked::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+
+    width:75%;
+
+
+    height:75%;
+
+
+
+    top:12.5%;
+
+
+    left:12.5%;
+
+
+
+    border:
+
+    4px solid rgba(150,0,0,.22);
+
 
 
     border-radius:50%;
 
 
 
-    border:
-
-    5px solid rgba(255,220,150,.5);
-
-
-
-    transform:
-
-    rotate(-8deg)
-
-    scale(.92);
-
-
-
-    box-shadow:
-
-
-    inset 0 0 20px rgba(0,0,0,.6),
-
-
-    0 6px 12px rgba(0,0,0,.45);
+    transform:rotate(-10deg);
 
 
 }
 
+
+
+.bingo-cell.marked {
+
+
+    text-shadow:
+
+    0 1px rgba(255,255,255,.5);
+
+}
 
 
 
@@ -529,7 +581,6 @@ button:active {
     2px 2px #f5d27c;
 
 }
-
 
 
 
