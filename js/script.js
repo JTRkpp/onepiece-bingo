@@ -1,5 +1,3 @@
-
-
 let characters = [];
 let boardCharacters = [];
 let marked = [];
