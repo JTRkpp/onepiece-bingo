@@ -1,3 +1,8 @@
+* {
+    box-sizing:border-box;
+}
+
+
 body {
 
     margin:0;
@@ -6,60 +11,67 @@ body {
 
     font-family:Georgia, serif;
 
+    color:#3b2108;
+
 
     background:
+
     radial-gradient(
+
         ellipse at center,
-        #f8e6a5 0%,
-        #d2a85a 60%,
-        #8b5a2b 100%
+
+        #f7e5aa 0%,
+
+        #d3a85c 55%,
+
+        #8b572a 100%
+
     );
 
 
-    color:#3b2108;
-
 }
 
 
 
-/* หัวข้อ */
+/* Header */
 
-h1 {
+header {
 
     text-align:center;
 
+}
 
-    color:#7a0000;
 
+h1 {
 
-    font-size:30px;
+    color:#7b0000;
 
+    font-size:32px;
 
     text-shadow:
 
-    2px 2px #f5d68a;
+    2px 2px #f5d78a,
 
+    4px 4px rgba(0,0,0,0.25);
 
 }
 
 
 
-/* ปุ่ม */
+
+
+/* Buttons */
+
 
 .buttons {
 
-
     display:flex;
-
 
     justify-content:center;
 
-
     flex-wrap:wrap;
 
-
     gap:10px;
-
 
 }
 
@@ -72,9 +84,9 @@ button {
 
     linear-gradient(
 
-        #c47a32,
+        #c8873b,
 
-        #7b3f12
+        #6d360f
 
     );
 
@@ -84,13 +96,13 @@ button {
 
     border:
 
-    3px solid #4a2608;
+    3px solid #3b2108;
 
 
     border-radius:12px;
 
 
-    padding:10px 15px;
+    padding:12px 16px;
 
 
     font-weight:bold;
@@ -98,7 +110,7 @@ button {
 
     box-shadow:
 
-    0 4px 0 #3b2108;
+    0 5px 0 #3b2108;
 
 
 }
@@ -107,7 +119,7 @@ button {
 
 button:active {
 
-    transform:translateY(3px);
+    transform:translateY(4px);
 
     box-shadow:none;
 
@@ -117,32 +129,33 @@ button:active {
 
 
 
-/* ใบผลสุ่ม */
+/* Wanted Poster */
 
 
 #drawResult {
 
+
     width:90%;
 
-    max-width:360px;
+    max-width:380px;
 
 
     margin:25px auto;
 
 
-    padding:25px 15px;
-
+    padding:20px;
 
 
     background:
+
 
     linear-gradient(
 
         135deg,
 
-        #f8e7b0,
+        #fff0bf,
 
-        #d3ad62
+        #d6b36a
 
     );
 
@@ -150,11 +163,7 @@ button:active {
 
     border:
 
-    6px solid #3b2108;
-
-
-
-    border-radius:4px;
+    7px double #3b2108;
 
 
 
@@ -164,12 +173,17 @@ button:active {
 
     box-shadow:
 
-    0 12px 25px rgba(0,0,0,0.45);
+    0 12px 25px rgba(0,0,0,.45);
 
 
 
-    position:relative;
+}
 
+
+
+#drawResult h2 {
+
+    display:none;
 
 }
 
@@ -184,36 +198,19 @@ button:active {
     display:block;
 
 
-    font-family:Georgia, serif;
+    font-size:45px;
 
 
-    font-size:42px;
+    letter-spacing:5px;
 
 
     font-weight:bold;
 
 
-
-    letter-spacing:4px;
-
-
-
-    color:#5a0000;
-
+    color:#650000;
 
 
     margin-bottom:15px;
-
-
-
-}
-
-
-
-#drawResult h2 {
-
-
-    display:none;
 
 
 }
@@ -229,19 +226,9 @@ button:active {
     font-weight:bold;
 
 
-
-    color:#3b2108;
-
-
-
-    padding:15px;
-
-
-
     border-top:
 
     2px solid #7a4518;
-
 
 
     border-bottom:
@@ -249,34 +236,18 @@ button:active {
     2px solid #7a4518;
 
 
-
-}
-
-
-    border:
-
-    5px solid #7a4518;
-
-
-    border-radius:5px;
-
-
-
-    box-shadow:
-
-    0 10px 20px rgba(0,0,0,0.35);
-
-
-
-    text-align:center;
-
+    padding:15px;
 
 
 }
 
 
 
-/* ตาราง */
+
+
+
+
+/* Bingo Board */
 
 
 #bingoBoard {
@@ -290,13 +261,13 @@ button:active {
     repeat(5,1fr);
 
 
-    gap:8px;
+    gap:9px;
 
 
     width:95%;
 
 
-    max-width:550px;
+    max-width:600px;
 
 
     margin:25px auto;
@@ -308,7 +279,8 @@ button:active {
 
 
 
-/* ช่องตัวละคร */
+
+/* Bingo Cell */
 
 
 .bingo-cell {
@@ -330,6 +302,9 @@ button:active {
     text-align:center;
 
 
+    padding:6px;
+
+
 
     background:
 
@@ -338,59 +313,50 @@ button:active {
 
         135deg,
 
-        #fff4c9,
+        #fff3c8,
 
-        #e4c27a
+        #dfbd75
 
     );
 
 
 
-
     border:
 
-    3px solid #82501d;
+    3px solid #70400f;
 
 
 
-
-    border-radius:8px;
-
-
-
-    font-size:13px;
+    border-radius:10px;
 
 
 
     font-weight:bold;
 
 
+    font-size:13px;
+
+
 
     box-shadow:
 
 
-    inset 0 0 12px rgba(100,60,20,0.25),
+    inset 0 0 12px rgba(100,60,20,.3),
 
 
-    0 5px 10px rgba(0,0,0,0.25);
+    0 5px 10px rgba(0,0,0,.25);
 
-
-
-    padding:5px;
 
 
     word-break:break-word;
 
 
 
-    -webkit-user-select:none;
-
-
     user-select:none;
 
+    -webkit-user-select:none;
 
     -webkit-touch-callout:none;
-
 
     touch-action:none;
 
@@ -400,7 +366,8 @@ button:active {
 
 
 
-/* ช่องที่เลือก */
+
+/* Selected */
 
 
 .bingo-cell.marked {
@@ -408,24 +375,23 @@ button:active {
 
     background:
 
+
     linear-gradient(
 
         135deg,
 
-        #a00000,
+        #a90000,
 
-        #520000
+        #4b0000
 
     );
-
 
 
     color:white;
 
 
 
-    transform:scale(0.95);
-
+    transform:scale(.94);
 
 
 }
@@ -434,23 +400,60 @@ button:active {
 
 
 
+
+
+/* Bingo Text */
+
+
 #bingoMessage {
 
 
     text-align:center;
 
 
-    margin-top:20px;
+    margin:20px;
 
 
-    font-size:40px;
+    font-size:45px;
 
 
     font-weight:bold;
 
 
-    color:#9b0000;
+    color:#970000;
 
+
+
+    text-shadow:
+
+    2px 2px #ffd66b;
+
+
+}
+
+
+
+
+
+
+/* Mobile */
+
+
+@media(max-width:500px){
+
+
+    h1 {
+
+        font-size:25px;
+
+    }
+
+
+    .bingo-cell {
+
+        font-size:11px;
+
+    }
 
 
 }
