@@ -58,29 +58,45 @@ button {
 
 .bingo-cell {
 
-    aspect-ratio: 1 / 1;
+    aspect-ratio:1 / 1;
 
-    display: flex;
+    display:flex;
 
-    justify-content: center;
+    justify-content:center;
 
-    align-items: center;
+    align-items:center;
 
-    text-align: center;
+    text-align:center;
 
-    background: #fff1c1;
 
-    border: 2px solid #8b5a2b;
+    background:#fff1c1;
 
-    border-radius: 8px;
+    border:2px solid #8b5a2b;
 
-    font-size: 12px;
+    border-radius:8px;
 
-    padding: 5px;
 
-    overflow: hidden;
+    font-size:12px;
 
-    word-break: break-word;
+    font-weight:bold;
+
+
+    padding:5px;
+
+    overflow:hidden;
+
+    word-break:break-word;
+
+
+    /* ป้องกัน Safari เลือกข้อความ */
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+    -webkit-touch-callout:none;
+
+    touch-action:manipulation;
 
 }
 
