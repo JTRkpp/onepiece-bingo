@@ -1,6 +1,5 @@
 let characters = [];
 let questions = [];
-let drawnQuestions = [];
 
 Promise.all([
     fetch('data/characters.json').then(res => res.json()),
@@ -29,7 +28,12 @@ function createBoard() {
     shuffled.forEach(char => {
         const cell = document.createElement('div');
         cell.className = 'bingo-cell';
-        cell.innerText = char.name;
+        // ใส่โครงสร้างที่รองรับเลเยอร์
+        cell.innerHTML = `
+            <img src="${char.image}" class="char-img" onerror="this.src='images/default.jpg'">
+            <div class="name-plate">${char.name}</div>
+            <div class="stamp">❌</div>
+        `;
         cell.onclick = () => cell.classList.toggle('marked');
         board.appendChild(cell);
     });
@@ -37,7 +41,6 @@ function createBoard() {
 
 function drawMission() {
     if (questions.length === 0) return;
-    // รองรับทั้ง .text และ .question
     const randomQ = questions[Math.floor(Math.random() * questions.length)];
     const textToShow = randomQ.text || randomQ.question || "ไม่มีโจทย์";
     document.getElementById('drawName').innerText = textToShow;
