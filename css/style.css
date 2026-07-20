@@ -1,33 +1,127 @@
-/* จัดการพื้นหลังของหน้าเว็บ (โทนน้ำตาลเข้มเดิม) */
+/* จัดการพื้นหลังของหน้าเว็บ (โทนน้ำตาลเข้มลึก+ไล่เฉดสีสปอตไลท์ตามรูปเป๊ะๆ) */
 body {
-    background-color: #2b1a1a; /* สีน้ำตาลเข้มโทนเดิม */
-    color: #e8d0a9; /* สีครีมทอง */
-    font-family: sans-serif;
+    background: radial-gradient(circle, #3e1f1f 0%, #170707 100%) !important;
+    color: #e8d0a9;
+    font-family: 'Georgia', serif, sans-serif;
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
-/* ตั้งค่ากรอบ WANTED */
-#wantedBox {
-    border: 2px solid #d4a373;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
+/* หัวข้อใหญ่ */
+header h1 {
+    color: #e8d0a9;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
-    background: rgba(43, 26, 26, 0.8);
 }
 
-/* จัดการบอร์ดบิงโก */
+/* จัดการปุ่มกดให้โค้งมน โทนน้ำตาลทองเหมือนต้นฉบับ */
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+    background-color: #4a2323;
+    color: #e8d0a9;
+    border: 2px solid #8b5a2b;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: transform 0.1s;
+}
+
+.buttons button:active {
+    transform: scale(0.95);
+}
+
+/* จัดการพื้นที่แสดงผลภารกิจ Draw Result */
+#drawResult {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 25px;
+}
+
+#drawResult h2 {
+    font-size: 20px;
+    color: #e8d0a9;
+    margin-bottom: 10px;
+}
+
+/* กล่อง WANTED แบบกรอบคู่ซ้อนกันตามรูปของคุณ */
+#wantedBox {
+    border: 3px solid #8b5a2b; /* กรอบนอกหนาสีน้ำตาลทอง */
+    padding: 6px;
+    background-color: #2b1111;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.wanted-inner {
+    border: 1px solid #e8d0a9; /* กรอบในเส้นบางสีครีม */
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wanted-inner h2 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    letter-spacing: 6px;
+    color: #f3dfc1 !important;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.wanted-inner hr {
+    width: 80%;
+    border: 0;
+    border-top: 2px solid #8b5a2b;
+    margin: 15px 0;
+}
+
+#drawName {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+    min-height: 24px;
+    line-height: 1.4;
+}
+
+/* บอร์ดบิงโก + การใส่ลายน้ำหัวกะโหลกไว้ข้างหลัง */
 #bingoBoard {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 8px;
-    width: 95%;
+    width: 100%;
     max-width: 500px;
+    z-index: 1;
+}
+
+/* ลายน้ำรูปหัวกะโหลกโจรสลัดตรงกลางบอร์ด */
+#bingoBoard::before {
+    content: "☠️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 160px;
+    opacity: 0.08; /* ความโปร่งแสงจางๆ ซ่อนอยู่ข้างหลังช่องการ์ด */
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* ตั้งค่าช่องแต่ละช่อง */
@@ -36,10 +130,11 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 4px;
-    border: 2px solid #d4a373; /* กรอบสีทอง */
+    border-radius: 6px;
+    border: 2px solid #8b5a2b;
     cursor: pointer;
-    background-color: #3e2727;
+    background-color: #2b1111;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
 /* ภาพตัวละคร */
@@ -49,20 +144,22 @@ body {
     object-fit: cover;
 }
 
-/* แผ่นชื่อ (วางทับภาพ) */
+/* แผ่นชื่อ (วางทับภาพด้านล่าง) */
 .name-plate {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6); /* พื้นหลังโปร่งแสง */
-    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
     padding: 4px 0;
     text-align: center;
-    font-size: 8px; /* ขนาดเล็กตามเดิม */
+    font-size: 8px;
+    font-weight: bold;
     z-index: 2;
+    border-top: 1px solid #8b5a2b;
 }
 
-/* ตราประทับ (บนสุด) */
+/* ตราประทับบิงโกแดงโปร่งแสง */
 .stamp {
     position: absolute;
     top: 0;
@@ -72,9 +169,10 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    background: rgba(255, 0, 0, 0.4);
-    color: white;
+    font-size: 32px;
+    background: rgba(180, 0, 0, 0.45);
+    color: #ffffff;
+    font-weight: bold;
     z-index: 10;
 }
 
