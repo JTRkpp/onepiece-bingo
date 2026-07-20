@@ -1,575 +1,766 @@
 [
   {
-    "name": "มังกี้ ดี. ลูฟี่ (Monkey D. Luffy)"
+    "name": "มังกี้ ดี. ลูฟี่ (Monkey D. Luffy)",
+    "image": "images/1.jpg"
   },
   {
-    "name": "โรโรโนอา โซโร (Roronoa Zoro)"
+    "name": "โรโรโนอา โซโร (Roronoa Zoro)",
+    "image": "images/2.jpg"
   },
   {
-    "name": "นามิ (Nami)"
+    "name": "นามิ (Nami)",
+    "image": "images/3.jpg"
   },
   {
-    "name": "อุซป (Usopp)"
+    "name": "อุซป (Usopp)",
+    "image": "images/4.jpg"
   },
   {
-    "name": "ซันจิ (Sanji)"
+    "name": "ซันจิ (Sanji)",
+    "image": "images/5.jpg"
   },
   {
-    "name": "โทนี่ โทนี่ ช็อปเปอร์ (Tony Tony Chopper)"
+    "name": "โทนี่ โทนี่ ช็อปเปอร์ (Tony Tony Chopper)",
+    "image": "images/6.jpg"
   },
   {
-    "name": "นิโค โรบิน (Nico Robin)"
+    "name": "นิโค โรบิน (Nico Robin)",
+    "image": "images/7.jpg"
   },
   {
-    "name": "แฟรงกี้ (Franky)"
+    "name": "แฟรงกี้ (Franky)",
+    "image": "images/8.jpg"
   },
   {
-    "name": "บรู๊ค (Brook)"
+    "name": "บรู๊ค (Brook)",
+    "image": "images/9.jpg"
   },
   {
-    "name": "จินเบ (Jinbe)"
+    "name": "จินเบ (Jinbe)",
+    "image": "images/10.jpg"
   },
   {
-    "name": "ผมแดง แชงคส์ (Red Hair Shanks)"
+    "name": "ผมแดง แชงคส์ (Red Hair Shanks)",
+    "image": "images/11.jpg"
   },
   {
-    "name": "โปรตุเกส ดี. เอส (Portgas D. Ace)"
+    "name": "โปรตุเกส ดี. เอส (Portgas D. Ace)",
+    "image": "images/12.jpg"
   },
   {
-    "name": "ทราฟัลการ์ ดี. วอเตอร์ ลอว์ (Trafalgar D. Water Law)"
+    "name": "ทราฟัลการ์ ดี. วอเตอร์ ลอว์ (Trafalgar D. Water Law)",
+    "image": "images/13.jpg"
   },
   {
-    "name": "ยูสทัส คิด (Eustass Kid)"
+    "name": "ยูสทัส คิด (Eustass Kid)",
+    "image": "images/14.jpg"
   },
   {
-    "name": "โบอา แฮนค็อก (Boa Hancock)"
+    "name": "โบอา แฮนค็อก (Boa Hancock)",
+    "image": "images/15.jpg"
   },
   {
-    "name": "ตาเหยี่ยว มิฮอว์ค (Dracule Mihawk)"
+    "name": "ตาเหยี่ยว มิฮอว์ค (Dracule Mihawk)",
+    "image": "images/16.jpg"
   },
   {
-    "name": "บากี้ (Buggy)"
+    "name": "บากี้ (Buggy)",
+    "image": "images/17.jpg"
   },
   {
-    "name": "คร็อกโคไดล์ (Crocodile)"
+    "name": "คร็อกโคไดล์ (Crocodile)",
+    "image": "images/18.jpg"
   },
   {
-    "name": "ดองกิโฮเต้ โดฟลามิงโก้ (Donquixote Doflamingo)"
+    "name": "ดองกิโฮเต้ โดฟลามิงโก้ (Donquixote Doflamingo)",
+    "image": "images/19.jpg"
   },
   {
-    "name": "ไคโด (Kaido)"
+    "name": "ไคโด (Kaido)",
+    "image": "images/20.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์ ลินลิน บิ๊กมัม (Charlotte Linlin Big Mom)"
+    "name": "ชาร์ล็อตต์ ลินลิน บิ๊กมัม (Charlotte Linlin Big Mom)",
+    "image": "images/21.jpg"
   },
   {
-    "name": "มาร์แชล ดี. ทีช หนวดดำ (Marshall D. Teach Blackbeard)"
+    "name": "มาร์แชล ดี. ทีช หนวดดำ (Marshall D. Teach Blackbeard)",
+    "image": "images/22.jpg"
   },
   {
-    "name": "โคบี้ (Koby)"
+    "name": "โคบี้ (Koby)",
+    "image": "images/23.jpg"
   },
   {
-    "name": "สโมคเกอร์ (Smoker)"
+    "name": "สโมคเกอร์ (Smoker)",
+    "image": "images/24.jpg"
   },
   {
-    "name": "มังกี้ ดี. ดราก้อน (Monkey D. Dragon)"
+    "name": "มังกี้ ดี. ดราก้อน (Monkey D. Dragon)",
+    "image": "images/25.jpg"
   },
   {
-    "name": "เนเฟลตารี วีวี่ (Nefertari Vivi)"
+    "name": "เนเฟลตารี วีวี่ (Nefertari Vivi)",
+    "image": "images/26.jpg"
   },
   {
-    "name": "ยามาโตะ (Yamato)"
+    "name": "ยามาโตะ (Yamato)",
+    "image": "images/27.jpg"
   },
   {
-    "name": "ซาโบ้ (Sabo)"
+    "name": "ซาโบ้ (Sabo)",
+    "image": "images/28.jpg"
   },
   {
-    "name": "บอน เคลย์ (Bentham Bon Clay)"
+    "name": "บอน เคลย์ (Bentham Bon Clay)",
+    "image": "images/29.jpg"
   },
   {
-    "name": "คินเอมอน (Kin'emon)"
+    "name": "คินเอมอน (Kin'emon)",
+    "image": "images/30.jpg"
   },
   {
-    "name": "โมโมโนะสุเกะ (Momonosuke)"
+    "name": "โมโมโนะสุเกะ (Momonosuke)",
+    "image": "images/31.jpg"
   },
   {
-    "name": "ไรโซ (Raizo)"
+    "name": "ไรโซ (Raizo)",
+    "image": "images/32.jpg"
   },
   {
-    "name": "คันจูโร่ (Kanjuro)"
+    "name": "คันจูโร่ (Kanjuro)",
+    "image": "images/33.jpg"
   },
   {
-    "name": "ชิโนบุ (Shinobu)"
+    "name": "ชิโนบุ (Shinobu)",
+    "image": "images/34.jpg"
   },
   {
-    "name": "เนโกะมามูชิ (Nekomamushi)"
+    "name": "เนโกะมามูชิ (Nekomamushi)",
+    "image": "images/35.jpg"
   },
   {
-    "name": "อินุอาราชิ (Inuarashi)"
+    "name": "อินุอาราชิ (Inuarashi)",
+    "image": "images/36.jpg"
   },
   {
-    "name": "คาเวนดิช (Cavendish)"
+    "name": "คาเวนดิช (Cavendish)",
+    "image": "images/37.jpg"
   },
   {
-    "name": "บาร์โทโลเมโอ (Bartolomeo)"
+    "name": "บาร์โทโลเมโอ (Bartolomeo)",
+    "image": "images/38.jpg"
   },
   {
-    "name": "ดอน ไซ (Sai)"
+    "name": "ดอน ไซ (Sai)",
+    "image": "images/39.jpg"
   },
   {
-    "name": "ฮัจจัง (Hatchan)"
+    "name": "ฮัจจัง (Hatchan)",
+    "image": "images/40.jpg"
   },
   {
-    "name": "อารอง (Arlong)"
+    "name": "อารอง (Arlong)",
+    "image": "images/41.jpg"
   },
   {
-    "name": "โคอาล่า (Koala)"
+    "name": "โคอาล่า (Koala)",
+    "image": "images/42.jpg"
   },
   {
-    "name": "เอ็มโพริโอ อิวานคอฟ (Emporio Ivankov)"
+    "name": "เอ็มโพริโอ อิวานคอฟ (Emporio Ivankov)",
+    "image": "images/43.jpg"
   },
   {
-    "name": "อินาซึมะ (Inazuma)"
+    "name": "อินาซึมะ (Inazuma)",
+    "image": "images/44.jpg"
   },
   {
-    "name": "มิสเตอร์ 1 ดาซ โบนส์ (Daz Bones)"
+    "name": "มิสเตอร์ 1 ดาซ โบนส์ (Daz Bones)",
+    "image": "images/45.jpg"
   },
   {
-    "name": "เพโรน่า (Perona)"
+    "name": "เพโรน่า (Perona)",
+    "image": "images/46.jpg"
   },
   {
-    "name": "โมเรีย (Gecko Moria)"
+    "name": "โมเรีย (Gecko Moria)",
+    "image": "images/47.jpg"
   },
   {
-    "name": "จิวเวอรี่ บอนนี่ (Jewelry Bonney)"
+    "name": "จิวเวอรี่ บอนนี่ (Jewelry Bonney)",
+    "image": "images/48.jpg"
   },
   {
-    "name": "เบโปะ (Bepo)"
+    "name": "เบโปะ (Bepo)",
+    "image": "images/49.jpg"
   },
   {
-    "name": "คิลเลอร์ (Killer)"
+    "name": "คิลเลอร์ (Killer)",
+    "image": "images/50.jpg"
   },
   {
-    "name": "เบซิล ฮอว์กินส์ (Basil Hawkins)"
+    "name": "เบซิล ฮอว์กินส์ (Basil Hawkins)",
+    "image": "images/51.jpg"
   },
   {
-    "name": "สแครชแมน อาพู (Scratchmen Apoo)"
+    "name": "สแครชแมน อาพู (Scratchmen Apoo)",
+    "image": "images/52.jpg"
   },
   {
-    "name": "เอ็กซ์ เดรก (X Drake)"
+    "name": "เอ็กซ์ เดรก (X Drake)",
+    "image": "images/53.jpg"
   },
   {
-    "name": "อาคาอินุ (Sakazuki Akainu)"
+    "name": "อาคาอินุ (Sakazuki Akainu)",
+    "image": "images/54.jpg"
   },
   {
-    "name": "อาโอคิยิ (Kuzan Aokiji)"
+    "name": "อาโอคิยิ (Kuzan Aokiji)",
+    "image": "images/55.jpg"
   },
   {
-    "name": "คิซารุ (Borsalino Kizaru)"
+    "name": "คิซารุ (Borsalino Kizaru)",
+    "image": "images/56.jpg"
   },
   {
-    "name": "ฟูจิโทระ (Issho Fujitora)"
+    "name": "ฟูจิโทระ (Issho Fujitora)",
+    "image": "images/57.jpg"
   },
   {
-    "name": "เรียวคุกิว (Aramaki Ryokugyu)"
+    "name": "เรียวคุกิว (Aramaki Ryokugyu)",
+    "image": "images/58.jpg"
   },
   {
-    "name": "การ์ป (Monkey D. Garp)"
+    "name": "การ์ป (Monkey D. Garp)",
+    "image": "images/59.jpg"
   },
   {
-    "name": "เซ็นโงคุ (Sengoku)"
+    "name": "เซ็นโงคุ (Sengoku)",
+    "image": "images/60.jpg"
   },
   {
-    "name": "สึรุ (Tsuru)"
+    "name": "สึรุ (Tsuru)",
+    "image": "images/61.jpg"
   },
   {
-    "name": "เฮลเม็ปโป (Helmeppo)"
+    "name": "เฮลเม็ปโป (Helmeppo)",
+    "image": "images/62.jpg"
   },
   {
-    "name": "ทาชิงิ (Tashigi)"
+    "name": "ทาชิงิ (Tashigi)",
+    "image": "images/63.jpg"
   },
   {
-    "name": "เวอร์โก้ (Vergo)"
+    "name": "เวอร์โก้ (Vergo)",
+    "image": "images/64.jpg"
   },
   {
-    "name": "โมมอนก้า (Momonga)"
+    "name": "โมมอนก้า (Momonga)",
+    "image": "images/65.jpg"
   },
   {
-    "name": "ฮินะ (Hina)"
+    "name": "ฮินะ (Hina)",
+    "image": "images/66.jpg"
   },
   {
-    "name": "ฟูลบอดี้ (Fullbody)"
+    "name": "ฟูลบอดี้ (Fullbody)",
+    "image": "images/67.jpg"
   },
   {
-    "name": "ร็อบ ลุจจิ (Rob Lucci)"
+    "name": "ร็อบ ลุจจิ (Rob Lucci)",
+    "image": "images/68.jpg"
   },
   {
-    "name": "คาคุ (Kaku)"
+    "name": "คาคุ (Kaku)",
+    "image": "images/69.jpg"
   },
   {
-    "name": "คาลิฟา (Kalifa)"
+    "name": "คาลิฟา (Kalifa)",
+    "image": "images/70.jpg"
   },
   {
-    "name": "บลูโน่ (Blueno)"
+    "name": "บลูโน่ (Blueno)",
+    "image": "images/71.jpg"
   },
   {
-    "name": "ฟุคุโร่ (Fukuro)"
+    "name": "ฟุคุโร่ (Fukuro)",
+    "image": "images/72.jpg"
   },
   {
-    "name": "คุมะ (Bartholomew Kuma)"
+    "name": "คุมะ (Bartholomew Kuma)",
+    "image": "images/73.jpg"
   },
   {
-    "name": "เซนต์ ชาร์ลอส (Saint Charlos)"
+    "name": "เซนต์ ชาร์ลอส (Saint Charlos)",
+    "image": "images/74.jpg"
   },
   {
-    "name": "ท่านอิม (Imu)"
+    "name": "ท่านอิม (Imu)",
+    "image": "images/75.jpg"
   },
   {
-    "name": "เซนต์ เจย์การ์เซีย แซทเทิร์น (Saint Jaygarcia Saturn)"
+    "name": "เซนต์ เจย์การ์เซีย แซทเทิร์น (Saint Jaygarcia Saturn)",
+    "image": "images/76.jpg"
   },
   {
-    "name": "เซนต์ มาร์คัส มาร์ส (Saint Marcus Mars)"
+    "name": "เซนต์ มาร์คัส มาร์ส (Saint Marcus Mars)",
+    "image": "images/77.jpg"
   },
   {
-    "name": "เซนต์ ท็อปแมน วอร์คิวรี่ (Saint Topman Warcury)"
+    "name": "เซนต์ ท็อปแมน วอร์คิวรี่ (Saint Topman Warcury)",
+    "image": "images/78.jpg"
   },
   {
-    "name": "เซนต์ เอทานบารอน วี นัสจูโร (Saint Ethanbaron V. Nusjuro)"
+    "name": "เซนต์ เอทานบารอน วี นัสจูโร (Saint Ethanbaron V. Nusjuro)",
+    "image": "images/79.jpg"
   },
   {
-    "name": "เซนต์ เชพเพิร์ด จู ปีเตอร์ (Saint Shepherd Ju Peter)"
+    "name": "เซนต์ เชพเพิร์ด จู ปีเตอร์ (Saint Shepherd Ju Peter)",
+    "image": "images/80.jpg"
   },
   {
-    "name": "เอ็ดเวิร์ด นิวเกต หนวดขาว (Edward Newgate Whitebeard)"
+    "name": "เอ็ดเวิร์ด นิวเกต หนวดขาว (Edward Newgate Whitebeard)",
+    "image": "images/81.jpg"
   },
   {
-    "name": "มาร์โค ฟีนิกซ์ (Marco the Phoenix)"
+    "name": "มาร์โค ฟีนิกซ์ (Marco the Phoenix)",
+    "image": "images/82.jpg"
   },
   {
-    "name": "โจส (Jozu)"
+    "name": "โจส (Jozu)",
+    "image": "images/83.jpg"
   },
   {
-    "name": "โกล ดี. โรเจอร์ (Gol D. Roger)"
+    "name": "โกล ดี. โรเจอร์ (Gol D. Roger)",
+    "image": "images/84.jpg"
   },
   {
-    "name": "ซิลเวอร์ เรย์ลี่ (Silvers Rayleigh)"
+    "name": "ซิลเวอร์ เรย์ลี่ (Silvers Rayleigh)",
+    "image": "images/85.jpg"
   },
   {
-    "name": "คร็อกคัส (Crocus)"
+    "name": "คร็อกคัส (Crocus)",
+    "image": "images/86.jpg"
   },
   {
-    "name": "ชิคิ สิงโตทองคำ (Shiki the Golden Lion)"
+    "name": "ชิคิ สิงโตทองคำ (Shiki the Golden Lion)",
+    "image": "images/87.jpg"
   },
   {
-    "name": "ร็อคส์ ดี. ซีเบค (Rocks D. Xebec)"
+    "name": "ร็อคส์ ดี. ซีเบค (Rocks D. Xebec)",
+    "image": "images/88.jpg"
   },
   {
-    "name": "จีซัส เบอร์เจส (Jesus Burgess)"
+    "name": "จีซัส เบอร์เจส (Jesus Burgess)",
+    "image": "images/89.jpg"
   },
   {
-    "name": "แวน ออก้า (Van Augur)"
+    "name": "แวน ออก้า (Van Augur)",
+    "image": "images/90.jpg"
   },
   {
-    "name": "นายอำเภอปีศาจลาฟิตต์ (Lafitte)"
+    "name": "นายอำเภอปีศาจลาฟิตต์ (Lafitte)",
+    "image": "images/91.jpg"
   },
   {
-    "name": "ด็อก คิว (Doc Q)"
+    "name": "ด็อก คิว (Doc Q)",
+    "image": "images/92.jpg"
   },
   {
-    "name": "ชิริวแห่งสายฝน (Shiryu)"
+    "name": "ชิริวแห่งสายฝน (Shiryu)",
+    "image": "images/93.jpg"
   },
   {
-    "name": "คาทาริน่า เดวอน (Catarina Devon)"
+    "name": "คาทาริน่า เดวอน (Catarina Devon)",
+    "image": "images/94.jpg"
   },
   {
-    "name": "ซานฮวน วูล์ฟ (Sanjuan Wolf)"
+    "name": "ซานฮวน วูล์ฟ (Sanjuan Wolf)",
+    "image": "images/95.jpg"
   },
   {
-    "name": "วาสโก ช็อต (Vasco Shot)"
+    "name": "วาสโก ช็อต (Vasco Shot)",
+    "image": "images/96.jpg"
   },
   {
-    "name": "คิง ราชาแห่งไฟ (King the Wildfire)"
+    "name": "คิง ราชาแห่งไฟ (King the Wildfire)",
+    "image": "images/97.jpg"
   },
   {
-    "name": "ควีน ภัยพิบัติ (Queen the Plague)"
+    "name": "ควีน ภัยพิบัติ (Queen the Plague)",
+    "image": "images/98.jpg"
   },
   {
-    "name": "แจ็ค ภัยแล้ง (Jack the Drought)"
+    "name": "แจ็ค ภัยแล้ง (Jack the Drought)",
+    "image": "images/99.jpg"
   },
   {
-    "name": "ฮูส์ฮู (Who's Who)"
+    "name": "ฮูส์ฮู (Who's Who)",
+    "image": "images/100.jpg"
   },
   {
-    "name": "แบล็คมาเรีย (Black Maria)"
+    "name": "แบล็คมาเรีย (Black Maria)",
+    "image": "images/101.jpg"
   },
   {
-    "name": "โฮลเด็ม (Holdem)"
+    "name": "โฮลเด็ม (Holdem)",
+    "image": "images/102.jpg"
   },
   {
-    "name": "สปีด (Speed)"
+    "name": "สปีด (Speed)",
+    "image": "images/103.jpg"
   },
   {
-    "name": "ฟิชเชอร์ ไทเกอร์ (Fisher Tiger)"
+    "name": "ฟิชเชอร์ ไทเกอร์ (Fisher Tiger)",
+    "image": "images/104.jpg"
   },
   {
-    "name": "โอโตฮิเมะ (Otohime)"
+    "name": "โอโตฮิเมะ (Otohime)",
+    "image": "images/105.jpg"
   },
   {
-    "name": "โฮดี้ โจนส์ (Hody Jones)"
+    "name": "โฮดี้ โจนส์ (Hody Jones)",
+    "image": "images/106.jpg"
   },
   {
-    "name": "วาดาสึมิ (Vander Decken IX)"
+    "name": "วาดาสึมิ (Vander Decken IX)",
+    "image": "images/107.jpg"
   },
   {
-    "name": "ฮิโยโซ (Hyouzou)"
+    "name": "ฮิโยโซ (Hyouzou)",
+    "image": "images/108.jpg"
   },
   {
-    "name": "คุรุบิ (Kuroobi)"
+    "name": "คุรุบิ (Kuroobi)",
+    "image": "images/109.jpg"
   },
   {
-    "name": "ชิราโฮชิ (Shirahoshi)"
+    "name": "ชิราโฮชิ (Shirahoshi)",
+    "image": "images/110.jpg"
   },
   {
-    "name": "เนปจูน (Neptune)"
+    "name": "เนปจูน (Neptune)",
+    "image": "images/111.jpg"
   },
   {
-    "name": "ฟุคาโบชิ (Fukaboshi)"
+    "name": "ฟุคาโบชิ (Fukaboshi)",
+    "image": "images/112.jpg"
   },
   {
-    "name": "ริวโบชิ (Ryuboshi)"
+    "name": "ริวโบชิ (Ryuboshi)",
+    "image": "images/113.jpg"
   },
   {
-    "name": "มันโบชิ (Manboshi)"
+    "name": "มันโบชิ (Manboshi)",
+    "image": "images/114.jpg"
   },
   {
-    "name": "ดองกี้โฮเต้ โรซินันเต้ (Donquixote Rosinante)"
+    "name": "ดองกี้โฮเต้ โรซินันเต้ (Donquixote Rosinante)",
+    "image": "images/115.jpg"
   },
   {
-    "name": "เอ็ดเวิร์ด วีวิล (Edward Weevil)"
+    "name": "เอ็ดเวิร์ด วีวิล (Edward Weevil)",
+    "image": "images/116.jpg"
   },
   {
-    "name": "มิสเตอร์ 3 กัลดิโน (Mr. 3 Galdino)"
+    "name": "มิสเตอร์ 3 กัลดิโน (Mr. 3 Galdino)",
+    "image": "images/117.jpg"
   },
   {
-    "name": "มิสเตอร์ 4 (Mr. 4)"
+    "name": "มิสเตอร์ 4 (Mr. 4)",
+    "image": "images/118.jpg"
   },
   {
-    "name": "มิสโกลเด้นวีค (Miss Goldenweek)"
+    "name": "มิสโกลเด้นวีค (Miss Goldenweek)",
+    "image": "images/119.jpg"
   },
   {
-    "name": "มิสวาเลนไทน์ (Miss Valentine)"
+    "name": "มิสวาเลนไทน์ (Miss Valentine)",
+    "image": "images/120.jpg"
   },
   {
-    "name": "มิสเตอร์ 5 (Mr. 5)"
+    "name": "มิสเตอร์ 5 (Mr. 5)",
+    "image": "images/121.jpg"
   },
   {
-    "name": "คุโระ (Kuro)"
+    "name": "คุโระ (Kuro)",
+    "image": "images/122.jpg"
   },
   {
-    "name": "จังโก้ (Jango)"
+    "name": "จังโก้ (Jango)",
+    "image": "images/123.jpg"
   },
   {
-    "name": "ดอน ครีก (Don Krieg)"
+    "name": "ดอน ครีก (Don Krieg)",
+    "image": "images/124.jpg"
   },
   {
-    "name": "จิน (Gin)"
+    "name": "จิน (Gin)",
+    "image": "images/125.jpg"
   },
   {
-    "name": "เพิร์ล (Pearl)"
+    "name": "เพิร์ล (Pearl)",
+    "image": "images/126.jpg"
   },
   {
-    "name": "คุณเบลเมล (Bellemere)"
+    "name": "คุณเบลเมล (Bellemere)",
+    "image": "images/127.jpg"
   },
   {
-    "name": "โนจิโกะ (Nojiko)"
+    "name": "โนจิโกะ (Nojiko)",
+    "image": "images/128.jpg"
   },
   {
-    "name": "ลุงเก็นโซ (Genzo)"
+    "name": "ลุงเก็นโซ (Genzo)",
+    "image": "images/129.jpg"
   },
   {
-    "name": "ด็อกเตอร์ฮิลลูลุค (Dr. Hiriluk)"
+    "name": "ด็อกเตอร์ฮิลลูลุค (Dr. Hiriluk)",
+    "image": "images/130.jpg"
   },
   {
-    "name": "ด็อกเตอร์คุเรฮะ (Kureha)"
+    "name": "ด็อกเตอร์คุเรฮะ (Kureha)",
+    "image": "images/131.jpg"
   },
   {
-    "name": "วาโปล (Wapol)"
+    "name": "วาโปล (Wapol)",
+    "image": "images/132.jpg"
   },
   {
-    "name": "ดัลตัน (Dalton)"
+    "name": "ดัลตัน (Dalton)",
+    "image": "images/133.jpg"
   },
   {
-    "name": "ไวเปอร์ (Wyper)"
+    "name": "ไวเปอร์ (Wyper)",
+    "image": "images/134.jpg"
   },
   {
-    "name": "เอเนล (Enel)"
+    "name": "เอเนล (Enel)",
+    "image": "images/135.jpg"
   },
   {
-    "name": "ฟ็อกซี่ (Foxy)"
+    "name": "ฟ็อกซี่ (Foxy)",
+    "image": "images/136.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์เพโรสเพโร (Charlotte Perospero)"
+    "name": "ชาร์ล็อตต์เพโรสเพโร (Charlotte Perospero)",
+    "image": "images/137.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์คาตาคุริ (Charlotte Katakuri)"
+    "name": "ชาร์ล็อตต์คาตาคุริ (Charlotte Katakuri)",
+    "image": "images/138.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์สมูทตี้ (Charlotte Smoothie)"
+    "name": "ชาร์ล็อตต์สมูทตี้ (Charlotte Smoothie)",
+    "image": "images/139.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์คราเกอร์ (Charlotte Cracker)"
+    "name": "ชาร์ล็อตต์คราเกอร์ (Charlotte Cracker)",
+    "image": "images/140.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์โอเว่น (Charlotte Oven)"
+    "name": "ชาร์ล็อตต์โอเว่น (Charlotte Oven)",
+    "image": "images/141.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์ไดฟุกุ (Charlotte Daifuku)"
+    "name": "ชาร์ล็อตต์ไดฟุกุ (Charlotte Daifuku)",
+    "image": "images/142.jpg"
   },
   {
-    "name": "ปอนด์ (Pound)"
+    "name": "ปอนด์ (Pound)",
+    "image": "images/143.jpg"
   },
   {
-    "name": "เพคอมส์ (Pekoms)"
+    "name": "เพคอมส์ (Pekoms)",
+    "image": "images/144.jpg"
   },
   {
-    "name": "ทามาโกะ (Tamago)"
+    "name": "ทามาโกะ (Tamago)",
+    "image": "images/145.jpg"
   },
   {
-    "name": "เปโดร (Pedro)"
+    "name": "เปโดร (Pedro)",
+    "image": "images/146.jpg"
   },
   {
-    "name": "แคร็อท (Carrot)"
+    "name": "แคร็อท (Carrot)",
+    "image": "images/147.jpg"
   },
   {
-    "name": "ซีซาร์ คลาวน์ (Caesar Clown)"
+    "name": "ซีซาร์ คลาวน์ (Caesar Clown)",
+    "image": "images/148.jpg"
   },
   {
-    "name": "โมเนต์ (Monet)"
+    "name": "โมเนต์ (Monet)",
+    "image": "images/149.jpg"
   },
   {
-    "name": "หนวดน้ำตาล (Brownbeard)"
+    "name": "หนวดน้ำตาล (Brownbeard)",
+    "image": "images/150.jpg"
   },
   {
-    "name": "เบบี้ 5 (Baby 5)"
+    "name": "เบบี้ 5 (Baby 5)",
+    "image": "images/151.jpg"
   },
   {
-    "name": "ซินญอร์ พิงค์ (Senor Pink)"
+    "name": "ซินญอร์ พิงค์ (Senor Pink)",
+    "image": "images/152.jpg"
   },
   {
-    "name": "พิก้า (Pica)"
+    "name": "พิก้า (Pica)",
+    "image": "images/153.jpg"
   },
   {
-    "name": "เทรโบล (Trebol)"
+    "name": "เทรโบล (Trebol)",
+    "image": "images/154.jpg"
   },
   {
-    "name": "มัคไวส์ (Machvise)"
+    "name": "มัคไวส์ (Machvise)",
+    "image": "images/155.jpg"
   },
   {
-    "name": "กลาดิอุส (Gladius)"
+    "name": "กลาดิอุส (Gladius)",
+    "image": "images/156.jpg"
   },
   {
-    "name": "โจล่า (Jola)"
+    "name": "โจล่า (Jola)",
+    "image": "images/157.jpg"
   },
   {
-    "name": "ไวโอเล็ต (Violet)"
+    "name": "ไวโอเล็ต (Violet)",
+    "image": "images/158.jpg"
   },
   {
-    "name": "รีเบคก้า (Rebecca)"
+    "name": "รีเบคก้า (Rebecca)",
+    "image": "images/159.jpg"
   },
   {
-    "name": "ไครอส (Kyros)"
+    "name": "ไครอส (Kyros)",
+    "image": "images/160.jpg"
   },
   {
-    "name": "ราชาริคุ (King Riku)"
+    "name": "ราชาริคุ (King Riku)",
+    "image": "images/161.jpg"
   },
   {
-    "name": "ไอซ์เบิร์ก (Iceburg)"
+    "name": "ไอซ์เบิร์ก (Iceburg)",
+    "image": "images/162.jpg"
   },
   {
-    "name": "พาลลี่ (Paulie)"
+    "name": "พาลลี่ (Paulie)",
+    "image": "images/163.jpg"
   },
   {
-    "name": "คุณทอม (Tom)"
+    "name": "คุณทอม (Tom)",
+    "image": "images/164.jpg"
   },
   {
-    "name": "ป้าโคโคโระ (Kokoro)"
+    "name": "ป้าโคโคโระ (Kokoro)",
+    "image": "images/165.jpg"
   },
   {
-    "name": "สแปนดัม (Spandam)"
+    "name": "สแปนดัม (Spandam)",
+    "image": "images/166.jpg"
   },
   {
-    "name": "กาลู (Karoo)"
+    "name": "กาลู (Karoo)",
+    "image": "images/167.jpg"
   },
   {
-    "name": "ด็อกเตอร์เวกาพังค์ (Dr. Vegapunk)"
+    "name": "ด็อกเตอร์เวกาพังค์ (Dr. Vegapunk)",
+    "image": "images/168.jpg"
   },
   {
-    "name": "เซนโตมารุ (Sentomaru)"
+    "name": "เซนโตมารุ (Sentomaru)",
+    "image": "images/169.jpg"
   },
   {
-    "name": "แปซิฟิสต้า (Pacifista)"
+    "name": "แปซิฟิสต้า (Pacifista)",
+    "image": "images/170.jpg"
   },
   {
-    "name": "เบน เบ็คแมน (Benn Beckman)"
+    "name": "เบน เบ็คแมน (Benn Beckman)",
+    "image": "images/171.jpg"
   },
   {
-    "name": "ยาซปป์ (Yasopp)"
+    "name": "ยาซปป์ (Yasopp)",
+    "image": "images/172.jpg"
   },
   {
-    "name": "ลัคกี้ รู (Lucky Roux)"
+    "name": "ลัคกี้ รู (Lucky Roux)",
+    "image": "images/173.jpg"
   },
   {
-    "name": "ด็อกเตอร์ ฮอกแบ็ค (Dr. Hogback)"
+    "name": "ด็อกเตอร์ ฮอกแบ็ค (Dr. Hogback)",
+    "image": "images/174.jpg"
   },
   {
-    "name": "อับซาลอม (Absalom)"
+    "name": "อับซาลอม (Absalom)",
+    "image": "images/175.jpg"
   },
   {
-    "name": "ริวมะ (Ryuma)"
+    "name": "ริวมะ (Ryuma)",
+    "image": "images/176.jpg"
   },
   {
-    "name": "คุจา มากาเร็ต (Marguerite)"
+    "name": "คุจา มากาเร็ต (Marguerite)",
+    "image": "images/177.jpg"
   },
   {
-    "name": "กลอริโอซ่า (Gloriosa)"
+    "name": "กลอริโอซ่า (Gloriosa)",
+    "image": "images/178.jpg"
   },
   {
-    "name": "เรย์จู วินสโมค (Vinsmoke Reiju)"
+    "name": "เรย์จู วินสโมค (Vinsmoke Reiju)",
+    "image": "images/179.jpg"
   },
   {
-    "name": "วินสโมค จัดจ์ (Vinsmoke Judge)"
+    "name": "วินสโมค จัดจ์ (Vinsmoke Judge)",
+    "image": "images/180.jpg"
   },
   {
-    "name": "วินสโมค อิจิจิ (Vinsmoke Ichiji)"
+    "name": "วินสโมค อิจิจิ (Vinsmoke Ichiji)",
+    "image": "images/181.jpg"
   },
   {
-    "name": "วินสโมค นิจิ (Vinsmoke Niji)"
+    "name": "วินสโมค นิจิ (Vinsmoke Niji)",
+    "image": "images/182.jpg"
   },
   {
-    "name": "วินสโมค ยงจิ (Vinsmoke Yonji)"
+    "name": "วินสโมค ยงจิ (Vinsmoke Yonji)",
+    "image": "images/183.jpg"
   },
   {
-    "name": "ชาร์ล็อตต์ พุดดิ้ง (Charlotte Pudding)"
+    "name": "ชาร์ล็อตต์ พุดดิ้ง (Charlotte Pudding)",
+    "image": "images/184.jpg"
   },
   {
-    "name": "วิโตะ (Vito)"
+    "name": "วิโตะ (Vito)",
+    "image": "images/185.jpg"
   },
   {
-    "name": "อัลบีด้า (Alvida)"
+    "name": "อัลบีด้า (Alvida)",
+    "image": "images/186.jpg"
   },
   {
-    "name": "มอร์แกนมือขวาน (Axe-Hand Morgan)"
+    "name": "มอร์แกนมือขวาน (Axe-Hand Morgan)",
+    "image": "images/187.jpg"
   },
   {
-    "name": "ฮันเนียบัล (Hannyabal)"
+    "name": "ฮันเนียบัล (Hannyabal)",
+    "image": "images/188.jpg"
   },
   {
-    "name": "แม็กเจลแลน (Magellan)"
+    "name": "แม็กเจลแลน (Magellan)",
+    "image": "images/189.jpg"
   },
   {
-    "name": "โบอา โซเนีย (Boa Sandersonia)"
+    "name": "โบอา โซเนีย (Boa Sandersonia)",
+    "image": "images/190.jpg"
   },
   {
-    "name": "โบอา มารีโกลด์ (Boa Marigold)"
+    "name": "โบอา มารีโกลด์ (Boa Marigold)",
+    "image": "images/191.jpg"
   }
 ]
