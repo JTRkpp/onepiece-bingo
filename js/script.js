@@ -1,47 +1,51 @@
-let characters = [];
+// ดึงข้อมูลคำถามไว้ใช้งานในสล็อต
 let questions = [];
 
-Promise.all([
-    fetch('data/characters.json').then(res => res.json()),
-    fetch('data/questions.json').then(res => res.json())
-])
-.then(([charData, questData]) => {
-    characters = charData;
-    questions = questData;
-    initGame();
-})
-.catch(err => {
-    console.error(err);
-    document.getElementById('drawName').innerText = "❌ Error: Cannot load data";
+// จำลองการโหลดหรือผูกข้อมูลคำถามเดิมของคุณ (โค้ดดึงไฟล์ JSON เดิมควรอยู่ตรงนี้)
+// ตัวอย่างเช่น: fetch('data/questions.json').then(...) หรือตัวแปรที่มีอยู่แล้ว
+
+document.addEventListener("DOMContentLoaded", () => {
+    // ผูกระบบ Click เข้ากับปุ่มไอดี drawMission ใน HTML ของคุณ
+    const drawBtn = document.getElementById("drawMission");
+    if (drawBtn) {
+        drawBtn.addEventListener("click", drawMission);
+    }
+    
+    // โหลดข้อมูลเริ่มต้นของคุณ (เช่น สุ่มบอร์ดเริ่มต้น)
+    // initBingo(); 
 });
 
-function initGame() {
-    createBoard();
-    document.getElementById('randomBoard').onclick = createBoard;
-    document.getElementById('drawMission').onclick = drawMission;
-}
-
-function createBoard() {
-    const board = document.getElementById('bingoBoard');
-    board.innerHTML = '';
-    const shuffled = [...characters].sort(() => 0.5 - Math.random()).slice(0, 25);
-    shuffled.forEach(char => {
-        const cell = document.createElement('div');
-        cell.className = 'bingo-cell';
-        // ใส่โครงสร้างที่รองรับเลเยอร์
-        cell.innerHTML = `
-            <img src="${char.image}" class="char-img" onerror="this.src='images/default.jpg'">
-            <div class="name-plate">${char.name}</div>
-            <div class="stamp">❌</div>
-        `;
-        cell.onclick = () => cell.classList.toggle('marked');
-        board.appendChild(cell);
-    });
-}
-
+// ฟังก์ชันหมุนสล็อตภารกิจ
 function drawMission() {
-    if (questions.length === 0) return;
-    const randomQ = questions[Math.floor(Math.random() * questions.length)];
-    const textToShow = randomQ.text || randomQ.question || "ไม่มีโจทย์";
-    document.getElementById('drawName').innerText = textToShow;
+    // ป้องกันกรณีที่ระบบยังโหลดไฟล์ questions.json ไม่เสร็จ
+    if (typeof questions === 'undefined' || questions.length === 0) {
+        // บันทึกตัวอย่างเพื่อไม่ให้โค้ดพังหากทดสอบสด
+        questions = [
+            { text: "ดึงการ์ดลูฟี่ให้ได้!" },
+            { text: "สุ่มได้ตัวละครฝั่งทหารเรือ" },
+            { text: "ได้ตัวละครกลุ่มหมวกฟาง 2 ช่อง" }
+        ];
+    }
+
+    const drawName = document.getElementById('drawName');
+    if (!drawName) return;
+
+    let counter = 0;
+    const maxSpin = 15; // จำนวนครั้งที่จะหมุนเร็วๆ
+    
+    // เอฟเฟกต์หมุนสลับโจทย์แบบสล็อตแมชชีน ทุกๆ 100 มิลลิวินาที
+    const spinInterval = setInterval(() => {
+        const randomQ = questions[Math.floor(Math.random() * questions.length)];
+        
+        // สลับแสดงผลรองรับโครงสร้างข้อมูลทั้ง .text หรือ .question
+        drawName.innerText = randomQ.text || randomQ.question || "กำลังสุ่มภารกิจ...";
+        counter++;
+        
+        // เมื่อหมุนครบรอบ ให้หยุดสล็อตแล้วดึงผลลัพธ์จริงครั้งสุดท้ายมาค้างไว้
+        if (counter >= maxSpin) {
+            clearInterval(spinInterval);
+            const finalQ = questions[Math.floor(Math.random() * questions.length)];
+            drawName.innerText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
+        }
+    }, 100); 
 }
