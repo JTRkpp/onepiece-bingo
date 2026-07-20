@@ -8,53 +8,39 @@ const board = document.getElementById("bingoBoard");
 const message = document.getElementById("bingoMessage");
 const customArea = document.getElementById("customArea");
 
-// รองรับทั้ง ID เดิมและ ID ใหม่ เผื่อคุณเปลี่ยนชื่อใน HTML เป็น drawQuestion หรือ randomQuestion
-const questionDisplay = document.getElementById("drawQuestion") || document.getElementById("drawName");
-const randomQuestionBtn = document.getElementById("randomQuestionBtn") || document.getElementById("caller");
+// อ้างอิง ID ให้ตรงกับปุ่ม Draw Mission ที่แก้ไขใหม่ใน HTML
+const drawMissionBtn = document.getElementById("drawMission");
+const drawNameDisplay = document.getElementById("drawName");
 
-// โหลดข้อมูลด้วย Promise.all
+// โหลดข้อมูลจากไฟล์ JSON
 Promise.all([
-    fetch("data/characters.json").then(res => {
-        if (!res.ok) throw new Error("Characters JSON not found");
-        return res.json();
-    }),
-    fetch("data/questions.json").then(res => {
-        if (!res.ok) throw new Error("Questions JSON not found");
-        return res.json();
-    })
+    fetch("data/characters.json").then(res => res.json()),
+    fetch("data/questions.json").then(res => res.json())
 ])
 .then(data => {
     characters = data[0];
-    questions = data[1];
-    createBoard(); 
+    questions = data[1]; // โหลดข้อมูลโจทย์เก็บไว้ในตัวแปร questions
+    createBoard();
 })
 .catch(error => {
-    console.error("Error loading JSON data:", error);
-    if (message) {
-        message.innerHTML = "❌ Cannot load data";
-    }
+    console.error(error);
+    if (message) message.innerHTML = "❌ Cannot load data";
 });
 
-// ฟังก์ชันสุ่มอาเรย์แบบ Fisher-Yates
+// ฟังก์ชันสุ่ม
 function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-    return array;
+    return array.sort(() => Math.random() - 0.5);
 }
 
-// สร้างบอร์ดสุ่มเริ่มต้น
+// สร้างบอร์ด
 function createBoard() {
-    if (message) message.innerHTML = ""; 
+    if (message) message.innerHTML = "";
     boardCharacters = shuffle([...characters]).slice(0, 25);
     marked = Array(25).fill(false);
     drawBoard();
 }
 
-// วาดบอร์ดลงบน HTML (อัปเดตให้รองรับรูปภาพ)
+// วาดบอร์ดพร้อมรองรับการแสดงรูปภาพ
 function drawBoard() {
     if (!board) return;
     board.innerHTML = "";
@@ -63,48 +49,53 @@ function drawBoard() {
         const cell = document.createElement("div");
         cell.className = "bingo-cell";
 
-        // 1. ถ้าระบุ Path รูปภาพมาใน JSON ให้สร้างแท็ก <img>
+        // ตรวจสอบและแทรกรูปภาพ (ถ้ามีใน JSON)
         if (character.image) {
             const img = document.createElement("img");
             img.src = character.image;
             img.alt = character.name;
-            img.className = "cell-image"; // ใส่ Class ไว้จัด CSS
+            
+            // กำหนดขนาดรูปลงในโค้ดตรงนี้เลยเพื่อความชัวร์
+            img.style.width = "70%";
+            img.style.objectFit = "cover";
+            img.style.pointerEvents = "none"; // ป้องกันการกดติดที่รูป
+            
             cell.appendChild(img);
         }
 
-        // 2. สร้างแท็กสำหรับใส่ชื่อ (แยกออกจากรูปภาพ)
+        // แทรกชื่อตัวละคร
         const nameText = document.createElement("span");
-        nameText.className = "cell-name";
         nameText.textContent = character.name;
+        nameText.style.pointerEvents = "none";
         cell.appendChild(nameText);
 
         let pressTimer;
-        let isLongPress = false;
+        let longPressed = false;
 
-        // --- ระบบควบคุมสำหรับอุปกรณ์ Mobile Touch ---
+        // กดค้างแก้ชื่อ (Mobile)
         cell.addEventListener("touchstart", (e) => {
-            isLongPress = false;
+            longPressed = false;
             pressTimer = setTimeout(() => {
-                isLongPress = true;
+                longPressed = true;
                 let newName = prompt("แก้ชื่อตัวละคร", character.name);
                 if (newName && newName.trim()) {
                     character.name = newName.trim();
-                    nameText.textContent = character.name; // เปลี่ยนแค่ข้อความ ไม่กระทบรูปภาพ
+                    nameText.textContent = character.name; // เปลี่ยนแค่ข้อความ รูปยังอยู่
                 }
             }, 800);
         }, { passive: true });
 
         cell.addEventListener("touchend", (e) => {
             clearTimeout(pressTimer);
-            if (!isLongPress) {
+            if (!longPressed) {
                 toggleCell(cell, index);
             }
-            e.preventDefault(); 
+            e.preventDefault(); // กันการคลิกซ้ำซ้อน
         });
 
-        // --- ระบบควบคุมสำหรับ PC Click ---
+        // PC click
         cell.addEventListener("click", (e) => {
-            if (e.defaultPrevented) return; 
+            if (e.defaultPrevented) return;
             toggleCell(cell, index);
         });
 
@@ -112,21 +103,20 @@ function drawBoard() {
     });
 }
 
-// เลือก/ยกเลิกการเลือกช่อง
+// สลับสถานะช่อง
 function toggleCell(cell, index) {
     marked[index] = !marked[index];
     cell.classList.toggle("marked", marked[index]);
     checkBingo();
 }
 
-// ตรวจสอบเงื่อนไขการ Bingo
+// ตรวจ Bingo
 function checkBingo() {
     if (!message) return;
-
     const lines = [
-        [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24], // แนวนอน
-        [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24], // แนวตั้ง
-        [0, 6, 12, 18, 24], [4, 8, 12, 16, 20] // แนวทแยง
+        [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
+        [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
+        [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
     ];
 
     for (let line of lines) {
@@ -135,10 +125,10 @@ function checkBingo() {
             return;
         }
     }
-    message.innerHTML = ""; 
+    message.innerHTML = "";
 }
 
-// ปุ่มสุ่มบอร์ดใหม่
+// สุ่มบอร์ดใหม่
 const randomBoardBtn = document.getElementById("randomBoard");
 if (randomBoardBtn) {
     randomBoardBtn.onclick = function() {
@@ -146,27 +136,28 @@ if (randomBoardBtn) {
     };
 }
 
-// ระบบสุ่มโจทย์คำถาม (Random Question)
-if (randomQuestionBtn) {
-    randomQuestionBtn.onclick = function() {
+// สุ่มโจทย์ (Draw Mission) ดึงจากไฟล์ questions.json
+if (drawMissionBtn) {
+    drawMissionBtn.onclick = function() {
         if (questions.length === 0) {
-            if (questionDisplay) questionDisplay.innerHTML = "ไม่มีโจทย์ในไฟล์ข้อมูล";
+            drawNameDisplay.innerHTML = "ไม่มีโจทย์ในไฟล์ข้อมูล";
             return;
         }
         
-        // ถ้าโจทย์หมด ให้สุ่มโจทย์ชุดใหม่กลับมา
+        // ถ้าคำถามใน Pool หมด ให้โคลนกลับมาใหม่
         if (questionPool.length === 0) {
             questionPool = shuffle([...questions]);
         }
 
         const picked = questionPool.pop();
-        if (questionDisplay && picked) {
-            questionDisplay.innerHTML = picked.question;
+        // โชว์ข้อความจากคีย์ "question"
+        if (drawNameDisplay && picked) {
+            drawNameDisplay.innerHTML = picked.question; 
         }
     };
 }
 
-// ระบบสร้างบอร์ดเอง (Custom Board)
+// สร้างบอร์ดเอง
 const createBoardBtn = document.getElementById("createBoard");
 if (createBoardBtn) {
     createBoardBtn.onclick = function() {
@@ -190,14 +181,14 @@ if (createBoardBtn) {
             inputs.forEach(input => {
                 boardCharacters.push({
                     name: input.value.trim() || "Empty",
-                    image: "" // บอร์ดสร้างเองจะไม่มีรูปภาพ
+                    image: "" // ระบบสร้างเองไม่ใส่รูป
                 });
             });
 
-            if (message) message.innerHTML = ""; 
+            if (message) message.innerHTML = "";
             marked = Array(25).fill(false);
             drawBoard();
-            customArea.innerHTML = ""; 
+            customArea.innerHTML = "";
         };
 
         customArea.appendChild(button);
