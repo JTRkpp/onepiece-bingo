@@ -2,35 +2,23 @@
     box-sizing: border-box;
 }
 
-
 body {
-
-    margin:0;
-
-    padding:15px;
-
-    font-family:Georgia, serif;
-
-    color:#3b2108;
-
-
-    background-color:#c49a52;
-
-
+    margin: 0;
+    padding: 15px;
+    font-family: Georgia, serif;
+    color: #3b2108;
+    background-color: #c49a52;
     background-image:
-
     radial-gradient(
         ellipse at 20% 20%,
         rgba(80,40,10,.35),
         transparent 35%
     ),
-
     radial-gradient(
         ellipse at 80% 70%,
         rgba(80,40,10,.3),
         transparent 35%
     ),
-
     repeating-linear-gradient(
         25deg,
         transparent 0px,
@@ -38,585 +26,199 @@ body {
         rgba(90,50,10,.12) 82px,
         transparent 85px
     ),
-
     radial-gradient(
         rgba(60,30,5,.18) 1px,
         transparent 1px
     );
-
-
     background-size:
     auto,
     auto,
     auto,
     18px 18px;
-
-
-    overflow-x:hidden;
-
+    overflow-x: hidden;
 }
-
 
 body::before {
-
-    content:"☠";
-
-
-    position:fixed;
-
-
-    top:50%;
-
-    left:50%;
-
-
-    transform:
-    translate(-50%,-50%);
-
-
-    font-size:280px;
-
-
-    color:rgba(80,40,10,.08);
-
-
-    pointer-events:none;
-
-
-    z-index:-1;
-
+    content: "☠";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 280px;
+    color: rgba(80,40,10,.08);
+    pointer-events: none;
+    z-index: -1;
 }
-
 
 body::after {
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-
-    pointer-events:none;
-
-
-    box-shadow:
-
-    inset 0 0 90px rgba(50,25,5,.65);
-
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 90px rgba(50,25,5,.65);
 }
-
-
 
 /* Header */
-
 header {
-
-    text-align:center;
-
+    text-align: center;
 }
-
 
 h1 {
-
-    color:#760000;
-
-
-    font-size:32px;
-
-
+    color: #760000;
+    font-size: 32px;
     text-shadow:
-
     2px 2px #f3d48b,
-
     4px 4px rgba(0,0,0,.25);
-
 }
-
-
-
 
 /* Buttons */
-
-
 .buttons {
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-
-
 
 button {
-
-
-    padding:12px 16px;
-
-
-    border-radius:12px;
-
-
-    border:
-
-    3px solid #3b2108;
-
-
-    background:
-
-    linear-gradient(
-        #c27a32,
-        #63300e
-    );
-
-
-    color:white;
-
-
-    font-weight:bold;
-
-
-    box-shadow:
-
-    0 5px 0 #3b2108;
-
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 3px solid #3b2108;
+    background: linear-gradient(#c27a32, #63300e);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 5px 0 #3b2108;
+    cursor: pointer;
 }
-
-
 
 button:active {
-
-    transform:translateY(4px);
-
-    box-shadow:none;
-
+    transform: translateY(4px);
+    box-shadow: none;
 }
-
-
-
-
-
 
 /* Wanted Poster */
-
-
 #drawResult {
-
-
-    width:90%;
-
-    max-width:380px;
-
-
-    margin:25px auto;
-
-
-    padding:20px;
-
-
-
-    background:#ead29a;
-
-
-
-    background-image:
-
-    radial-gradient(
-        rgba(80,40,10,.2) 1px,
-        transparent 1px
-    );
-
-
-    background-size:16px 16px;
-
-
-
-    border:
-
-    8px double #3b2108;
-
-
-    box-shadow:
-
-    0 12px 25px rgba(0,0,0,.45);
-
-
-
-    text-align:center;
-
+    width: 90%;
+    max-width: 380px;
+    margin: 25px auto;
+    padding: 20px;
+    background: #ead29a;
+    background-image: radial-gradient(rgba(80,40,10,.2) 1px, transparent 1px);
+    background-size: 16px 16px;
+    border: 8px double #3b2108;
+    box-shadow: 0 12px 25px rgba(0,0,0,.45);
+    text-align: center;
 }
-
-
 
 #drawResult h2 {
-
-    display:none;
-
+    display: none;
 }
-
-
 
 #drawResult::before {
-
-    content:"WANTED";
-
-
-    display:block;
-
-
-    font-size:45px;
-
-
-    letter-spacing:5px;
-
-
-    color:#650000;
-
-
-    font-weight:bold;
-
-
+    content: "WANTED";
+    display: block;
+    font-size: 45px;
+    letter-spacing: 5px;
+    color: #650000;
+    font-weight: bold;
 }
-
-
 
 #drawName {
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    padding:15px;
-
-
-    border-top:
-
-    2px solid #70400f;
-
-
-    border-bottom:
-
-    2px solid #70400f;
-
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    border-top: 2px solid #70400f;
+    border-bottom: 2px solid #70400f;
 }
-
-
-
-
-
 
 /* Bingo Board */
-
-
 #bingoBoard {
-
-    display:grid;
-
-
-    grid-template-columns:
-
-    repeat(5,1fr);
-
-
-    gap:10px;
-
-
-    width:95%;
-
-
-    max-width:600px;
-
-
-    margin:30px auto;
-
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 10px;
+    width: 95%;
+    max-width: 600px;
+    margin: 30px auto;
 }
-
-
-
-
-
-
 
 /* Old Map Paper */
-
-
 .bingo-cell {
-
-
-    aspect-ratio:1/1;
-
-
-    display:flex;
-
-
-    flex-direction: column;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    text-align:center;
-
-
-    padding:8px;
-
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
-
-    color:#3b2108;
-
-
-
-    background:#ead39a;
-
-
-    background-image:
-
-    radial-gradient(
-
-        rgba(80,40,10,.2) 1px,
-
-        transparent 1px
-
-    );
-
-
-    background-size:14px 14px;
-
-
-
-    border:
-
-    3px solid #70400f;
-
-
-
-    border-radius:6px;
-
-
-
-    font-weight:bold;
-
-
-    font-size:13px;
-
-
-
-    box-shadow:
-
-
-    inset 0 0 18px rgba(80,40,10,.35),
-
-
-    0 5px 10px rgba(0,0,0,.35);
-
-
-
-    word-break:break-word;
-
-
-
-    user-select:none;
-
-
-    -webkit-user-select:none;
-
-
-    -webkit-touch-callout:none;
-
-
-    touch-action:none;
-
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column; /* ปรับทิศทางเป็นแนวตั้งเพื่อรองรับรูปภาพและชื่อ */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+    color: #3b2108;
+    background: #ead39a;
+    background-image: radial-gradient(rgba(80,40,10,.2) 1px, transparent 1px);
+    background-size: 14px 14px;
+    border: 3px solid #70400f;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+    box-shadow: inset 0 0 18px rgba(80,40,10,.35), 0 5px 10px rgba(0,0,0,.35);
+    word-break: break-word;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: none;
 }
-
-
-
-
-
-
 
 /* Pirate Stamp */
-
-
 .bingo-cell.marked {
-
-
-    background:#ead39a;
-
-
+    background: #ead39a;
 }
-
-
 
 .bingo-cell.marked::before {
-
-
-    content:"☠";
-
-
-    position:absolute;
-
-
-    top:50%;
-
-
-    left:50%;
-
-
-    transform:
-
-
-    translate(-50%,-50%)
-
-    rotate(-12deg);
-
-
-
-    font-size:65px;
-
-
-
-    color:
-
-    rgba(180,0,0,.9);
-    
-
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    
-
-    z-index:10;
-
-    
+    content: "☠";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-12deg);
+    font-size: 65px;
+    color: rgba(180,0,0,.9); /* สีแดงเข้มขึ้น */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* เงาสีขาวรอบตัวอักษร */
+    z-index: 10; /* อยู่เหนือชั้นของรูปภาพ */
     pointer-events: none;
-
-
 }
-
-
 
 .bingo-cell.marked::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-
-    width:75%;
-
-
-    height:75%;
-
-
-
-    top:12.5%;
-
-
-    left:12.5%;
-
-
-
-    border:
-
-    4px solid rgba(180,0,0,.8);
-
-
-
-    border-radius:50%;
-
-
-
-    transform:rotate(-10deg);
-    
-
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-
-    
-    z-index: 10;
-
-    
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    top: 12.5%;
+    left: 12.5%;
+    border: 4px solid rgba(180,0,0,.8); /* วงกลมสีแดงเข้มขึ้น */
+    border-radius: 50%;
+    transform: rotate(-10deg);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* เงาสีขาวรอบวงกลม */
+    z-index: 10; /* อยู่เหนือชั้นของรูปภาพ */
     pointer-events: none;
-
-
 }
-
-
 
 .bingo-cell.marked {
-
-
-    text-shadow:
-
-    0 1px rgba(255,255,255,.5);
-
+    text-shadow: 0 1px rgba(255,255,255,.5);
 }
-
-
-
-
-
 
 /* Bingo Message */
-
-
 #bingoMessage {
-
-
-    text-align:center;
-
-
-    margin-top:20px;
-
-
-    font-size:45px;
-
-
-    font-weight:bold;
-
-
-    color:#8b0000;
-
-
-    text-shadow:
-
-    2px 2px #f5d27c;
-
+    text-align: center;
+    margin-top: 20px;
+    font-size: 45px;
+    font-weight: bold;
+    color: #8b0000;
+    text-shadow: 2px 2px #f5d27c;
 }
 
-
-
-
-
 @media(max-width:500px){
-
-
     h1 {
-
-        font-size:25px;
-
+        font-size: 25px;
     }
-
-
     .bingo-cell {
-
-        font-size:11px;
-
+        font-size: 11px;
     }
-
 }
