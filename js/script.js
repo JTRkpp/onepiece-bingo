@@ -6,10 +6,13 @@ let questions = [];
 
 const board = document.getElementById("bingoBoard");
 const message = document.getElementById("bingoMessage");
-const drawName = document.getElementById("drawName");
 const customArea = document.getElementById("customArea");
 
-// โหลดข้อมูลด้วย Promise.all และระบุ Path แบบ Relative ป้องกัน GitHub Pages พัง
+// รองรับทั้ง ID เดิมและ ID ใหม่ เผื่อคุณเปลี่ยนชื่อใน HTML เป็น drawQuestion หรือ randomQuestion
+const questionDisplay = document.getElementById("drawQuestion") || document.getElementById("drawName");
+const randomQuestionBtn = document.getElementById("randomQuestionBtn") || document.getElementById("caller");
+
+// โหลดข้อมูลด้วย Promise.all
 Promise.all([
     fetch("data/characters.json").then(res => {
         if (!res.ok) throw new Error("Characters JSON not found");
@@ -23,7 +26,7 @@ Promise.all([
 .then(data => {
     characters = data[0];
     questions = data[1];
-    createBoard(); // สร้างบอร์ดเริ่มต้นทันทีเมื่อโหลดผ่าน
+    createBoard(); 
 })
 .catch(error => {
     console.error("Error loading JSON data:", error);
@@ -32,7 +35,7 @@ Promise.all([
     }
 });
 
-// ฟังก์ชันสุ่มอาเรย์แบบ Fisher-Yates (เสถียรกว่าการใช้ Math.random() - 0.5)
+// ฟังก์ชันสุ่มอาเรย์แบบ Fisher-Yates
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex !== 0) {
@@ -45,13 +48,13 @@ function shuffle(array) {
 
 // สร้างบอร์ดสุ่มเริ่มต้น
 function createBoard() {
-    if (message) message.innerHTML = ""; // เคลียร์ข้อความบิงโกเก่าออก
+    if (message) message.innerHTML = ""; 
     boardCharacters = shuffle([...characters]).slice(0, 25);
     marked = Array(25).fill(false);
     drawBoard();
 }
 
-// วาดบอร์ดลงบน HTML
+// วาดบอร์ดลงบน HTML (อัปเดตให้รองรับรูปภาพ)
 function drawBoard() {
     if (!board) return;
     board.innerHTML = "";
@@ -59,7 +62,21 @@ function drawBoard() {
     boardCharacters.forEach((character, index) => {
         const cell = document.createElement("div");
         cell.className = "bingo-cell";
-        cell.textContent = character.name;
+
+        // 1. ถ้าระบุ Path รูปภาพมาใน JSON ให้สร้างแท็ก <img>
+        if (character.image) {
+            const img = document.createElement("img");
+            img.src = character.image;
+            img.alt = character.name;
+            img.className = "cell-image"; // ใส่ Class ไว้จัด CSS
+            cell.appendChild(img);
+        }
+
+        // 2. สร้างแท็กสำหรับใส่ชื่อ (แยกออกจากรูปภาพ)
+        const nameText = document.createElement("span");
+        nameText.className = "cell-name";
+        nameText.textContent = character.name;
+        cell.appendChild(nameText);
 
         let pressTimer;
         let isLongPress = false;
@@ -72,9 +89,9 @@ function drawBoard() {
                 let newName = prompt("แก้ชื่อตัวละคร", character.name);
                 if (newName && newName.trim()) {
                     character.name = newName.trim();
-                    cell.textContent = character.name;
+                    nameText.textContent = character.name; // เปลี่ยนแค่ข้อความ ไม่กระทบรูปภาพ
                 }
-            }, 800); // กดค้าง 0.8 วินาทีเพื่อเปลี่ยนชื่อ
+            }, 800);
         }, { passive: true });
 
         cell.addEventListener("touchend", (e) => {
@@ -82,13 +99,11 @@ function drawBoard() {
             if (!isLongPress) {
                 toggleCell(cell, index);
             }
-            // ป้องกันไม่ให้เกิด Event 'click' ซ้อนซ้ำบนอุปกรณ์พกพา
             e.preventDefault(); 
         });
 
         // --- ระบบควบคุมสำหรับ PC Click ---
         cell.addEventListener("click", (e) => {
-            // ถ้าเป็น Browser บนมือถือ บล็อกทิ้งไปเพราะทำงานใน touchend แล้ว
             if (e.defaultPrevented) return; 
             toggleCell(cell, index);
         });
@@ -109,21 +124,9 @@ function checkBingo() {
     if (!message) return;
 
     const lines = [
-        // แนวนอน
-        [0, 1, 2, 3, 4],
-        [5, 6, 7, 8, 9],
-        [10, 11, 12, 13, 14],
-        [15, 16, 17, 18, 19],
-        [20, 21, 22, 23, 24],
-        // แนวตั้ง
-        [0, 5, 10, 15, 20],
-        [1, 6, 11, 16, 21],
-        [2, 7, 12, 17, 22],
-        [3, 8, 13, 18, 23],
-        [4, 9, 14, 19, 24],
-        // แนวทแยง
-        [0, 6, 12, 18, 24],
-        [4, 8, 12, 16, 20]
+        [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24], // แนวนอน
+        [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24], // แนวตั้ง
+        [0, 6, 12, 18, 24], [4, 8, 12, 16, 20] // แนวทแยง
     ];
 
     for (let line of lines) {
@@ -132,7 +135,7 @@ function checkBingo() {
             return;
         }
     }
-    message.innerHTML = ""; // ถ้ายังไม่บิงโก หรือยกเลิกจนไม่ครบแถว ให้ลบข้อความออก
+    message.innerHTML = ""; 
 }
 
 // ปุ่มสุ่มบอร์ดใหม่
@@ -143,22 +146,22 @@ if (randomBoardBtn) {
     };
 }
 
-// ระบบสุ่มคำถาม (Caller)
-const callerBtn = document.getElementById("caller");
-if (callerBtn) {
-    callerBtn.onclick = function() {
+// ระบบสุ่มโจทย์คำถาม (Random Question)
+if (randomQuestionBtn) {
+    randomQuestionBtn.onclick = function() {
         if (questions.length === 0) {
-            if (drawName) drawName.innerHTML = "ไม่มีคำถามในไฟล์ข้อมูล";
+            if (questionDisplay) questionDisplay.innerHTML = "ไม่มีโจทย์ในไฟล์ข้อมูล";
             return;
         }
         
+        // ถ้าโจทย์หมด ให้สุ่มโจทย์ชุดใหม่กลับมา
         if (questionPool.length === 0) {
             questionPool = shuffle([...questions]);
         }
 
         const picked = questionPool.pop();
-        if (drawName && picked) {
-            drawName.innerHTML = picked.question;
+        if (questionDisplay && picked) {
+            questionDisplay.innerHTML = picked.question;
         }
     };
 }
@@ -170,7 +173,6 @@ if (createBoardBtn) {
         if (!customArea) return;
         customArea.innerHTML = "";
 
-        // สร้างช่อง Input 25 ช่อง
         for (let i = 0; i < 25; i++) {
             let input = document.createElement("input");
             input.className = "custom-input";
@@ -187,14 +189,15 @@ if (createBoardBtn) {
 
             inputs.forEach(input => {
                 boardCharacters.push({
-                    name: input.value.trim() || "Empty"
+                    name: input.value.trim() || "Empty",
+                    image: "" // บอร์ดสร้างเองจะไม่มีรูปภาพ
                 });
             });
 
-            if (message) message.innerHTML = ""; // เคลียร์ข้อความบิงโกเก่า
+            if (message) message.innerHTML = ""; 
             marked = Array(25).fill(false);
             drawBoard();
-            customArea.innerHTML = ""; // ปิดพื้นที่กรอกข้อมูลเมื่อสร้างเสร็จ
+            customArea.innerHTML = ""; 
         };
 
         customArea.appendChild(button);
