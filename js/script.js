@@ -1,196 +1,125 @@
 let characters = [];
-let boardCharacters = [];
-let marked = [];
-let questionPool = [];
 let questions = [];
+let drawnQuestions = [];
+let boardCharacters = [];
 
-const board = document.getElementById("bingoBoard");
-const message = document.getElementById("bingoMessage");
-const customArea = document.getElementById("customArea");
-
-// อ้างอิง ID ให้ตรงกับปุ่ม Draw Mission ที่แก้ไขใหม่ใน HTML
-const drawMissionBtn = document.getElementById("drawMission");
-const drawNameDisplay = document.getElementById("drawName");
-
-// โหลดข้อมูลจากไฟล์ JSON
+// ดึงข้อมูลจากไฟล์ JSON ทั้งสองพร้อมกันแบบถูกวิธี
 Promise.all([
-    fetch("data/characters.json").then(res => res.json()),
-    fetch("data/questions.json").then(res => res.json())
+    fetch('data/characters.json').then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+    }),
+    fetch('data/questions.json').then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+    })
 ])
-.then(data => {
-    characters = data[0];
-    questions = data[1]; // โหลดข้อมูลโจทย์เก็บไว้ในตัวแปร questions
-    createBoard();
+.then(([characterData, questionData]) => {
+    characters = characterData;
+    questions = questionData;
+    initGame();
 })
 .catch(error => {
-    console.error(error);
-    if (message) message.innerHTML = "❌ Cannot load data";
+    console.error('Error loading data:', error);
+    document.getElementById('bingoBoard').innerHTML = '<p style="color:#760000; font-size:24px; font-weight:bold; grid-column:span 5; text-align:center;">❌ Cannot load data</p>';
 });
 
-// ฟังก์ชันสุ่ม
-function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+function initGame() {
+    createBoard();
+    
+    // ผูกเหตุการณ์กับปุ่มระบบใหม่
+    document.getElementById('randomBoard').addEventListener('click', createBoard);
+    document.getElementById('drawMission').addEventListener('click', drawMission);
+    document.getElementById('createBoard').addEventListener('click', () => {
+        alert('Custom Board Feature Coming Soon!');
+    });
 }
 
-// สร้างบอร์ด
 function createBoard() {
-    if (message) message.innerHTML = "";
-    boardCharacters = shuffle([...characters]).slice(0, 25);
-    marked = Array(25).fill(false);
-    drawBoard();
-}
-
-// วาดบอร์ดพร้อมรองรับการแสดงรูปภาพ
-function drawBoard() {
+    const board = document.getElementById('bingoBoard');
     if (!board) return;
-    board.innerHTML = "";
-
-    boardCharacters.forEach((character, index) => {
-        const cell = document.createElement("div");
-        cell.className = "bingo-cell";
-
-        // ตรวจสอบและแทรกรูปภาพ (ถ้ามีใน JSON)
-        if (character.image) {
-            const img = document.createElement("img");
-            img.src = character.image;
-            img.alt = character.name;
-            
-            // กำหนดขนาดรูปลงในโค้ดตรงนี้เลยเพื่อความชัวร์
-            img.style.width = "70%";
-            img.style.objectFit = "cover";
-            img.style.pointerEvents = "none"; // ป้องกันการกดติดที่รูป
-            
+    
+    board.innerHTML = '';
+    document.getElementById('bingoMessage').innerText = '';
+    
+    // สุ่มตัวละคร 25 ตัวไม่ซ้ำกัน
+    const shuffled = [...characters].sort(() => 0.5 - Math.random());
+    boardCharacters = shuffled.slice(0, 25);
+    
+    boardCharacters.forEach((char, index) => {
+        const cell = document.createElement('div');
+        cell.className = 'bingo-cell';
+        
+        // รองรับทั้งแบบมีรูปภาพประกอบและแบบข้อความล้วน
+        if (char.image) {
+            const img = document.createElement('img');
+            img.src = char.image;
+            img.alt = char.name;
+            img.style.width = '100%';
+            img.style.height = '70%';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '4px';
             cell.appendChild(img);
+            
+            const nameSpan = document.createElement('span');
+            nameSpan.innerText = char.name;
+            nameSpan.style.marginTop = '4px';
+            cell.appendChild(nameSpan);
+        } else {
+            cell.innerText = char.name;
         }
-
-        // แทรกชื่อตัวละคร
-        const nameText = document.createElement("span");
-        nameText.textContent = character.name;
-        nameText.style.pointerEvents = "none";
-        cell.appendChild(nameText);
-
-        let pressTimer;
-        let longPressed = false;
-
-        // กดค้างแก้ชื่อ (Mobile)
-        cell.addEventListener("touchstart", (e) => {
-            longPressed = false;
-            pressTimer = setTimeout(() => {
-                longPressed = true;
-                let newName = prompt("แก้ชื่อตัวละคร", character.name);
-                if (newName && newName.trim()) {
-                    character.name = newName.trim();
-                    nameText.textContent = character.name; // เปลี่ยนแค่ข้อความ รูปยังอยู่
-                }
-            }, 800);
-        }, { passive: true });
-
-        cell.addEventListener("touchend", (e) => {
-            clearTimeout(pressTimer);
-            if (!longPressed) {
-                toggleCell(cell, index);
-            }
-            e.preventDefault(); // กันการคลิกซ้ำซ้อน
+        
+        // แก้ไขปัญหา Race Condition บนมือถือด้วยการใช้ pointerdown
+        cell.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
+            cell.classList.toggle('marked');
+            checkBingo();
         });
-
-        // PC click
-        cell.addEventListener("click", (e) => {
-            if (e.defaultPrevented) return;
-            toggleCell(cell, index);
-        });
-
+        
         board.appendChild(cell);
     });
 }
 
-// สลับสถานะช่อง
-function toggleCell(cell, index) {
-    marked[index] = !marked[index];
-    cell.classList.toggle("marked", marked[index]);
-    checkBingo();
-}
-
-// ตรวจ Bingo
-function checkBingo() {
-    if (!message) return;
-    const lines = [
-        [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24],
-        [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24],
-        [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
-    ];
-
-    for (let line of lines) {
-        if (line.every(i => marked[i])) {
-            message.innerHTML = "🎉 BINGO!";
-            return;
-        }
+function drawMission() {
+    if (questions.length === 0) return;
+    
+    // ถ้าสุ่มจนครบหมดแล้วให้รีเซ็ตใหม่
+    if (drawnQuestions.length === questions.length) {
+        drawnQuestions = [];
+        alert('All missions have been drawn! Resetting pool.');
     }
-    message.innerHTML = "";
+    
+    let availableQuestions = questions.filter(q => !drawnQuestions.includes(q.id));
+    let randomQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+    
+    drawnQuestions.push(randomQuestion.id);
+    document.getElementById('drawName').innerText = randomQuestion.text;
 }
 
-// สุ่มบอร์ดใหม่
-const randomBoardBtn = document.getElementById("randomBoard");
-if (randomBoardBtn) {
-    randomBoardBtn.onclick = function() {
-        createBoard();
-    };
-}
-
-// สุ่มโจทย์ (Draw Mission) ดึงจากไฟล์ questions.json
-if (drawMissionBtn) {
-    drawMissionBtn.onclick = function() {
-        if (questions.length === 0) {
-            drawNameDisplay.innerHTML = "ไม่มีโจทย์ในไฟล์ข้อมูล";
-            return;
+function checkBingo() {
+    const cells = document.querySelectorAll('.bingo-cell');
+    let markedPattern = Array(25).fill(false);
+    
+    cells.forEach((cell, i) => {
+        if (cell.classList.contains('marked')) {
+            markedPattern[i] = true;
         }
-        
-        // ถ้าคำถามใน Pool หมด ให้โคลนกลับมาใหม่
-        if (questionPool.length === 0) {
-            questionPool = shuffle([...questions]);
-        }
-
-        const picked = questionPool.pop();
-        // โชว์ข้อความจากคีย์ "question"
-        if (drawNameDisplay && picked) {
-            drawNameDisplay.innerHTML = picked.question; 
-        }
-    };
-}
-
-// สร้างบอร์ดเอง
-const createBoardBtn = document.getElementById("createBoard");
-if (createBoardBtn) {
-    createBoardBtn.onclick = function() {
-        if (!customArea) return;
-        customArea.innerHTML = "";
-
-        for (let i = 0; i < 25; i++) {
-            let input = document.createElement("input");
-            input.className = "custom-input";
-            input.placeholder = "Character " + (i + 1);
-            customArea.appendChild(input);
-        }
-
-        let button = document.createElement("button");
-        button.textContent = "Create Board";
-
-        button.onclick = function() {
-            let inputs = document.querySelectorAll(".custom-input");
-            boardCharacters = [];
-
-            inputs.forEach(input => {
-                boardCharacters.push({
-                    name: input.value.trim() || "Empty",
-                    image: "" // ระบบสร้างเองไม่ใส่รูป
-                });
-            });
-
-            if (message) message.innerHTML = "";
-            marked = Array(25).fill(false);
-            drawBoard();
-            customArea.innerHTML = "";
-        };
-
-        customArea.appendChild(button);
-    };
+    });
+    
+    const bingoLines = [
+        // แนวนอน
+        [0,1,2,3,4], [5,6,7,8,9], [10,11,12,13,14], [15,16,17,18,19], [20,21,22,23,24],
+        // แนวตั้ง
+        [0,5,10,15,20], [1,6,11,16,21], [2,7,12,17,22], [3,8,13,18,23], [4,9,14,19,24],
+        // แนวทแยง
+        [0,6,12,18,24], [4,8,12,16,20]
+    ];
+    
+    let isBingo = bingoLines.some(line => line.every(index => markedPattern[index]));
+    
+    if (isBingo) {
+        document.getElementById('bingoMessage').innerText = '🎉 BINGO! 🏴‍☠️';
+    } else {
+        document.getElementById('bingoMessage').innerText = '';
+    }
 }
