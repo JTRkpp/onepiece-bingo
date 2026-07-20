@@ -4,7 +4,8 @@ let boardCharacters = [];
 
 let marked = [];
 
-let callerPool = [];
+let questionPool = [];
+let questions = [];
 
 
 
@@ -21,21 +22,11 @@ const customArea = document.getElementById("customArea");
 
 // โหลดตัวละคร
 
-fetch("data/characters.json")
-
-.then(response => {
-
-    if (!response.ok) {
-
-        throw new Error("Cannot load characters");
-
-    }
-
-
-    return response.json();
-
-
-})
+fetch("data/questions.json")
+.then(response => response.json())
+.then(data => {
+    questions = data;
+});
 
 
 .then(data => {
@@ -390,20 +381,23 @@ function(){
 // Draw Character
 
 document
-.getElementById("drawCharacter")
-.onclick =
-function(){
+.getElementById("caller")
+.onclick = function(){
 
+    if(questionPool.length===0){
 
-
-    if(callerPool.length === 0){
-
-
-        callerPool =
-        shuffle([...characters]);
-
+        questionPool =
+        shuffle([...questions]);
 
     }
+
+    const picked =
+    questionPool.pop();
+
+    drawName.innerHTML =
+    picked.question;
+
+};
 
 
 
