@@ -1,10 +1,15 @@
-/* จัดการพื้นหลังของหน้าเว็บ (โทนน้ำตาลเข้มลึก+ไล่เฉดสีสปอตไลท์ตามรูปเป๊ะๆ) */
+/* รีเซ็ตขนาดกล่องคำนวณรวม border/padding เพื่อให้อยู่ตรงกลางเป๊ะทุกอุปกรณ์ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* จัดการพื้นหลังของหน้าเว็บ (โทนน้ำตาลเข้มลึก+ไล่เฉดสีสปอตไลท์) */
 body {
     background: radial-gradient(circle, #3e1f1f 0%, #170707 100%) !important;
     color: #e8d0a9;
     font-family: 'Georgia', serif, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,13 +25,14 @@ header h1 {
     margin-bottom: 20px;
 }
 
-/* จัดการปุ่มกดให้โค้งมน โทนน้ำตาลทองเหมือนต้นฉบับ */
+/* จัดการปุ่มกดให้โค้งมน โทนน้ำตาลทอง */
 .buttons {
     display: flex;
     gap: 10px;
     justify-content: center;
     margin-bottom: 25px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .buttons button {
@@ -46,12 +52,15 @@ header h1 {
     transform: scale(0.95);
 }
 
-/* จัดการพื้นที่แสดงผลภารกิจ Draw Result */
+/* จัดการพื้นที่แสดงผลภารกิจ Draw Result (บังคับอยู่ตรงกลาง 100%) */
 #drawResult {
     text-align: center;
     width: 100%;
     max-width: 400px;
-    margin-bottom: 25px;
+    margin: 0 auto 25px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #drawResult h2 {
@@ -60,8 +69,9 @@ header h1 {
     margin-bottom: 10px;
 }
 
-/* กล่อง WANTED แบบกรอบคู่ซ้อนกันตามรูปของคุณ */
+/* กล่อง WANTED แบบกรอบคู่ซ้อนกัน */
 #wantedBox {
+    width: 100%;
     border: 3px solid #8b5a2b; /* กรอบนอกหนาสีน้ำตาลทอง */
     padding: 6px;
     background-color: #2b1111;
@@ -69,17 +79,19 @@ header h1 {
 }
 
 .wanted-inner {
+    width: 100%;
     border: 1px solid #e8d0a9; /* กรอบในเส้นบางสีครีม */
     padding: 25px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .wanted-inner h2 {
-    font-size: 36px !important;
+    font-size: 32px !important;
     margin: 0 !important;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     color: #f3dfc1 !important;
     font-family: 'Impact', 'Arial Black', sans-serif;
 }
@@ -98,6 +110,7 @@ header h1 {
     margin: 0;
     min-height: 24px;
     line-height: 1.4;
+    text-align: center;
 }
 
 /* บอร์ดบิงโก + การใส่ลายน้ำหัวกะโหลกไว้ข้างหลัง */
@@ -108,6 +121,7 @@ header h1 {
     gap: 8px;
     width: 100%;
     max-width: 500px;
+    margin: 0 auto;
     z-index: 1;
 }
 
@@ -119,7 +133,7 @@ header h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 160px;
-    opacity: 0.08; /* ความโปร่งแสงจางๆ ซ่อนอยู่ข้างหลังช่องการ์ด */
+    opacity: 0.08;
     z-index: -1;
     pointer-events: none;
 }
