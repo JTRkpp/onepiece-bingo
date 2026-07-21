@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. โหลดข้อมูลจากไฟล์ JSON ทั้ง 2 ไฟล์พร้อมกัน
     Promise.all([
         fetch('data/characters.json').then(res => {
-            if (!res.ok) throw new Error("ไม่สามารถโหลดไฟล์ characters.json ได้");
+            if (!res.ok) throw new Error("ไม่สามารถอ่านไฟล์ characters.json ได้ (ไฟล์อาจไม่มีอยู่จริง)");
             return res.json();
         }),
         fetch('data/questions.json').then(res => {
-            if (!res.ok) throw new Error("ไม่สามารถโหลดไฟล์ questions.json ได้");
+            if (!res.ok) throw new Error("ไม่สามารถอ่านไฟล์ questions.json ได้ (ไฟล์อาจไม่มีอยู่จริง)");
             return res.json();
         })
     ])
@@ -24,13 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
         console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล:", err);
-        alert("เกิดข้อผิดพลาดในการเปิดระบบ กรุณาตรวจสอบว่ามีไฟล์ในโฟลเดอร์ data ครบถ้วนหรือไม่");
+        alert("เกิดข้อผิดพลาดในการเปิดระบบ: กรุณาตรวจสอบรูปแบบไฟล์ในโฟลเดอร์ data (ต้องไม่มี Syntax Error ใน JSON)");
     });
 
-    // 2. ผูกการทำงานเข้ากับปุ่มกดต่างๆ ใน HTML ของคุณ
-    document.getElementById("randomBoard").addEventListener("click", generateRandomBoard);
-    document.getElementById("drawMission").addEventListener("click", drawMission);
-    document.getElementById("createBoard").addEventListener("click", createCustomBoard);
+    // 2. ผูกการทำงานเข้ากับปุ่มกดต่างๆ ใน HTML (เช็กว่ามีปุ่มก่อนผูก Event)
+    const randomBtn = document.getElementById("randomBoard");
+    if (randomBtn) randomBtn.addEventListener("click", generateRandomBoard);
+
+    const drawBtn = document.getElementById("drawMission");
+    if (drawBtn) drawBtn.addEventListener("click", drawMission);
+
+    const createBtn = document.getElementById("createBoard");
+    if (createBtn) createBtn.addEventListener("click", createCustomBoard);
 });
 
 // ฟังก์ชันสร้างตารางบิงโกสุ่มตัวละคร 5x5
@@ -52,8 +57,8 @@ function generateRandomBoard() {
         
         // ใส่โครงสร้างรูปภาพ ป้ายชื่อ และตราประทับ X
         cell.innerHTML = `
-            <img src="${char.image}" alt="${char.name}" class="char-img" onerror="this.style.opacity='0';">
-            <div class="name-plate">${char.name}</div>
+            <img src="${char.image || ''}" alt="${char.name || ''}" class="char-img" onerror="this.style.opacity='0';">
+            <div class="name-plate">${char.name || ''}</div>
             <div class="stamp">❌</div>
         `;
 
@@ -68,7 +73,6 @@ function generateRandomBoard() {
 
 // ฟังก์ชันหมุนสล็อตภารกิจ โดยดึงจากไฟล์ questions.json เท่านั้น
 function drawMission() {
-    // ป้องกันกรณีที่ไฟล์ยังโหลดไม่เสร็จ หรือไม่มีข้อมูลภารกิจอยู่จริง
     if (questions.length === 0) {
         alert("ไม่พบข้อมูลภารกิจในไฟล์ questions.json");
         return;
@@ -79,33 +83,26 @@ function drawMission() {
     if (!drawName) return;
 
     let counter = 0;
-    const maxSpin = 15; // จำนวนครั้งที่สล็อตจะหมุนสับเปลี่ยนข้อความ
+    const maxSpin = 15; 
     
-    // ล็อคปุ่มกดชั่วคราวระหว่างที่สล็อตกำลังหมุน เพื่อป้องกันการกดรัวๆ
     if (drawBtn) drawBtn.disabled = true;
 
-    // เริ่มการหมุนเอฟเฟกต์สล็อตแมชชีน (เปลี่ยนข้อความเร็วๆ ทุก 100 มิลลิวินาที)
     const spinInterval = setInterval(() => {
         const randomQ = questions[Math.floor(Math.random() * questions.length)];
-        
-        // รองรับรูปแบบไฟล์ JSON ทั้งแบบที่ใช้คีย์ .text หรือ .question
         drawName.innerText = randomQ.text || randomQ.question || "กำลังสุ่ม...";
         counter++;
         
-        // เมื่อหมุนครบจำนวนครั้ง ให้หยุดการสุ่มหลอก และดึงผลลัพธ์จริงขึ้นแสดง
         if (counter >= maxSpin) {
             clearInterval(spinInterval);
             
             const finalQ = questions[Math.floor(Math.random() * questions.length)];
             drawName.innerText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
             
-            // ปลดล็อคปุ่มกดให้กลับมาใช้งานได้ตามปกติ
             if (drawBtn) drawBtn.disabled = false;
         }
     }, 100); 
 }
 
-// ฟังก์ชันเปิดโหมดสร้างบอร์ดเอง (คงไว้สำหรับปุ่มสร้างบอร์ดของคุณ)
 function createCustomBoard() {
     alert("ระบบกำลังสร้างกระดานแบบกำหนดเอง หรือคุณสามารถใช้ปุ่ม Random Board เพื่อเริ่มเล่นได้ทันที!");
 }
