@@ -988,7 +988,7 @@
     "image": "images/247.jpg"
   },
   {
-    "name": "มิส ไฟรเดย์ (Miss Friday)",
+    "name": "โชโคล่า (Chocolat)",
     "image": "images/248.jpg"
   },
   {
@@ -1124,7 +1124,7 @@
     "image": "images/281.jpg"
   },
   {
-    "name": "ไอเดโอ (Ideo)",
+    "name": "ดาดัน (Dadan)",
     "image": "images/282.jpg"
   },
   {
@@ -1156,7 +1156,7 @@
     "image": "images/289.jpg"
   },
   {
-    "name": "แกตซ์ (Gats)",
+    "name": "ไกมอนต์ (Gaimon)",
     "image": "images/290.jpg"
   },
   {
@@ -1196,7 +1196,7 @@
     "image": "images/299.jpg"
   },
   {
-    "name": "สเตรอเซน (Streusen)",
+    "name": "มากิโนะ (Makino)",
     "image": "images/300.jpg"
   },
   {
@@ -1216,7 +1216,7 @@
     "image": "images/304.jpg"
   },
   {
-    "name": "ฮารุทะ (Haruta)",
+    "name": "ผู้ใหญ่บ้าน (Woop Slap)",
     "image": "images/305.jpg"
   },
   {
@@ -1228,7 +1228,7 @@
     "image": "images/307.jpg"
   },
   {
-    "name": "บัคกิ้งแฮม สตูซี่ (Buckingham Stussy)",
+    "name": "นินจิน (Ninjin)",
     "image": "images/308.jpg"
   },
   {
@@ -1308,7 +1308,7 @@
     "image": "images/327.jpg"
   },
   {
-    "name": "โตโต้ (Toto)",
+    "name": "พีแมน (Piiman)",
     "image": "images/328.jpg"
   },
   {
@@ -1328,15 +1328,15 @@
     "image": "images/332.jpg"
   },
   {
-    "name": "เคอร์ลี่ ดาดัน (Curly Dadan)",
+    "name": "แมนจาโร่ (Manjaro)",
     "image": "images/333.jpg"
   },
   {
-    "name": "มาคิโนะ (Makino)",
+    "name": "เมาน์ดส์ (Mounds)",
     "image": "images/334.jpg"
   },
   {
-    "name": "วู๊ป สแลป (Woop Slap)",
+    "name": "ดริป (Drip)",
     "image": "images/335.jpg"
   },
   {
@@ -1352,11 +1352,11 @@
     "image": "images/338.jpg"
   },
   {
-    "name": "นินจิน (Ninjin)",
+    "name": "โคโค่ (Coco)",
     "image": "images/339.jpg"
   },
   {
-    "name": "พีแมน (Piiman)",
+    "name": "ทูร์โก้ (Turco)",
     "image": "images/340.jpg"
   },
   {
@@ -1384,7 +1384,7 @@
     "image": "images/346.jpg"
   },
   {
-    "name": "ไกมอน (Gaimon)",
+    "name": "โลกิ (Loki)",
     "image": "images/347.jpg"
   },
   {
@@ -1412,7 +1412,7 @@
     "image": "images/353.jpg"
   },
   {
-    "name": "ปัปปัก (Pappag)",
+    "name": "ปัปปากุ (Pappag)",
     "image": "images/354.jpg"
   },
   {
@@ -1440,11 +1440,11 @@
     "image": "images/360.jpg"
   },
   {
-    "name": "ฮีท (Heat)",
+    "name": "จินนี่ (Ginny)",
     "image": "images/361.jpg"
   },
   {
-    "name": "ไวร์ (Wire)",
+    "name": "ฮิราเคิลส์ (Heracles)",
     "image": "images/362.jpg"
   },
   {
@@ -1456,7 +1456,7 @@
     "image": "images/364.jpg"
   },
   {
-    "name": "มอนสเตอร์ (Monster)",
+    "name": "ฮาเรดาส (Haredas)",
     "image": "images/365.jpg"
   },
   {
@@ -1484,7 +1484,7 @@
     "image": "images/371.jpg"
   },
   {
-    "name": "บูเดิล (Boodle)",
+    "name": "ทาโรอิโมะ (Taroimo)",
     "image": "images/372.jpg"
   },
   {
@@ -1500,15 +1500,15 @@
     "image": "images/375.jpg"
   },
   {
-    "name": "คาริน่า (Carina)",
+    "name": "ชานบะ (Shanba)",
     "image": "images/376.jpg"
   },
   {
-    "name": "มิสบาคการ่า (Baccarat)",
+    "name": "วินสโมค โซรา (Vinsmoke Sora)",
     "image": "images/377.jpg"
   },
   {
-    "name": "ไดซ์ (Dice)",
+    "name": "คลัปป์ (Clapp)",
     "image": "images/378.jpg"
   },
   {
@@ -1572,7 +1572,7 @@
     "image": "images/393.jpg"
   },
   {
-    "name": "บลูแจม (Bluejam)",
+    "name": "แม่ของคุมะ (Kuma’s Mom)",
     "image": "images/394.jpg"
   },
   {
@@ -1580,19 +1580,19 @@
     "image": "images/395.jpg"
   },
   {
-    "name": "เดมาโร แบล็ค (Demaro Black)",
+    "name": "ดูวาล (Duval)",
     "image": "images/396.jpg"
   },
   {
     "name": "แฮมเบอร์ก (Hamburg)",
-    "image": "images/397.jpg"
+    "image": /397.jpg"
   },
   {
     "name": "คาโปเนะ เพซ (Capone Pez)",
     "image": "images/398.jpg"
   },
   {
-    "name": "เคลลี่ ฟังก์ (Kelly Funk)",
+    "name": "เอเมธ (Emeth)",
     "image": "images/399.jpg"
   },
   {
