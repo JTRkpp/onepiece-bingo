@@ -16,15 +16,6 @@ export default function BingoGame() {
         <div className="buttons">
           <button id="randomBoard" type="button">🎲 Random Board</button>
           <button id="drawMission" type="button">🎰 Draw Mission</button>
-          <button id="nextCaptain" type="button">➡️ Next Captain</button>
-          <button
-            id="clearAllData"
-            className="danger"
-            type="button"
-            title="ล้างภารกิจ โหวต ตราบิงโก ลูกเรือ และชื่อกัปตันบนเครื่องนี้"
-          >
-            🧹 Clear All Data
-          </button>
         </div>
         <p id="drawHint" className="draw-hint">
           เจ้าของภารกิจกด Draw Mission · Next Captain ส่งตาให้กัปตันคนถัดไป
@@ -63,6 +54,17 @@ export default function BingoGame() {
                 <span className="player-label">NEXT:</span>
                 <span id="nextCaptainName" className="player-value">—</span>
               </p>
+              <div className="board-actions">
+                <button id="nextCaptain" type="button">➡️ Next Captain</button>
+                <button
+                  id="clearAllData"
+                  className="danger"
+                  type="button"
+                  title="ล้างภารกิจ โหวต ตราบิงโก ลูกเรือ และชื่อกัปตันบนเครื่องนี้"
+                >
+                  🧹 Clear All Data
+                </button>
+              </div>
               <p className="room-live" id="roomLive">
                 <span className="live-dot connecting" id="liveDot" aria-hidden="true" />
                 <span id="liveStatusText">กำลังเชื่อมต่อ</span>

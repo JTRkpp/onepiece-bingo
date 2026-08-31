@@ -35,7 +35,8 @@ header h1 {
     width: 100%;
 }
 
-.buttons button {
+.buttons button,
+.board-actions button {
     background-color: #4a2323;
     color: #e8d0a9;
     border: 2px solid #8b5a2b;
@@ -48,31 +49,37 @@ header h1 {
     transition: transform 0.1s;
 }
 
-.buttons button:active {
+.buttons button:active,
+.board-actions button:active {
     transform: scale(0.95);
 }
 
-.buttons button:disabled {
+.buttons button:disabled,
+.board-actions button:disabled {
     opacity: 0.45;
     cursor: not-allowed;
     transform: none;
 }
 
-.buttons button:focus-visible {
+.buttons button:focus-visible,
+.board-actions button:focus-visible {
     outline: 2px solid #f3dfc1;
     outline-offset: 2px;
 }
 
-.buttons button.danger {
+.buttons button.danger,
+.board-actions button.danger {
     border-color: #8b2b2b;
 }
 
-.buttons button.danger:hover:not(:disabled) {
+.buttons button.danger:hover:not(:disabled),
+.board-actions button.danger:hover:not(:disabled) {
     background-color: #5c1e1e;
     border-color: #ff5252;
 }
 
-.buttons button.danger:focus-visible {
+.buttons button.danger:focus-visible,
+.board-actions button.danger:focus-visible {
     outline-color: #ff5252;
 }
 
@@ -246,31 +253,6 @@ header h1 {
 
 .bingo-cell.marked .stamp {
     display: flex;
-}
-
-.zoom-btn {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    z-index: 12;
-    width: 22px;
-    height: 22px;
-    padding: 0;
-    border: 1px solid #8b5a2b;
-    border-radius: 4px;
-    background: rgba(23, 7, 7, 0.85);
-    color: #f3dfc1;
-    font-size: 11px;
-    line-height: 1;
-    cursor: zoom-in;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.zoom-btn:hover {
-    background: #4a2323;
-    border-color: #f3dfc1;
 }
 
 /* --- Character image lightbox --- */
@@ -652,9 +634,25 @@ header h1 {
     border: 1px dashed #8b5a2b;
     border-radius: 4px;
     padding: 8px 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     gap: 8px;
     font-size: 12px;
+}
+
+.board-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 10px;
+}
+
+.board-actions button {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 10px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .player-label {
@@ -905,11 +903,6 @@ body.modal-open {
     .left-pane, .right-pane {
         width: 100%;
         max-width: 100%;
-    }
-    .zoom-btn {
-        width: 26px;
-        height: 26px;
-        font-size: 13px;
     }
     .zoom-name {
         font-size: 13px;
