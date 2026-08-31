@@ -58,6 +58,24 @@ header h1 {
     transform: none;
 }
 
+.buttons button:focus-visible {
+    outline: 2px solid #f3dfc1;
+    outline-offset: 2px;
+}
+
+.buttons button.danger {
+    border-color: #8b2b2b;
+}
+
+.buttons button.danger:hover:not(:disabled) {
+    background-color: #5c1e1e;
+    border-color: #ff5252;
+}
+
+.buttons button.danger:focus-visible {
+    outline-color: #ff5252;
+}
+
 .draw-hint {
     margin: -12px 0 18px;
     max-width: 420px;
@@ -131,7 +149,8 @@ header h1 {
     margin: 15px 0;
 }
 
-#drawName {
+#drawName,
+.mission-line {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
@@ -139,18 +158,13 @@ header h1 {
     min-height: 24px;
     line-height: 1.4;
     text-align: center;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
-.mission-owner-label {
-    margin: 12px 0 0;
-    max-width: 100%;
+.mission-owner-prefix {
     color: #f3dfc1;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: normal;
-    letter-spacing: 0.3px;
-    line-height: 1.4;
-    text-align: center;
+    font-weight: bold;
 }
 
 /* บอร์ดบิงโก + การใส่ลายน้ำหัวกะโหลกไว้ข้างหลัง */
@@ -617,8 +631,7 @@ header h1 {
 }
 
 /* ข้อมูลผู้เล่นกัปตัน */
-.player-info,
-.room-owner-line {
+.player-info {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -629,10 +642,6 @@ header h1 {
     margin-bottom: 8px;
     gap: 8px;
     font-size: 12px;
-}
-
-.room-owner-line {
-    margin-bottom: 8px;
 }
 
 .next-captain-line {

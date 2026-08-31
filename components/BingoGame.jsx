@@ -17,6 +17,14 @@ export default function BingoGame() {
           <button id="randomBoard" type="button">🎲 Random Board</button>
           <button id="drawMission" type="button">🎰 Draw Mission</button>
           <button id="nextCaptain" type="button">➡️ Next Captain</button>
+          <button
+            id="clearAllData"
+            className="danger"
+            type="button"
+            title="ล้างภารกิจ โหวต ตราบิงโก ลูกเรือ และชื่อกัปตันบนเครื่องนี้"
+          >
+            🧹 Clear All Data
+          </button>
         </div>
         <p id="drawHint" className="draw-hint">
           เจ้าของภารกิจกด Draw Mission · Next Captain ส่งตาให้กัปตันคนถัดไป
@@ -26,9 +34,9 @@ export default function BingoGame() {
           <h2>Mission</h2>
           <div id="wantedBox">
             <div className="wanted-inner">
-              <p id="drawName">Press &quot;Draw Mission&quot;</p>
-              <p id="missionOwnerLabel" className="mission-owner-label">
-                ตัวอย่าง: ภารกิจของเจ้าของห้องจะแสดงตรงนี้
+              <p id="drawName" className="mission-line">
+                <span id="missionOwnerPrefix" className="mission-owner-prefix" />
+                <span id="missionText">Press &quot;Draw Mission&quot;</span>
               </p>
             </div>
           </div>
@@ -51,10 +59,6 @@ export default function BingoGame() {
                 <span id="captainName" className="player-value">Guest</span>
                 <button id="editCaptainName" className="edit-btn" title="เปลี่ยนชื่อ / Change Name" type="button">✏️</button>
               </div>
-              <p className="room-owner-line">
-                <span className="player-label">👑 OWNER:</span>
-                <span id="roomOwnerName" className="player-value">รอเข้าห้อง</span>
-              </p>
               <p className="next-captain-line">
                 <span className="player-label">NEXT:</span>
                 <span id="nextCaptainName" className="player-value">—</span>
