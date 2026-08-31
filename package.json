@@ -1,0 +1,15 @@
+{
+  "name": "onepiece-bingo",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx --yes serve out"
+  },
+  "dependencies": {
+    "mqtt": "^4.3.7",
+    "next": "^15.5.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

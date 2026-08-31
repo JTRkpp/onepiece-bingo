@@ -52,6 +52,22 @@ header h1 {
     transform: scale(0.95);
 }
 
+.buttons button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.draw-hint {
+    margin: -12px 0 18px;
+    max-width: 420px;
+    text-align: center;
+    color: #8b5a2b;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
 /* จัดการพื้นที่แสดงผลภารกิจ (บังคับจัดกลางทุกมิติ) */
 #drawResult {
     text-align: center;
@@ -121,6 +137,18 @@ header h1 {
     color: #ffffff;
     margin: 0;
     min-height: 24px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.mission-owner-label {
+    margin: 12px 0 0;
+    max-width: 100%;
+    color: #f3dfc1;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: 0.3px;
     line-height: 1.4;
     text-align: center;
 }
@@ -589,7 +617,8 @@ header h1 {
 }
 
 /* ข้อมูลผู้เล่นกัปตัน */
-.player-info {
+.player-info,
+.room-owner-line {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -597,7 +626,24 @@ header h1 {
     border: 1px dashed #8b5a2b;
     border-radius: 4px;
     padding: 8px 10px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.room-owner-line {
+    margin-bottom: 8px;
+}
+
+.next-captain-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #170707;
+    border: 1px dashed #8b5a2b;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
     gap: 8px;
     font-size: 12px;
 }
@@ -632,6 +678,83 @@ header h1 {
     color: #ffffff;
 }
 
+.crew-panel {
+    width: 100%;
+    background-color: #170707;
+    border: 1px solid #8b5a2b;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.crew-heading {
+    color: #8b5a2b;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.crew-roster {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.crew-roster li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.3;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background: rgba(43, 17, 17, 0.7);
+}
+
+.crew-roster li.is-empty {
+    color: #8b5a2b;
+    font-weight: normal;
+    justify-content: center;
+    background: transparent;
+}
+
+.crew-roster li.is-owner {
+    border: 1px solid #f3dfc1;
+    color: #f3dfc1;
+}
+
+.crew-roster .crew-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.crew-roster .crew-tag {
+    flex: 0 0 auto;
+    color: #8b5a2b;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+.crew-roster li.is-you .crew-tag {
+    color: #e8d0a9;
+}
+
+.crew-roster li.is-next .crew-tag {
+    color: #f3dfc1;
+}
+
 /* กล่องย่อยเก็บผลโหวตฝั่งข้าง */
 .side-vote-container {
     min-height: 120px;
@@ -651,25 +774,7 @@ header h1 {
     line-height: 1.4;
 }
 
-.side-mission-box {
-    background-color: #170707;
-    border: 1px solid #8b5a2b;
-    border-radius: 6px;
-    padding: 12px;
-    margin-bottom: 15px;
-    width: 100%;
-    text-align: center;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
-    box-sizing: border-box;
-}
 
-#sideMissionText {
-    margin: 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    line-height: 1.4;
-}
 
 /* --- Set Sail captain name modal --- */
 body.modal-open {
