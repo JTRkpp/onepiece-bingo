@@ -56,19 +56,6 @@
                 <p id="drawName">
                     Press "Draw Mission"
                 </p>
-                <!-- ส่วนระบบโหวต Yes/No (ไม่ต้องเข้าสู่ระบบ) -->
-                <div id="voteContainer" style="display: none; width: 100%;">
-                    <hr>
-                    <div class="vote-title">โหวตเห็นด้วยกับภารกิจนี้? (Is this mission fair?)</div>
-                    <div class="vote-buttons">
-                        <button id="voteYes" class="vote-btn">
-                            👍 ใช่ <span id="yesCount" class="vote-count">0</span>
-                        </button>
-                        <button id="voteNo" class="vote-btn">
-                            👎 ไม่ใช่ <span id="noCount" class="vote-count">0</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -83,23 +70,64 @@
     <div id="customArea"></div>
 
 
+    <!-- โครงสร้างสองฝั่ง: บอร์ดบิงโกฝั่งซ้าย และบอร์ดโหวตฝั่งขวา -->
+    <div class="game-layout">
+        <div class="left-pane">
+            <div id="bingoBoard"></div>
+            <div id="bingoMessage"></div>
+        </div>
 
-
-
-    <div id="bingoBoard"></div>
-
-
-
-
-
-    <div id="bingoMessage"></div>
-
-
+        <div class="right-pane">
+            <div id="sideVotingBoard" class="side-board">
+                <h3>🗳️ VOTING BOARD</h3>
+                
+                <div class="player-info">
+                    <span class="player-label">🏴‍☠️ CAPTAIN:</span>
+                    <span id="captainName" class="player-value">Guest</span>
+                    <button id="editCaptainName" class="edit-btn" title="เปลี่ยนชื่อ / Change Name">✏️</button>
+                </div>
+                
+                <div id="voteContainer" class="side-vote-container">
+                    <div id="voteInstruction" class="vote-instruction-text">
+                        🎲 Please click "Draw Mission" to open the voting options.
+                    </div>
+                    
+                    <div id="activeVoteContent" style="display: none;">
+                        <div class="side-mission-box">
+                            <p id="sideMissionText">โจทย์ภารกิจจะแสดงตรงนี้</p>
+                        </div>
+                        <div class="vote-title">โหวตเห็นด้วยกับภารกิจนี้หรือไม่? (Do you agree?)</div>
+                        <div class="vote-buttons">
+                            <button id="voteYes" class="vote-btn">
+                                👍 ใช่ <span id="yesCount" class="vote-count">0</span>
+                            </button>
+                            <button id="voteNo" class="vote-btn">
+                                👎 ไม่ใช่ <span id="noCount" class="vote-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </main>
 
 
+<!-- Modal กรอกชื่อกัปตันผู้เล่น -->
+<div id="nameModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>🏴‍☠️ One Piece Bingo & Vote</h2>
+        <p class="th-desc">ยินดีต้อนรับ! กรุณากรอกชื่อกัปตันของคุณเพื่อเข้าเล่นและโหวต</p>
+        <p class="en-desc">Please enter your Captain name to set sail!</p>
+        
+        <form id="nameForm" onsubmit="return false;">
+            <input type="text" id="playerNameInput" placeholder="ชื่อกัปตัน / Captain Name" required maxlength="15" autocomplete="off">
+            <button type="submit" id="submitNameBtn">⚓️ เริ่มเดินทาง (Set Sail)</button>
+        </form>
+    </div>
+</div>
 
 
 <script src="js/script.js"></script>

@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const voteNoBtn = document.getElementById("voteNo");
     if (voteYesBtn) voteYesBtn.addEventListener("click", () => handleVote("yes"));
     if (voteNoBtn) voteNoBtn.addEventListener("click", () => handleVote("no"));
+
+    // 4. ระบบยืนยันชื่อกัปตันผู้เล่น (Modal)
+    initCaptainName();
 });
 
 // ฟังก์ชันสร้างตารางบิงโกสุ่มตัวละคร 5x5
@@ -90,9 +93,17 @@ function drawMission() {
 
     // ซ่อนและล้างสถานะโหวตเดิมเมื่อกดปุ่มสุ่มใหม่
     const voteContainer = document.getElementById("voteContainer");
+    const voteInstruction = document.getElementById("voteInstruction");
+    const activeVoteContent = document.getElementById("activeVoteContent");
+    
     if (voteContainer) {
         voteContainer.classList.remove("visible");
-        voteContainer.style.display = "none";
+    }
+    if (activeVoteContent) {
+        activeVoteContent.style.display = "none";
+    }
+    if (voteInstruction) {
+        voteInstruction.style.display = "block";
     }
     currentQuestionText = "";
 
@@ -115,10 +126,22 @@ function drawMission() {
             
             if (drawBtn) drawBtn.disabled = false;
 
-            // ตั้งค่าคำถามปัจจุบันและแสดงส่วนการโหวตอย่างสวยงาม
+            // ตั้งค่าคำถามปัจจุบันและแสดงส่วนการโหวตด้านข้างอย่างสวยงาม
             currentQuestionText = finalQuestionText;
+            
+            const sideMissionText = document.getElementById("sideMissionText");
+            if (sideMissionText) {
+                sideMissionText.innerText = finalQuestionText;
+            }
+            
+            if (voteInstruction) {
+                voteInstruction.style.display = "none";
+            }
+            if (activeVoteContent) {
+                activeVoteContent.style.display = "block";
+            }
+            
             if (voteContainer) {
-                voteContainer.style.display = "block";
                 setTimeout(() => {
                     voteContainer.classList.add("visible");
                 }, 50);
@@ -225,4 +248,47 @@ function updateVoteUI() {
     // อัปเดตตัวเลขแสดงผล
     yesCountSpan.innerText = yesCount;
     noCountSpan.innerText = noCount;
+}
+
+// ==========================================
+// ระบบยืนยันชื่อกัปตันผู้เล่น (Modal)
+// ==========================================
+
+function initCaptainName() {
+    const modal = document.getElementById("nameModal");
+    const form = document.getElementById("nameForm");
+    const nameInput = document.getElementById("playerNameInput");
+    const captainNameSpan = document.getElementById("captainName");
+    const editBtn = document.getElementById("editCaptainName");
+    
+    // ดึงชื่อกัปตันจาก localStorage
+    const savedName = localStorage.getItem("onepiece_bingo_player_name");
+    
+    if (savedName) {
+        if (captainNameSpan) captainNameSpan.innerText = savedName;
+        if (modal) modal.classList.add("hidden");
+    } else {
+        if (modal) modal.classList.remove("hidden");
+    }
+    
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const enteredName = nameInput.value.trim();
+            if (enteredName) {
+                localStorage.setItem("onepiece_bingo_player_name", enteredName);
+                if (captainNameSpan) captainNameSpan.innerText = enteredName;
+                if (modal) modal.classList.add("hidden");
+                nameInput.value = ""; // เคลียร์ช่องอินพุต
+            }
+        });
+    }
+    
+    if (editBtn) {
+        editBtn.addEventListener("click", () => {
+            const currentName = localStorage.getItem("onepiece_bingo_player_name") || "";
+            if (nameInput) nameInput.value = currentName;
+            if (modal) modal.classList.remove("hidden");
+        });
+    }
 }
