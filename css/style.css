@@ -519,8 +519,16 @@ header h1 {
     width: 8px;
     height: 8px;
     border-radius: 50%;
+    background: #8b5a2b;
+}
+
+.live-dot.live {
     background: #39e75f;
     box-shadow: 0 0 6px rgba(57, 231, 95, 0.8);
+}
+
+.live-dot.connecting {
+    background: #e8d0a9;
 }
 
 .vote-count {

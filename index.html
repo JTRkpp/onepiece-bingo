@@ -87,8 +87,9 @@
                     <button id="editCaptainName" class="edit-btn" title="เปลี่ยนชื่อ / Change Name">✏️</button>
                 </div>
                 <p class="room-live" id="roomLive">
-                    <span class="live-dot" aria-hidden="true"></span>
-                    LIVE · ห้อง <span id="roomNameLabel">crew</span>
+                    <span class="live-dot connecting" id="liveDot" aria-hidden="true"></span>
+                    <span id="liveStatusText">กำลังเชื่อมต่อ</span>
+                    · ห้อง <span id="roomNameLabel">crew</span>
                 </p>
                 
                 <div id="voteContainer" class="side-vote-container">
@@ -162,6 +163,7 @@
 <div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
 
 
+<script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
 <script src="js/script.js"></script>
 
 

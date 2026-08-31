@@ -195,8 +195,13 @@ let sharedReady = false;
 let appliedStateSignature = "";
 let sharedDrawnAt = 0;
 let roomChannel = null;
-const SHARED_STATE_URL = "https://crudcrud.com/api/9c5b4d6815ff47418ff345eeaae422b4/bingo/6a959c18b8c09503e80d4b95";
-const SHARED_POLL_MS = 2000;
+let mqttClient = null;
+let mqttTopic = "";
+let receivedMqtt = false;
+const MQTT_BROKERS = [
+    "wss://broker.emqx.io:8084/mqtt",
+    "wss://broker.hivemq.com:8884/mqtt"
+];
 
 function getRoomId() {
     const raw = new URLSearchParams(window.location.search).get("room") || "crew";
@@ -223,29 +228,29 @@ function stateSignature(state) {
     });
 }
 
-function stripDocId(data) {
-    if (!data || typeof data !== "object") return { rooms: {} };
-    const copy = Object.assign({}, data);
-    delete copy._id;
-    if (!copy.rooms || typeof copy.rooms !== "object") copy.rooms = {};
-    return copy;
+function setSyncStatus(status) {
+    const dot = document.getElementById("liveDot");
+    const text = document.getElementById("liveStatusText");
+    if (dot) {
+        dot.classList.remove("live", "connecting");
+        if (status === "live") dot.classList.add("live");
+        if (status === "connecting") dot.classList.add("connecting");
+    }
+    if (text) {
+        text.textContent = status === "live"
+            ? "LIVE"
+            : status === "connecting"
+                ? "กำลังเชื่อมต่อ"
+                : "OFFLINE";
+    }
 }
 
-async function fetchSharedDocument() {
-    const res = await fetch(SHARED_STATE_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("shared state " + res.status);
-    return stripDocId(await res.json());
-}
-
-async function saveSharedDocument(doc) {
-    const payload = stripDocId(doc);
-    const res = await fetch(SHARED_STATE_URL, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error("shared save " + res.status);
-    return payload;
+function currentRoomState() {
+    return {
+        mission: currentQuestionText || "",
+        drawnAt: sharedDrawnAt || 0,
+        votes: Object.assign({}, sharedVotes)
+    };
 }
 
 function cacheRoomState(state) {
@@ -283,92 +288,152 @@ function showSharedMission(text) {
     if (voteContainer) voteContainer.classList.add("visible");
 }
 
+function mergeVoteMaps(base, incoming) {
+    const merged = Object.assign({}, base);
+    Object.keys(incoming || {}).forEach((name) => {
+        const choice = incoming[name];
+        if (choice === "yes" || choice === "no") merged[name] = choice;
+        else delete merged[name];
+    });
+    return merged;
+}
+
 function applySharedState(state, fromBroadcast) {
     if (!state) return;
     const incomingDrawn = Number(state.drawnAt) || 0;
     if (incomingDrawn < sharedDrawnAt) return;
     if (!state.mission && currentQuestionText && incomingDrawn === 0) return;
-    const signature = stateSignature(state);
+
+    const nextVotes = incomingDrawn > sharedDrawnAt
+        ? mergeVoteMaps({}, state.votes)
+        : mergeVoteMaps(sharedVotes, state.votes);
+
+    const nextState = {
+        mission: state.mission || "",
+        drawnAt: incomingDrawn,
+        votes: nextVotes
+    };
+    const signature = stateSignature(nextState);
     if (signature === appliedStateSignature) return;
     appliedStateSignature = signature;
     sharedDrawnAt = incomingDrawn;
 
-    sharedVotes = Object.assign({}, state.votes || {});
+    sharedVotes = nextVotes;
     sharedReady = true;
-    cacheRoomState(state);
+    cacheRoomState(nextState);
 
-    if (!isDrawingMission && state.mission) {
-        showSharedMission(state.mission);
+    if (!isDrawingMission && nextState.mission) {
+        showSharedMission(nextState.mission);
     }
 
     updateVoteUI();
 
     if (!fromBroadcast && roomChannel) {
-        try { roomChannel.postMessage(state); } catch (e) { /* ignore */ }
+        try { roomChannel.postMessage(nextState); } catch (e) { /* ignore */ }
     }
 }
 
-async function publishSharedState(nextRoomState) {
-    const roomId = getRoomId();
+function publishSharedState(nextRoomState) {
     applySharedState(nextRoomState, true);
     if (roomChannel) {
         try { roomChannel.postMessage(nextRoomState); } catch (e) { /* ignore */ }
     }
+    publishMqtt(nextRoomState);
+}
+
+function mutateSharedVotes(mutator) {
+    const roomState = currentRoomState();
+    if (!roomState.mission) roomState.mission = currentQuestionText;
+    if (!roomState.drawnAt) roomState.drawnAt = Date.now();
+    roomState.votes = Object.assign({}, roomState.votes);
+    mutator(roomState);
+    publishSharedState(roomState);
+}
+
+function publishMqtt(state) {
+    if (!mqttClient || !mqttClient.connected || !mqttTopic) return;
     try {
-        const doc = await fetchSharedDocument();
-        doc.rooms[roomId] = nextRoomState;
-        await saveSharedDocument(doc);
+        mqttClient.publish(mqttTopic, JSON.stringify(state), { qos: 1, retain: true });
     } catch (err) {
-        console.warn("ไม่สามารถซิงก์ภารกิจให้ผู้เล่นคนอื่นได้:", err);
+        console.warn("MQTT publish failed:", err);
+        setSyncStatus("offline");
     }
 }
 
-async function mutateSharedVotes(mutator) {
-    const roomId = getRoomId();
-    const writeRoom = async () => {
-        const doc = await fetchSharedDocument();
-        const roomState = doc.rooms[roomId] || emptyRoomState();
-        roomState.votes = Object.assign({}, roomState.votes || {});
-        mutator(roomState);
-        if (!roomState.mission) roomState.mission = currentQuestionText;
-        doc.rooms[roomId] = roomState;
-        await saveSharedDocument(doc);
-        return roomState;
-    };
-
-    try {
-        let roomState = await writeRoom();
-        // อ่านอีกรอบแล้วใส่โหวตของเราทับ เพื่อไม่ให้คนอื่นโหวตพร้อมกันแล้วชื่อหาย
-        roomState = await writeRoom();
-        applySharedState(roomState, false);
-    } catch (err) {
-        console.warn("ไม่สามารถอัปเดตโหวตแบบเรียลไทม์ได้:", err);
-        const localState = {
-            mission: currentQuestionText,
-            drawnAt: Date.now(),
-            votes: Object.assign({}, sharedVotes)
-        };
-        mutator(localState);
-        applySharedState(localState, false);
+function connectMqtt(brokerIndex) {
+    const mqttLib = window.mqtt;
+    if (!mqttLib || typeof mqttLib.connect !== "function") {
+        setSyncStatus("offline");
+        return;
     }
-}
 
-async function pullSharedState() {
-    if (isDrawingMission) return;
-    try {
-        const doc = await fetchSharedDocument();
-        const roomState = doc.rooms[getRoomId()] || emptyRoomState();
-        applySharedState(roomState, false);
-    } catch (err) {
-        const cached = readCachedRoomState();
-        if (cached) applySharedState(cached, true);
+    const index = brokerIndex || 0;
+    const url = MQTT_BROKERS[index];
+    if (!url) {
+        setSyncStatus("offline");
+        return;
     }
+
+    setSyncStatus("connecting");
+    try {
+        if (mqttClient) {
+            try { mqttClient.end(true); } catch (e) { /* ignore */ }
+        }
+        mqttClient = mqttLib.connect(url, {
+            clientId: "bingo-" + Math.random().toString(16).slice(2),
+            clean: true,
+            reconnectPeriod: 3000,
+            connectTimeout: 8000,
+            keepalive: 30
+        });
+    } catch (err) {
+        console.warn("MQTT connect failed:", err);
+        connectMqtt(index + 1);
+        return;
+    }
+
+    mqttClient.on("connect", () => {
+        setSyncStatus("live");
+        mqttClient.subscribe(mqttTopic, { qos: 1 });
+        setTimeout(() => {
+            if (!receivedMqtt) {
+                const cached = currentQuestionText ? currentRoomState() : readCachedRoomState();
+                if (cached && cached.mission) publishMqtt(cached);
+            }
+        }, 900);
+    });
+
+    mqttClient.on("message", (_topic, payload) => {
+        receivedMqtt = true;
+        try {
+            const state = JSON.parse(payload.toString());
+            applySharedState(state, true);
+        } catch (err) {
+            console.warn("MQTT message parse failed:", err);
+        }
+    });
+
+    mqttClient.on("offline", () => setSyncStatus("offline"));
+    mqttClient.on("close", () => setSyncStatus("offline"));
+    mqttClient.on("error", (err) => {
+        console.warn("MQTT error:", err);
+        if (index + 1 < MQTT_BROKERS.length && (!mqttClient || !mqttClient.connected)) {
+            try { mqttClient.end(true); } catch (e) { /* ignore */ }
+            connectMqtt(index + 1);
+        } else {
+            setSyncStatus("offline");
+        }
+    });
 }
 
 function initSharedGame() {
     const roomId = getRoomId();
+    mqttTopic = "onepiecebingo/jtrkpp/" + roomId;
+    receivedMqtt = false;
+
     const roomLabel = document.getElementById("roomNameLabel");
     if (roomLabel) roomLabel.textContent = roomId;
+    setSyncStatus("connecting");
 
     if ("BroadcastChannel" in window) {
         roomChannel = new BroadcastChannel("onepiece-bingo-" + roomId);
@@ -378,8 +443,7 @@ function initSharedGame() {
     const cached = readCachedRoomState();
     if (cached && cached.mission) applySharedState(cached, true);
 
-    pullSharedState();
-    setInterval(pullSharedState, SHARED_POLL_MS);
+    connectMqtt(0);
 }
 
 // จัดการการโหวต Yes/No
@@ -397,8 +461,7 @@ function handleVote(voteType) {
     sharedVotes = nextVotes;
     updateVoteUI();
     mutateSharedVotes((roomState) => {
-        if (desiredVote) roomState.votes[captainName] = desiredVote;
-        else delete roomState.votes[captainName];
+        roomState.votes[captainName] = desiredVote || null;
     });
 }
 
@@ -516,7 +579,7 @@ function saveCaptainAndSetSail(nameInput, captainNameSpan, modal) {
     if (oldName && oldName !== enteredName && currentQuestionText) {
         mutateSharedVotes((roomState) => {
             const previousVote = roomState.votes[oldName];
-            delete roomState.votes[oldName];
+            roomState.votes[oldName] = null;
             if (previousVote) roomState.votes[enteredName] = previousVote;
         });
     } else {
