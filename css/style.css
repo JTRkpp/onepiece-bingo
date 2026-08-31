@@ -205,3 +205,85 @@ header h1 {
 .bingo-cell.marked .stamp {
     display: flex;
 }
+
+/* ส่วนระบบโหวต (Vote System) */
+#voteContainer {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#voteContainer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vote-title {
+    font-size: 13px;
+    color: #e8d0a9;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-family: 'Georgia', serif;
+}
+
+.vote-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.vote-btn {
+    background-color: #3e1f1f;
+    color: #e8d0a9;
+    border: 1.5px solid #8b5a2b;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.vote-btn:active {
+    transform: scale(0.95);
+}
+
+.vote-btn:hover {
+    border-color: #f3dfc1;
+    background-color: #4a2323;
+}
+
+/* ปุ่มที่ถูกเลือก (Voted states) */
+.vote-btn.voted-yes {
+    background-color: #1b4a23;
+    border-color: #39e75f;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(57, 231, 95, 0.4);
+}
+
+.vote-btn.voted-no {
+    background-color: #5c1e1e;
+    border-color: #ff5252;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 82, 82, 0.4);
+}
+
+.vote-count {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    min-width: 22px;
+    display: inline-block;
+    color: #ffffff;
+    border: 1px solid rgba(232, 208, 169, 0.2);
+}

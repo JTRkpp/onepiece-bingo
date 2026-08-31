@@ -56,6 +56,19 @@
                 <p id="drawName">
                     Press "Draw Mission"
                 </p>
+                <!-- ส่วนระบบโหวต Yes/No (ไม่ต้องเข้าสู่ระบบ) -->
+                <div id="voteContainer" style="display: none; width: 100%;">
+                    <hr>
+                    <div class="vote-title">โหวตเห็นด้วยกับภารกิจนี้? (Is this mission fair?)</div>
+                    <div class="vote-buttons">
+                        <button id="voteYes" class="vote-btn">
+                            👍 ใช่ <span id="yesCount" class="vote-count">0</span>
+                        </button>
+                        <button id="voteNo" class="vote-btn">
+                            👎 ไม่ใช่ <span id="noCount" class="vote-count">0</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -36,6 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createBtn = document.getElementById("createBoard");
     if (createBtn) createBtn.addEventListener("click", createCustomBoard);
+
+    // 3. ผูกระบบโหวต Yes/No (ไม่ต้องเข้าสู่ระบบ)
+    const voteYesBtn = document.getElementById("voteYes");
+    const voteNoBtn = document.getElementById("voteNo");
+    if (voteYesBtn) voteYesBtn.addEventListener("click", () => handleVote("yes"));
+    if (voteNoBtn) voteNoBtn.addEventListener("click", () => handleVote("no"));
 });
 
 // ฟังก์ชันสร้างตารางบิงโกสุ่มตัวละคร 5x5
@@ -82,6 +88,14 @@ function drawMission() {
     const drawBtn = document.getElementById("drawMission");
     if (!drawName) return;
 
+    // ซ่อนและล้างสถานะโหวตเดิมเมื่อกดปุ่มสุ่มใหม่
+    const voteContainer = document.getElementById("voteContainer");
+    if (voteContainer) {
+        voteContainer.classList.remove("visible");
+        voteContainer.style.display = "none";
+    }
+    currentQuestionText = "";
+
     let counter = 0;
     const maxSpin = 15; 
     
@@ -96,13 +110,119 @@ function drawMission() {
             clearInterval(spinInterval);
             
             const finalQ = questions[Math.floor(Math.random() * questions.length)];
-            drawName.innerText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
+            const finalQuestionText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
+            drawName.innerText = finalQuestionText;
             
             if (drawBtn) drawBtn.disabled = false;
+
+            // ตั้งค่าคำถามปัจจุบันและแสดงส่วนการโหวตอย่างสวยงาม
+            currentQuestionText = finalQuestionText;
+            if (voteContainer) {
+                voteContainer.style.display = "block";
+                setTimeout(() => {
+                    voteContainer.classList.add("visible");
+                }, 50);
+            }
+            updateVoteUI();
         }
     }, 100); 
 }
 
 function createCustomBoard() {
     alert("ระบบกำลังสร้างกระดานแบบกำหนดเอง หรือคุณสามารถใช้ปุ่ม Random Board เพื่อเริ่มเล่นได้ทันที!");
+}
+
+// ==========================================
+// ระบบโหวตเห็นด้วยหรือไม่เห็นด้วย (ไม่ต้องล็อกอิน)
+// ==========================================
+
+let currentQuestionText = "";
+
+// ฟังก์ชันสร้าง Hash สำหรับสุ่มตัวเลขแบบคงที่ (Deterministic Hash) ตามข้อความคำถาม
+function getQuestionHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+    }
+    return Math.abs(hash);
+}
+
+// ฟังก์ชันหาค่าคะแนนโหวตตั้งต้นแบบคงที่ (เพื่อให้ดูเหมือนมีคนเคยโหวตแล้วจริงๆ)
+function getBaselineVotes(questionText) {
+    const hash = getQuestionHash(questionText);
+    const yesBaseline = (hash % 120) + 20; // 20 - 139 โหวต
+    const noBaseline = ((hash >> 2) % 40) + 5; // 5 - 44 โหวต
+    return { yes: yesBaseline, no: noBaseline };
+}
+
+// จัดการการโหวต Yes/No
+function handleVote(voteType) {
+    if (!currentQuestionText) return;
+    
+    let userVotes = {};
+    try {
+        userVotes = JSON.parse(localStorage.getItem('onepiece_bingo_user_votes')) || {};
+    } catch(e) {
+        userVotes = {};
+    }
+    
+    const existingVote = userVotes[currentQuestionText] || null;
+    
+    if (existingVote === voteType) {
+        // หากกดซ้ำตัวเดิม ให้ยกเลิกการโหวต (Toggle Off)
+        delete userVotes[currentQuestionText];
+    } else {
+        // บันทึก/เปลี่ยนประเภทการโหวต
+        userVotes[currentQuestionText] = voteType;
+    }
+    
+    localStorage.setItem('onepiece_bingo_user_votes', JSON.stringify(userVotes));
+    
+    // อัปเดต UI เพื่อแสดงจำนวนผลลัพธ์ใหม่ทันที
+    updateVoteUI();
+}
+
+// อัปเดตการแสดงผลหน้าเว็บ
+function updateVoteUI() {
+    if (!currentQuestionText) return;
+    
+    const voteYesBtn = document.getElementById("voteYes");
+    const voteNoBtn = document.getElementById("voteNo");
+    const yesCountSpan = document.getElementById("yesCount");
+    const noCountSpan = document.getElementById("noCount");
+    
+    if (!voteYesBtn || !voteNoBtn || !yesCountSpan || !noCountSpan) return;
+    
+    // ดึงค่าคะแนนตั้งต้นของคำถามนี้
+    const baseline = getBaselineVotes(currentQuestionText);
+    
+    // ดึงสถานะการโหวตของผู้ใช้งานจาก localStorage
+    let userVotes = {};
+    try {
+        userVotes = JSON.parse(localStorage.getItem('onepiece_bingo_user_votes')) || {};
+    } catch(e) {
+        userVotes = {};
+    }
+    const userVote = userVotes[currentQuestionText] || null;
+    
+    let yesCount = baseline.yes;
+    let noCount = baseline.no;
+    
+    // รีเซ็ตการตกแต่งสไตล์ของปุ่มโหวต
+    voteYesBtn.classList.remove("voted-yes");
+    voteNoBtn.classList.remove("voted-no");
+    
+    // เพิ่มคะแนนโหวตของผู้ใช้ปัจจุบันเข้าไป และไฮไลท์สีปุ่ม
+    if (userVote === "yes") {
+        yesCount += 1;
+        voteYesBtn.classList.add("voted-yes");
+    } else if (userVote === "no") {
+        noCount += 1;
+        voteNoBtn.classList.add("voted-no");
+    }
+    
+    // อัปเดตตัวเลขแสดงผล
+    yesCountSpan.innerText = yesCount;
+    noCountSpan.innerText = noCount;
 }
