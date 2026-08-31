@@ -254,41 +254,114 @@ function updateVoteUI() {
 // ระบบยืนยันชื่อกัปตันผู้เล่น (Modal)
 // ==========================================
 
+function getStoredCaptainName() {
+    try {
+        return localStorage.getItem("onepiece_bingo_player_name") || "";
+    } catch (e) {
+        return "";
+    }
+}
+
+function storeCaptainName(name) {
+    try {
+        localStorage.setItem("onepiece_bingo_player_name", name);
+    } catch (e) {
+        // Safari private mode can throw; keep playing with the in-memory name.
+    }
+}
+
+function isCaptainModalOpen(modal) {
+    return !!(modal && modal.classList.contains("is-open"));
+}
+
+function openCaptainModal(modal, nameInput) {
+    if (!modal) return;
+
+    modal.classList.add("is-open");
+    document.body.classList.add("modal-open");
+
+    if (nameInput) {
+        setTimeout(() => {
+            nameInput.focus();
+            if (nameInput.value) nameInput.select();
+        }, 0);
+    }
+}
+
+function closeCaptainModal(modal) {
+    if (!modal) return;
+
+    modal.classList.remove("is-open");
+    document.body.classList.remove("modal-open");
+}
+
+function saveCaptainAndSetSail(nameInput, captainNameSpan, modal) {
+    if (!nameInput) return false;
+
+    nameInput.setCustomValidity("");
+    const enteredName = nameInput.value.trim();
+    if (!enteredName) {
+        nameInput.setCustomValidity("Please enter your Captain name");
+        if (typeof nameInput.reportValidity === "function") {
+            nameInput.reportValidity();
+        }
+        return false;
+    }
+
+    storeCaptainName(enteredName);
+    if (captainNameSpan) captainNameSpan.innerText = enteredName;
+    closeCaptainModal(modal);
+    return true;
+}
+
 function initCaptainName() {
     const modal = document.getElementById("nameModal");
     const form = document.getElementById("nameForm");
     const nameInput = document.getElementById("playerNameInput");
     const captainNameSpan = document.getElementById("captainName");
     const editBtn = document.getElementById("editCaptainName");
-    
-    // ดึงชื่อกัปตันจาก localStorage
-    const savedName = localStorage.getItem("onepiece_bingo_player_name");
-    
+    const submitBtn = document.getElementById("submitNameBtn");
+
+    const savedName = getStoredCaptainName();
+
     if (savedName) {
         if (captainNameSpan) captainNameSpan.innerText = savedName;
-        if (modal) modal.classList.add("hidden");
+        closeCaptainModal(modal);
     } else {
-        if (modal) modal.classList.remove("hidden");
+        openCaptainModal(modal, nameInput);
     }
-    
+
+    if (nameInput) {
+        nameInput.addEventListener("input", () => nameInput.setCustomValidity(""));
+    }
+
     if (form) {
         form.addEventListener("submit", (e) => {
             e.preventDefault();
-            const enteredName = nameInput.value.trim();
-            if (enteredName) {
-                localStorage.setItem("onepiece_bingo_player_name", enteredName);
-                if (captainNameSpan) captainNameSpan.innerText = enteredName;
-                if (modal) modal.classList.add("hidden");
-                nameInput.value = ""; // เคลียร์ช่องอินพุต
-            }
+            saveCaptainAndSetSail(nameInput, captainNameSpan, modal);
         });
     }
-    
+
+    // Some mobile browsers skip form submit on the button; handle the click too.
+    if (submitBtn) {
+        submitBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            saveCaptainAndSetSail(nameInput, captainNameSpan, modal);
+        });
+    }
+
     if (editBtn) {
         editBtn.addEventListener("click", () => {
-            const currentName = localStorage.getItem("onepiece_bingo_player_name") || "";
+            const currentName = getStoredCaptainName();
             if (nameInput) nameInput.value = currentName;
-            if (modal) modal.classList.remove("hidden");
+            openCaptainModal(modal, nameInput);
         });
     }
+
+    // Escape closes only after a captain name exists.
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (!isCaptainModalOpen(modal)) return;
+        if (getStoredCaptainName()) closeCaptainModal(modal);
+    });
 }
