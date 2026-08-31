@@ -86,10 +86,14 @@
                     <span id="captainName" class="player-value">Guest</span>
                     <button id="editCaptainName" class="edit-btn" title="เปลี่ยนชื่อ / Change Name">✏️</button>
                 </div>
+                <p class="room-live" id="roomLive">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    LIVE · ห้อง <span id="roomNameLabel">crew</span>
+                </p>
                 
                 <div id="voteContainer" class="side-vote-container">
                     <div id="voteInstruction" class="vote-instruction-text">
-                        🎲 Please click "Draw Mission" to open the voting options.
+                        🎲 กด Draw Mission หรือรอโจทย์จากกัปตันคนอื่น
                     </div>
                     
                     <div id="activeVoteContent" style="display: none;">
@@ -108,11 +112,11 @@
                         <div class="vote-roster" aria-live="polite">
                             <div class="vote-roster-col">
                                 <div class="vote-roster-heading">ใช่ =</div>
-                                <p id="yesNameLine" class="vote-roster-name is-empty">—</p>
+                                <ul id="yesVoters" class="vote-roster-list"><li class="is-empty">—</li></ul>
                             </div>
                             <div class="vote-roster-col">
                                 <div class="vote-roster-heading">ไม่ใช่ =</div>
-                                <p id="noNameLine" class="vote-roster-name is-empty">—</p>
+                                <ul id="noVoters" class="vote-roster-list"><li class="is-empty">—</li></ul>
                             </div>
                         </div>
                     </div>

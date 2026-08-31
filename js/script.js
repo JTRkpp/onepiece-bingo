@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 5. ขยายรูปตัวละคร + คัดลอกชื่อ
     initImageZoom();
+
+    // 6. ซิงก์ภารกิจและโหวตให้กัปตันทุกคนเห็นชุดเดียวกัน
+    initSharedGame();
 });
 
 // ฟังก์ชันสร้างตารางบิงโกสุ่มตัวละคร 5x5
@@ -136,49 +139,45 @@ function drawMission() {
         voteInstruction.style.display = "block";
     }
     currentQuestionText = "";
+    isDrawingMission = true;
 
-    let counter = 0;
-    const maxSpin = 15; 
-    
+    let finished = false;
+    const startedAt = Date.now();
     if (drawBtn) drawBtn.disabled = true;
+
+    const finishDraw = () => {
+        if (finished) return;
+        finished = true;
+        clearInterval(spinInterval);
+
+        const finalQ = questions[Math.floor(Math.random() * questions.length)];
+        const finalQuestionText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
+        drawName.innerText = finalQuestionText;
+        if (drawBtn) drawBtn.disabled = false;
+
+        currentQuestionText = finalQuestionText;
+
+        const sideMissionText = document.getElementById("sideMissionText");
+        if (sideMissionText) sideMissionText.innerText = finalQuestionText;
+
+        if (voteInstruction) voteInstruction.style.display = "none";
+        if (activeVoteContent) activeVoteContent.style.display = "block";
+        if (voteContainer) voteContainer.classList.add("visible");
+
+        isDrawingMission = false;
+        publishSharedState({
+            mission: finalQuestionText,
+            drawnAt: Date.now(),
+            votes: {}
+        });
+        updateVoteUI();
+    };
 
     const spinInterval = setInterval(() => {
         const randomQ = questions[Math.floor(Math.random() * questions.length)];
         drawName.innerText = randomQ.text || randomQ.question || "กำลังสุ่ม...";
-        counter++;
-        
-        if (counter >= maxSpin) {
-            clearInterval(spinInterval);
-            
-            const finalQ = questions[Math.floor(Math.random() * questions.length)];
-            const finalQuestionText = finalQ.text || finalQ.question || "ไม่มีโจทย์";
-            drawName.innerText = finalQuestionText;
-            
-            if (drawBtn) drawBtn.disabled = false;
-
-            // ตั้งค่าคำถามปัจจุบันและแสดงส่วนการโหวตด้านข้างอย่างสวยงาม
-            currentQuestionText = finalQuestionText;
-            
-            const sideMissionText = document.getElementById("sideMissionText");
-            if (sideMissionText) {
-                sideMissionText.innerText = finalQuestionText;
-            }
-            
-            if (voteInstruction) {
-                voteInstruction.style.display = "none";
-            }
-            if (activeVoteContent) {
-                activeVoteContent.style.display = "block";
-            }
-            
-            if (voteContainer) {
-                setTimeout(() => {
-                    voteContainer.classList.add("visible");
-                }, 50);
-            }
-            updateVoteUI();
-        }
-    }, 100); 
+        if (Date.now() - startedAt >= 1500) finishDraw();
+    }, 100);
 }
 
 function createCustomBoard() {
@@ -190,86 +189,263 @@ function createCustomBoard() {
 // ==========================================
 
 let currentQuestionText = "";
+let isDrawingMission = false;
+let sharedVotes = {};
+let sharedReady = false;
+let appliedStateSignature = "";
+let sharedDrawnAt = 0;
+let roomChannel = null;
+const SHARED_STATE_URL = "https://crudcrud.com/api/9c5b4d6815ff47418ff345eeaae422b4/bingo/6a959c18b8c09503e80d4b95";
+const SHARED_POLL_MS = 2000;
+
+function getRoomId() {
+    const raw = new URLSearchParams(window.location.search).get("room") || "crew";
+    const cleaned = raw.toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 24);
+    return cleaned || "crew";
+}
+
+function currentCaptainName() {
+    return getStoredCaptainName()
+        || (document.getElementById("captainName")?.innerText || "").trim()
+        || "Guest";
+}
+
+function emptyRoomState() {
+    return { mission: "", drawnAt: 0, votes: {} };
+}
+
+function stateSignature(state) {
+    const votes = state && state.votes ? state.votes : {};
+    return JSON.stringify({
+        mission: (state && state.mission) || "",
+        drawnAt: (state && state.drawnAt) || 0,
+        votes
+    });
+}
+
+function stripDocId(data) {
+    if (!data || typeof data !== "object") return { rooms: {} };
+    const copy = Object.assign({}, data);
+    delete copy._id;
+    if (!copy.rooms || typeof copy.rooms !== "object") copy.rooms = {};
+    return copy;
+}
+
+async function fetchSharedDocument() {
+    const res = await fetch(SHARED_STATE_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("shared state " + res.status);
+    return stripDocId(await res.json());
+}
+
+async function saveSharedDocument(doc) {
+    const payload = stripDocId(doc);
+    const res = await fetch(SHARED_STATE_URL, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error("shared save " + res.status);
+    return payload;
+}
+
+function cacheRoomState(state) {
+    try {
+        localStorage.setItem("onepiece_bingo_room_" + getRoomId(), JSON.stringify(state));
+    } catch (e) { /* ignore quota / private mode */ }
+}
+
+function readCachedRoomState() {
+    try {
+        return JSON.parse(localStorage.getItem("onepiece_bingo_room_" + getRoomId()) || "null");
+    } catch (e) {
+        return null;
+    }
+}
+
+function showSharedMission(text) {
+    const mission = (text || "").trim();
+    if (!mission) return;
+
+    currentQuestionText = mission;
+
+    const drawName = document.getElementById("drawName");
+    if (drawName) drawName.innerText = mission;
+
+    const sideMissionText = document.getElementById("sideMissionText");
+    if (sideMissionText) sideMissionText.innerText = mission;
+
+    const voteInstruction = document.getElementById("voteInstruction");
+    const activeVoteContent = document.getElementById("activeVoteContent");
+    const voteContainer = document.getElementById("voteContainer");
+
+    if (voteInstruction) voteInstruction.style.display = "none";
+    if (activeVoteContent) activeVoteContent.style.display = "block";
+    if (voteContainer) voteContainer.classList.add("visible");
+}
+
+function applySharedState(state, fromBroadcast) {
+    if (!state) return;
+    const incomingDrawn = Number(state.drawnAt) || 0;
+    if (incomingDrawn < sharedDrawnAt) return;
+    if (!state.mission && currentQuestionText && incomingDrawn === 0) return;
+    const signature = stateSignature(state);
+    if (signature === appliedStateSignature) return;
+    appliedStateSignature = signature;
+    sharedDrawnAt = incomingDrawn;
+
+    sharedVotes = Object.assign({}, state.votes || {});
+    sharedReady = true;
+    cacheRoomState(state);
+
+    if (!isDrawingMission && state.mission) {
+        showSharedMission(state.mission);
+    }
+
+    updateVoteUI();
+
+    if (!fromBroadcast && roomChannel) {
+        try { roomChannel.postMessage(state); } catch (e) { /* ignore */ }
+    }
+}
+
+async function publishSharedState(nextRoomState) {
+    const roomId = getRoomId();
+    applySharedState(nextRoomState, true);
+    if (roomChannel) {
+        try { roomChannel.postMessage(nextRoomState); } catch (e) { /* ignore */ }
+    }
+    try {
+        const doc = await fetchSharedDocument();
+        doc.rooms[roomId] = nextRoomState;
+        await saveSharedDocument(doc);
+    } catch (err) {
+        console.warn("ไม่สามารถซิงก์ภารกิจให้ผู้เล่นคนอื่นได้:", err);
+    }
+}
+
+async function mutateSharedVotes(mutator) {
+    const roomId = getRoomId();
+    const writeRoom = async () => {
+        const doc = await fetchSharedDocument();
+        const roomState = doc.rooms[roomId] || emptyRoomState();
+        roomState.votes = Object.assign({}, roomState.votes || {});
+        mutator(roomState);
+        if (!roomState.mission) roomState.mission = currentQuestionText;
+        doc.rooms[roomId] = roomState;
+        await saveSharedDocument(doc);
+        return roomState;
+    };
+
+    try {
+        let roomState = await writeRoom();
+        // อ่านอีกรอบแล้วใส่โหวตของเราทับ เพื่อไม่ให้คนอื่นโหวตพร้อมกันแล้วชื่อหาย
+        roomState = await writeRoom();
+        applySharedState(roomState, false);
+    } catch (err) {
+        console.warn("ไม่สามารถอัปเดตโหวตแบบเรียลไทม์ได้:", err);
+        const localState = {
+            mission: currentQuestionText,
+            drawnAt: Date.now(),
+            votes: Object.assign({}, sharedVotes)
+        };
+        mutator(localState);
+        applySharedState(localState, false);
+    }
+}
+
+async function pullSharedState() {
+    if (isDrawingMission) return;
+    try {
+        const doc = await fetchSharedDocument();
+        const roomState = doc.rooms[getRoomId()] || emptyRoomState();
+        applySharedState(roomState, false);
+    } catch (err) {
+        const cached = readCachedRoomState();
+        if (cached) applySharedState(cached, true);
+    }
+}
+
+function initSharedGame() {
+    const roomId = getRoomId();
+    const roomLabel = document.getElementById("roomNameLabel");
+    if (roomLabel) roomLabel.textContent = roomId;
+
+    if ("BroadcastChannel" in window) {
+        roomChannel = new BroadcastChannel("onepiece-bingo-" + roomId);
+        roomChannel.onmessage = (event) => applySharedState(event.data, true);
+    }
+
+    const cached = readCachedRoomState();
+    if (cached && cached.mission) applySharedState(cached, true);
+
+    pullSharedState();
+    setInterval(pullSharedState, SHARED_POLL_MS);
+}
 
 // จัดการการโหวต Yes/No
 function handleVote(voteType) {
     if (!currentQuestionText) return;
-    
-    let userVotes = {};
-    try {
-        userVotes = JSON.parse(localStorage.getItem('onepiece_bingo_user_votes')) || {};
-    } catch(e) {
-        userVotes = {};
-    }
-    
-    const existingVote = userVotes[currentQuestionText] || null;
-    
-    if (existingVote === voteType) {
-        // หากกดซ้ำตัวเดิม ให้ยกเลิกการโหวต (Toggle Off)
-        delete userVotes[currentQuestionText];
-    } else {
-        // บันทึก/เปลี่ยนประเภทการโหวต
-        userVotes[currentQuestionText] = voteType;
-    }
-    
-    localStorage.setItem('onepiece_bingo_user_votes', JSON.stringify(userVotes));
-    
-    // อัปเดต UI เพื่อแสดงจำนวนผลลัพธ์ใหม่ทันที
+
+    const captainName = currentCaptainName();
+    const existingVote = sharedVotes[captainName] || null;
+    const desiredVote = existingVote === voteType ? null : voteType;
+    const nextVotes = Object.assign({}, sharedVotes);
+
+    if (desiredVote) nextVotes[captainName] = desiredVote;
+    else delete nextVotes[captainName];
+
+    sharedVotes = nextVotes;
     updateVoteUI();
+    mutateSharedVotes((roomState) => {
+        if (desiredVote) roomState.votes[captainName] = desiredVote;
+        else delete roomState.votes[captainName];
+    });
 }
 
-// อัปเดตการแสดงผลหน้าเว็บ
 function updateVoteUI() {
     if (!currentQuestionText) return;
-    
+
     const voteYesBtn = document.getElementById("voteYes");
     const voteNoBtn = document.getElementById("voteNo");
     const yesCountSpan = document.getElementById("yesCount");
     const noCountSpan = document.getElementById("noCount");
-    
+
     if (!voteYesBtn || !voteNoBtn || !yesCountSpan || !noCountSpan) return;
-    
-    let userVotes = {};
-    try {
-        userVotes = JSON.parse(localStorage.getItem('onepiece_bingo_user_votes')) || {};
-    } catch(e) {
-        userVotes = {};
-    }
-    const userVote = userVotes[currentQuestionText] || null;
-    
-    let yesCount = 0;
-    let noCount = 0;
-    const captainName = getStoredCaptainName()
-        || (document.getElementById("captainName")?.innerText || "").trim()
-        || "Guest";
-    
-    // รีเซ็ตการตกแต่งสไตล์ของปุ่มโหวต
+
+    const captainName = currentCaptainName();
+    const voteMap = sharedReady ? sharedVotes : {};
+    const userVote = voteMap[captainName] || null;
+
+    const yesNames = Object.keys(voteMap).filter((name) => voteMap[name] === "yes");
+    const noNames = Object.keys(voteMap).filter((name) => voteMap[name] === "no");
+
     voteYesBtn.classList.remove("voted-yes");
     voteNoBtn.classList.remove("voted-no");
-    
-    // เพิ่มคะแนนโหวตของผู้ใช้ปัจจุบันเข้าไป และไฮไลท์สีปุ่ม
-    if (userVote === "yes") {
-        yesCount += 1;
-        voteYesBtn.classList.add("voted-yes");
-    } else if (userVote === "no") {
-        noCount += 1;
-        voteNoBtn.classList.add("voted-no");
-    }
-    
-    // อัปเดตตัวเลขแสดงผล
-    yesCountSpan.innerText = yesCount;
-    noCountSpan.innerText = noCount;
+    if (userVote === "yes") voteYesBtn.classList.add("voted-yes");
+    if (userVote === "no") voteNoBtn.classList.add("voted-no");
 
-    setVoteNameLine("yesNameLine", userVote === "yes" ? captainName : "");
-    setVoteNameLine("noNameLine", userVote === "no" ? captainName : "");
+    yesCountSpan.innerText = yesNames.length;
+    noCountSpan.innerText = noNames.length;
+    setVoteNameList("yesVoters", yesNames);
+    setVoteNameList("noVoters", noNames);
 }
 
-function setVoteNameLine(elementId, name) {
-    const line = document.getElementById(elementId);
-    if (!line) return;
-    const hasName = !!name;
-    line.textContent = hasName ? name : "—";
-    line.classList.toggle("is-empty", !hasName);
+function setVoteNameList(listId, names) {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    list.replaceChildren();
+    if (!names.length) {
+        const empty = document.createElement("li");
+        empty.className = "is-empty";
+        empty.textContent = "—";
+        list.appendChild(empty);
+        return;
+    }
+    names.forEach((name) => {
+        const item = document.createElement("li");
+        item.textContent = name;
+        list.appendChild(item);
+    });
 }
 
 // ==========================================
@@ -278,7 +454,9 @@ function setVoteNameLine(elementId, name) {
 
 function getStoredCaptainName() {
     try {
-        return localStorage.getItem("onepiece_bingo_player_name") || "";
+        return sessionStorage.getItem("onepiece_bingo_player_name")
+            || localStorage.getItem("onepiece_bingo_player_name")
+            || "";
     } catch (e) {
         return "";
     }
@@ -286,6 +464,7 @@ function getStoredCaptainName() {
 
 function storeCaptainName(name) {
     try {
+        sessionStorage.setItem("onepiece_bingo_player_name", name);
         localStorage.setItem("onepiece_bingo_player_name", name);
     } catch (e) {
         // Safari private mode can throw; keep playing with the in-memory name.
@@ -330,10 +509,19 @@ function saveCaptainAndSetSail(nameInput, captainNameSpan, modal) {
         return false;
     }
 
+    const oldName = getStoredCaptainName();
     storeCaptainName(enteredName);
     if (captainNameSpan) captainNameSpan.innerText = enteredName;
     closeCaptainModal(modal);
-    updateVoteUI();
+    if (oldName && oldName !== enteredName && currentQuestionText) {
+        mutateSharedVotes((roomState) => {
+            const previousVote = roomState.votes[oldName];
+            delete roomState.votes[oldName];
+            if (previousVote) roomState.votes[enteredName] = previousVote;
+        });
+    } else {
+        updateVoteUI();
+    }
     return true;
 }
 
@@ -344,6 +532,13 @@ function initCaptainName() {
     const captainNameSpan = document.getElementById("captainName");
     const editBtn = document.getElementById("editCaptainName");
     const submitBtn = document.getElementById("submitNameBtn");
+
+    try {
+        if (!sessionStorage.getItem("onepiece_bingo_player_name")) {
+            const reused = localStorage.getItem("onepiece_bingo_player_name");
+            if (reused) sessionStorage.setItem("onepiece_bingo_player_name", reused);
+        }
+    } catch (e) { /* ignore */ }
 
     const savedName = getStoredCaptainName();
 
