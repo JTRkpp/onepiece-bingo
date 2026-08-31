@@ -105,6 +105,16 @@
                                 👎 ไม่ใช่ <span id="noCount" class="vote-count">0</span>
                             </button>
                         </div>
+                        <div class="vote-roster" aria-live="polite">
+                            <div class="vote-roster-col">
+                                <div class="vote-roster-heading">ใช่ =</div>
+                                <p id="yesNameLine" class="vote-roster-name is-empty">—</p>
+                            </div>
+                            <div class="vote-roster-col">
+                                <div class="vote-roster-heading">ไม่ใช่ =</div>
+                                <p id="noNameLine" class="vote-roster-name is-empty">—</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,6 +139,23 @@
         </form>
     </div>
 </div>
+
+
+<!-- Lightbox ขยายรูปตัวละคร -->
+<div id="zoomModal" class="zoom-overlay" role="dialog" aria-modal="true" aria-labelledby="zoomNameBtn" hidden>
+    <button type="button" id="zoomClose" class="zoom-close" aria-label="Close">×</button>
+    <div class="zoom-stage" id="zoomStage">
+        <img id="zoomImage" alt="">
+    </div>
+    <div class="zoom-toolbar">
+        <button type="button" id="zoomOutBtn" class="zoom-ctrl" aria-label="Zoom out">−</button>
+        <button type="button" id="zoomNameBtn" class="zoom-name" title="Copy name"></button>
+        <button type="button" id="zoomInBtn" class="zoom-ctrl" aria-label="Zoom in">+</button>
+    </div>
+    <p class="zoom-hint">คลิกชื่อเพื่อคัดลอก · Click name to copy</p>
+</div>
+
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite"></div>
 
 
 <script src="js/script.js"></script>
