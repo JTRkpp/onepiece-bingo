@@ -18,7 +18,7 @@ export default function BingoGame() {
           <button id="drawMission" type="button">🎰 Draw Mission</button>
         </div>
         <p id="drawHint" className="draw-hint">
-          เจ้าของภารกิจกด Draw Mission · Next Captain ส่งตาให้กัปตันคนถัดไป
+          เจ้าของภารกิจกด Draw Mission
         </p>
 
         <div id="drawResult">
@@ -43,66 +43,72 @@ export default function BingoGame() {
 
           <div className="right-pane">
             <div id="sideVotingBoard" className="side-board">
-              <h3>🗳️ VOTING BOARD</h3>
-
-              <div className="player-info">
-                <span className="player-label">🏴‍☠️ CAPTAIN:</span>
-                <span id="captainName" className="player-value">Guest</span>
-                <button id="editCaptainName" className="edit-btn" title="เปลี่ยนชื่อ / Change Name" type="button">✏️</button>
+              <div className="board-head">
+                <h3>🗳️ VOTING BOARD</h3>
+                <p className="room-live" id="roomLive">
+                  <span className="live-dot connecting" id="liveDot" aria-hidden="true" />
+                  <span id="liveStatusText">กำลังเชื่อมต่อ</span>
+                  · <span id="roomNameLabel">crew</span>
+                </p>
               </div>
-              <p className="next-captain-line">
-                <span className="player-label">NEXT:</span>
-                <span id="nextCaptainName" className="player-value">—</span>
-              </p>
+
+              <div className="board-meta">
+                <div className="player-info">
+                  <span className="player-label">CAPTAIN</span>
+                  <span id="captainName" className="player-value">Guest</span>
+                  <button id="editCaptainName" className="edit-btn" title="เปลี่ยนชื่อ / Change Name" type="button">✏️</button>
+                </div>
+                <p className="next-captain-line">
+                  <span className="player-label">NEXT</span>
+                  <span id="nextCaptainName" className="player-value">—</span>
+                </p>
+              </div>
+
+              <div className="crew-panel">
+                <div className="crew-heading">CREW</div>
+                <ol id="crewRoster" className="crew-roster">
+                  <li className="is-empty">ยังไม่มีลูกเรือ</li>
+                </ol>
+              </div>
+
+              <div id="voteContainer" className="side-vote-container visible">
+                <div id="voteInstruction" className="vote-instruction-text">
+                  รอภารกิจจากเจ้าของตา
+                </div>
+
+                <div id="activeVoteContent" style={{ display: "none" }}>
+                  <div className="vote-title">เห็นด้วยกับภารกิจนี้?</div>
+                  <div className="vote-buttons">
+                    <button id="voteYes" className="vote-btn" type="button">
+                      ใช่ <span id="yesCount" className="vote-count">0</span>
+                    </button>
+                    <button id="voteNo" className="vote-btn" type="button">
+                      ไม่ใช่ <span id="noCount" className="vote-count">0</span>
+                    </button>
+                  </div>
+                  <div id="voteRoster" className="vote-roster" aria-live="polite" hidden>
+                    <div className="vote-roster-col">
+                      <div className="vote-roster-heading">ใช่</div>
+                      <ul id="yesVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
+                    </div>
+                    <div className="vote-roster-col">
+                      <div className="vote-roster-heading">ไม่ใช่</div>
+                      <ul id="noVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="board-actions">
-                <button id="nextCaptain" type="button">➡️ Next Captain</button>
+                <button id="nextCaptain" type="button">Next Captain</button>
                 <button
                   id="clearAllData"
                   className="danger"
                   type="button"
                   title="ล้างภารกิจ โหวต ตราบิงโก ลูกเรือ และชื่อกัปตันบนเครื่องนี้"
                 >
-                  🧹 Clear All Data
+                  Clear All Data
                 </button>
-              </div>
-              <p className="room-live" id="roomLive">
-                <span className="live-dot connecting" id="liveDot" aria-hidden="true" />
-                <span id="liveStatusText">กำลังเชื่อมต่อ</span>
-                · ห้อง <span id="roomNameLabel">crew</span>
-              </p>
-              <div className="crew-panel">
-                <div className="crew-heading">ลูกเรือ · CREW</div>
-                <ol id="crewRoster" className="crew-roster">
-                  <li className="is-empty">ยังไม่มีลูกเรือ</li>
-                </ol>
-              </div>
-
-              <div id="voteContainer" className="side-vote-container">
-                <div id="voteInstruction" className="vote-instruction-text">
-                  🎲 รอภารกิจจากเจ้าของภารกิจ หรือกด Draw Mission ถ้าเป็นตาคุณ
-                </div>
-
-                <div id="activeVoteContent" style={{ display: "none" }}>
-                  <div className="vote-title">โหวตเห็นด้วยกับภารกิจนี้หรือไม่? (Do you agree?)</div>
-                  <div className="vote-buttons">
-                    <button id="voteYes" className="vote-btn" type="button">
-                      👍 ใช่ <span id="yesCount" className="vote-count">0</span>
-                    </button>
-                    <button id="voteNo" className="vote-btn" type="button">
-                      👎 ไม่ใช่ <span id="noCount" className="vote-count">0</span>
-                    </button>
-                  </div>
-                  <div className="vote-roster" aria-live="polite">
-                    <div className="vote-roster-col">
-                      <div className="vote-roster-heading">ใช่ =</div>
-                      <ul id="yesVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
-                    </div>
-                    <div className="vote-roster-col">
-                      <div className="vote-roster-heading">ไม่ใช่ =</div>
-                      <ul id="noVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
