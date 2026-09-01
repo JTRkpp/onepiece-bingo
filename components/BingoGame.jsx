@@ -18,7 +18,7 @@ export default function BingoGame() {
           <button id="drawMission" type="button">🎰 Draw Mission</button>
         </div>
         <p id="drawHint" className="draw-hint">
-          เจ้าของภารกิจกด Draw Mission
+          กด Draw Mission เพื่อสุ่มภารกิจ
         </p>
 
         <div id="drawResult">
@@ -26,7 +26,6 @@ export default function BingoGame() {
           <div id="wantedBox">
             <div className="wanted-inner">
               <p id="drawName" className="mission-line">
-                <span id="missionOwnerPrefix" className="mission-owner-prefix" />
                 <span id="missionText">Press &quot;Draw Mission&quot;</span>
               </p>
             </div>
@@ -52,60 +51,39 @@ export default function BingoGame() {
                 </p>
               </div>
 
-              <div className="board-meta">
-                <div className="player-info">
-                  <span className="player-label">CAPTAIN</span>
-                  <span id="captainName" className="player-value">Guest</span>
-                  <button id="editCaptainName" className="edit-btn" title="เปลี่ยนชื่อ / Change Name" type="button">✏️</button>
-                </div>
-                <p className="next-captain-line">
-                  <span className="player-label">NEXT</span>
-                  <span id="nextCaptainName" className="player-value">—</span>
-                </p>
-              </div>
-
-              <div className="crew-panel">
-                <div className="crew-heading">CREW</div>
-                <ol id="crewRoster" className="crew-roster">
-                  <li className="is-empty">ยังไม่มีลูกเรือ</li>
-                </ol>
-              </div>
-
               <div id="voteContainer" className="side-vote-container visible">
                 <div id="voteInstruction" className="vote-instruction-text">
-                  รอภารกิจจากเจ้าของตา
+                  รอภารกิจจากการสุ่ม
                 </div>
 
                 <div id="activeVoteContent" style={{ display: "none" }}>
                   <div className="vote-title">เห็นด้วยกับภารกิจนี้?</div>
                   <div className="vote-buttons">
                     <button id="voteYes" className="vote-btn" type="button">
-                      ใช่ <span id="yesCount" className="vote-count">0</span>
+                      ให้ <span id="yesCount" className="vote-count">0</span>
                     </button>
                     <button id="voteNo" className="vote-btn" type="button">
-                      ไม่ใช่ <span id="noCount" className="vote-count">0</span>
+                      ไม่ให้ <span id="noCount" className="vote-count">0</span>
                     </button>
-                  </div>
-                  <div id="voteRoster" className="vote-roster" aria-live="polite" hidden>
-                    <div className="vote-roster-col">
-                      <div className="vote-roster-heading">ใช่</div>
-                      <ul id="yesVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
-                    </div>
-                    <div className="vote-roster-col">
-                      <div className="vote-roster-heading">ไม่ใช่</div>
-                      <ul id="noVoters" className="vote-roster-list"><li className="is-empty">—</li></ul>
-                    </div>
+                    <button
+                      id="clearVotes"
+                      className="vote-clear-btn"
+                      type="button"
+                      title="ล้างผลโหวต / Clear votes"
+                      aria-label="ล้างผลโหวต"
+                    >
+                      🗑️
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div className="board-actions">
-                <button id="nextCaptain" type="button">Next Captain</button>
                 <button
                   id="clearAllData"
                   className="danger"
                   type="button"
-                  title="ล้างภารกิจ โหวต ตราบิงโก ลูกเรือ และชื่อกัปตันบนเครื่องนี้"
+                  title="ล้างภารกิจ โหวต และตราบิงโกบนเครื่องนี้"
                 >
                   Clear All Data
                 </button>
@@ -114,27 +92,6 @@ export default function BingoGame() {
           </div>
         </div>
       </main>
-
-      <div id="nameModal" className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
-        <div className="modal-content">
-          <h2 id="nameModalTitle">🏴‍☠️ One Piece Bingo & Vote</h2>
-          <p className="th-desc">ยินดีต้อนรับ! กรุณากรอกชื่อกัปตันของคุณเพื่อเข้าเล่นและโหวต</p>
-          <p className="en-desc">Please enter your Captain name to set sail!</p>
-          <form id="nameForm">
-            <label className="sr-only" htmlFor="playerNameInput">Captain Name</label>
-            <input
-              type="text"
-              id="playerNameInput"
-              name="captainName"
-              placeholder="Captain Name"
-              required
-              maxLength={15}
-              autoComplete="off"
-            />
-            <button type="submit" id="submitNameBtn">⚓️ เริ่มเดินทาง (Set Sail)</button>
-          </form>
-        </div>
-      </div>
 
       <div id="zoomModal" className="zoom-overlay" role="dialog" aria-modal="true" aria-labelledby="zoomNameBtn" hidden>
         <button type="button" id="zoomClose" className="zoom-close" aria-label="Close">×</button>
