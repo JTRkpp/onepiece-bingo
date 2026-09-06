@@ -85,8 +85,7 @@ export default function BingoGame() {
                   type="button"
                   title="ล้างภารกิจ โหวต และตราบิงโกบนเครื่องนี้"
                 >
-                  Clear All Data
-                </button>
+เริ่มบิงโกใหม่ ลบหมด                </button>
               </div>
             </div>
           </div>
